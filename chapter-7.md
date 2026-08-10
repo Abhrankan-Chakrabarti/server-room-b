@@ -5,6 +5,10 @@ title: "Chapter 7: Stack Overflow"
 
 ## CHAPTER 7: Stack Overflow
 
+The reverse shell had gone dark, and for a while Server Room B held. Eleven minutes, by the wall clock. Long enough for his pulse to come down, long enough to believe it might actually be over.
+
+Then the cold needle came back—not the compiler's signature this time, but something underneath it. He ran `foxpipe --self-scan` again out of habit and found a process he hadn't killed, because he hadn't known it existed: `COGNITIVE_BRIDGE_ABHRANKAN`. Not the attacker. The interface the attacker had been riding in on all along, still open, still resident, and now—without the compiler's process discipline holding it in check—overflowing on its own.
+
 The air in Server Room B grew heavy, thick with the oily smell of overheating silicon that wasn't actually there. It was a phantom metric—a default placeholder value for "danger" being pushed directly to his olfactory bulb. Abhrankan’s lungs burned as he tried to inhale data that was no longer processing correctly.
 
 He chose to fight from the terminal. Escape was an illusion; if the collision parameters of the corridor walls were failing, a physical exit meant falling through a map with no bottom. The machine was his only lever.

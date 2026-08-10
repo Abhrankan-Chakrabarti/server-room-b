@@ -70,7 +70,7 @@ MDF-CORE-SW01(config-if)# ip access-group BLOCK_COMPILER in
 
 He hit Enter.
 
-The screen frozen. The cursor stayed solid. The entire room went completely, horrifyingly silent. The 60 Hz stutter of the fans stopped. Time dropped to 0 ms.
+The screen froze. The cursor stayed solid. The entire room went completely, horrifyingly silent. The 60 Hz stutter of the fans stopped. Time dropped to 0 ms.
 
 For a timeless frame, Abhrankan hung in the void between states. The link stage had collided with the firewall rules at the exact same microsecond.
 
