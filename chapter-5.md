@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Chapter 5: Persistence Mechanism"
+---
+
 ## CHAPTER 5: Persistence Mechanism
 
 Abhrankan didn’t leave the building. Leaving the data center meant stepping out into a public infrastructure that ran on the same unpatched runtime. If the compiler had a backdoor inside his head, stepping into a high-density area like downtown Kolkata was the equivalent of connecting a compromised machine to an open public Wi-Fi network. He would become an unfirewalled vector of infection for the entire metropolitan grid.

@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Chapter 7: Stack Overflow"
+---
+
 ## CHAPTER 7: Stack Overflow
 
 The air in Server Room B grew heavy, thick with the oily smell of overheating silicon that wasn't actually there. It was a phantom metric—a default placeholder value for "danger" being pushed directly to his olfactory bulb. Abhrankan’s lungs burned as he tried to inhale data that was no longer processing correctly.

@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Chapter 6: Reverse Shell"
+---
+
 ## CHAPTER 6: Reverse Shell
 
 Abhrankan did not reach for sensory deprivation or magnetic isolation. Those were containment strategies for a compromised host that still believed the threat was external. He was past that model. The reverse shell was already established; the only remaining high-probability path was to treat the entity the way any competent engineer treats an untrusted remote process that has opened an outbound connection: inject, escalate, and crash the parent runtime before it finished enumerating the rest of the address space.

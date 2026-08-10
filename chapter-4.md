@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Chapter 4: Residual Payload"
+---
+
 ## CHAPTER 4: Residual Payload
 
 Abhrankan sat on the cold raised floor of the MDF for twelve minutes by the wall clock that had resumed ticking at a correct 1 Hz. His pulse was still elevated, but the lag between intention and motor response had collapsed back to biological norms—roughly 20–40 ms for a trained engineer under stress. The trailing geometry was gone. Color depth was restored. Short-term memory no longer felt like a circular buffer being overwritten mid-cycle.

@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Chapter 1: Out of Memory"
+---
+
 ## CHAPTER 1: Out of Memory
 
 The air conditioning in Server Room B always tasted like static and ozone. It was 03:14 AM.
@@ -55,4 +60,4 @@ The universe wasn't being haunted. It was being uninstalled.
 Behind him, his workstation monitor flashed violently, casting a blinding strobe pattern into the room. The terminal was compiling a new process. And the hardware it was using to build it was Abhrankan’s own brain.
 
 ***
-[← Back to Index](README.md) | [Proceed to Chapter 2 →](chapter-2.md)
+[← Back to Index](index.md) | [Proceed to Chapter 2 →](chapter-2.md)

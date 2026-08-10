@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Chapter 2: Force Quit"
+---
+
 ## CHAPTER 2: Force Quit
 
 Abhrankan’s first instinct was not flight. It was the same reflex that had kept him debugging through four consecutive night shifts: isolate the process, kill it, reclaim the resources.

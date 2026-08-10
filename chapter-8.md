@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Chapter 8: Post-Mortem"
+---
+
 ## CHAPTER 8: Post-Mortem
 
 The fans had been running at nominal frequency for forty-seven minutes. Temperature had climbed back to the ordinary 18.5 °C set point. No further quantisation artefacts appeared in peripheral vision. The residual region at 0x7FFE0000 remained mapped but inert—executable bit cleared, listen socket closed, dead-man switch rewritten to a harmless return.

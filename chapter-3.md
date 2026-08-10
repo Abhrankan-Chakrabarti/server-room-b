@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Chapter 3: Link Stage"
+---
+
 ## CHAPTER 3: Link Stage
 
 The SRE corridor didn’t end; it looped.
