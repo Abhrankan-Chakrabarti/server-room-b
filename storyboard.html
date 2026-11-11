@@ -131,13 +131,13 @@
         <div id="videoViewport" class="relative w-full h-full rounded-[28px] bg-slate-950 overflow-hidden flex flex-col justify-between select-none">
           
           <!-- Rendered Video Player Element (Default) -->
-          <video id="productionVideoPlayer" class="absolute inset-0 w-full h-full object-cover z-10" src="episodes/episode-01-the-packet.mp4" playsinline preload="auto"></video>
+          <video id="productionVideoPlayer" class="absolute inset-0 w-full h-full object-cover z-10" src="episodes/episode-01-the-packet.mp4" playsinline preload="auto" style="display: block;"></video>
 
           <!-- Canvas Layer for Dynamic Scene VFX -->
-          <canvas id="sceneCanvas" class="absolute inset-0 w-full h-full z-0 hidden"></canvas>
+          <canvas id="sceneCanvas" class="absolute inset-0 w-full h-full z-0" style="display: none;"></canvas>
 
           <!-- Interactive Simulator Overlay (Shown ONLY in Live Simulator mode) -->
-          <div id="simulatorOverlay" class="absolute inset-0 flex flex-col justify-between pointer-events-none z-20 hidden scanline-effect">
+          <div id="simulatorOverlay" class="absolute inset-0 flex flex-col justify-between pointer-events-none z-20 scanline-effect" style="display: none;">
             
             <!-- Top HUD: Time & Project Header -->
             <div class="p-4 pt-6 flex justify-between items-start">
@@ -449,6 +449,7 @@
     let lastSpokenScene = -1;
 
     // --- DOM Elements ---
+    const videoViewport = document.getElementById("videoViewport");
     const canvas = document.getElementById("sceneCanvas");
     const ctx = canvas.getContext("2d");
     const productionVideoPlayer = document.getElementById("productionVideoPlayer");
@@ -487,9 +488,13 @@
     const toastMsg = document.getElementById("toastMsg");
 
     function resizeCanvas() {
-      const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width;
-      canvas.height = rect.height;
+      const rect = videoViewport ? videoViewport.getBoundingClientRect() : null;
+      const w = (rect && rect.width > 0) ? Math.round(rect.width) : 336;
+      const h = (rect && rect.height > 0) ? Math.round(rect.height) : 600;
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
+      }
     }
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
@@ -1091,11 +1096,13 @@
 
     scrubber.addEventListener("input", (e) => {
       const val = parseFloat(e.target.value);
+      currentTime = val;
       if (playerMode === "mp4") {
         productionVideoPlayer.currentTime = val;
       } else {
         lastSpokenScene = -1;
         narrationAudioPlayer.pause();
+        renderVisuals(val);
       }
       updateSceneState(val);
     });
@@ -1103,9 +1110,14 @@
     prevSceneBtn.addEventListener("click", () => {
       if (currentSceneIndex > 0) {
         const targetT = scenes[currentSceneIndex - 1].startTime;
-        if (playerMode === "mp4") productionVideoPlayer.currentTime = targetT;
-        lastSpokenScene = -1;
-        narrationAudioPlayer.pause();
+        currentTime = targetT;
+        if (playerMode === "mp4") {
+          productionVideoPlayer.currentTime = targetT;
+        } else {
+          lastSpokenScene = -1;
+          narrationAudioPlayer.pause();
+          renderVisuals(targetT);
+        }
         updateSceneState(targetT);
       }
     });
@@ -1113,17 +1125,27 @@
     nextSceneBtn.addEventListener("click", () => {
       if (currentSceneIndex < scenes.length - 1) {
         const targetT = scenes[currentSceneIndex + 1].startTime;
-        if (playerMode === "mp4") productionVideoPlayer.currentTime = targetT;
-        lastSpokenScene = -1;
-        narrationAudioPlayer.pause();
+        currentTime = targetT;
+        if (playerMode === "mp4") {
+          productionVideoPlayer.currentTime = targetT;
+        } else {
+          lastSpokenScene = -1;
+          narrationAudioPlayer.pause();
+          renderVisuals(targetT);
+        }
         updateSceneState(targetT);
       }
     });
 
     resetBtn.addEventListener("click", () => {
       pause();
-      if (playerMode === "mp4") productionVideoPlayer.currentTime = 0;
-      lastSpokenScene = -1;
+      currentTime = 0;
+      if (playerMode === "mp4") {
+        productionVideoPlayer.currentTime = 0;
+      } else {
+        lastSpokenScene = -1;
+        renderVisuals(0);
+      }
       updateSceneState(0);
     });
 
@@ -1139,26 +1161,40 @@
 
     togglePlayerModeBtn.addEventListener("click", () => {
       if (playerMode === "mp4") {
-        pause();
+        if (!productionVideoPlayer.paused) {
+          pause();
+        }
+        currentTime = productionVideoPlayer.currentTime || currentTime;
         playerMode = "canvas";
-        productionVideoPlayer.classList.add("hidden");
-        canvas.classList.remove("hidden");
-        if (simulatorOverlay) simulatorOverlay.classList.remove("hidden");
+        
+        productionVideoPlayer.style.display = "none";
+        canvas.style.display = "block";
+        if (simulatorOverlay) simulatorOverlay.style.display = "flex";
+        
         playerModeText.textContent = "Source: Live Simulator";
-        if (toggleVoiceBtn) toggleVoiceBtn.classList.remove("hidden");
+        if (toggleVoiceBtn) toggleVoiceBtn.style.display = "inline-flex";
         audioStatusText.textContent = sfxEnabled ? "SFX: ON" : "SFX: MUTED";
         audioIcon.textContent = sfxEnabled ? "🔊" : "🔇";
+        
+        resizeCanvas();
+        updateSceneState(currentTime);
+        renderVisuals(currentTime);
         showToast("Switched to Live VFX Canvas Simulator");
       } else {
         pause();
         playerMode = "mp4";
-        canvas.classList.add("hidden");
-        if (simulatorOverlay) simulatorOverlay.classList.add("hidden");
-        productionVideoPlayer.classList.remove("hidden");
+        
+        canvas.style.display = "none";
+        if (simulatorOverlay) simulatorOverlay.style.display = "none";
+        productionVideoPlayer.style.display = "block";
+        productionVideoPlayer.currentTime = currentTime;
+        
         playerModeText.textContent = "Source: Rendered MP4";
-        if (toggleVoiceBtn) toggleVoiceBtn.classList.add("hidden");
+        if (toggleVoiceBtn) toggleVoiceBtn.style.display = "none";
         audioStatusText.textContent = productionVideoPlayer.muted ? "Audio: MUTED" : "Audio: ON";
         audioIcon.textContent = productionVideoPlayer.muted ? "🔇" : "🔊";
+        
+        updateSceneState(currentTime);
         showToast("Switched to Rendered MP4 Video");
       }
     });
@@ -1245,8 +1281,14 @@
         card.addEventListener("click", () => {
           lastSpokenScene = -1;
           narrationAudioPlayer.pause();
-          if (playerMode === "mp4") productionVideoPlayer.currentTime = s.startTime;
+          currentTime = s.startTime;
+          if (playerMode === "mp4") {
+            productionVideoPlayer.currentTime = s.startTime;
+          }
           updateSceneState(s.startTime);
+          if (playerMode === "canvas") {
+            renderVisuals(s.startTime);
+          }
           if (!isPlaying) play();
         });
       });
@@ -1290,12 +1332,13 @@
 
     // --- Initialize ---
     renderSceneCards();
+    resizeCanvas();
     updateSceneState(0);
     if (playerMode === "mp4") {
-      if (simulatorOverlay) simulatorOverlay.classList.add("hidden");
-      if (canvas) canvas.classList.add("hidden");
+      if (simulatorOverlay) simulatorOverlay.style.display = "none";
+      if (canvas) canvas.style.display = "none";
       if (productionVideoPlayer) {
-        productionVideoPlayer.classList.remove("hidden");
+        productionVideoPlayer.style.display = "block";
         audioStatusText.textContent = productionVideoPlayer.muted ? "Audio: MUTED" : "Audio: ON";
         audioIcon.textContent = productionVideoPlayer.muted ? "🔇" : "🔊";
       }
