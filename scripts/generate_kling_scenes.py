@@ -121,7 +121,7 @@ def list_scenes():
         print(f"   Prompt: {prompt_snippet}")
     print("\n" + "="*80 + "\n")
 
-def submit_scene(scene_id, model="kling-v1", mode="std", api_key=None, base_url=None):
+def submit_scene(scene_id, model="kling-v2-6", mode="std", api_key=None, base_url=None):
     """Submit a text2video generation job for a specific scene."""
     data = load_prompts()
     scene = None
@@ -148,7 +148,8 @@ def submit_scene(scene_id, model="kling-v1", mode="std", api_key=None, base_url=
     print(f"\nSubmitting [{actual_sc_id}] to Kling AI ({model}, mode={mode}, duration={dur}s, 9:16)...")
     res = make_api_request("v1/videos/text2video", payload=payload, method="POST", api_key=api_key, base_url=base_url)
     
-    if res.get("code") == 0:
+    code = res.get("code")
+    if code == 0:
         task_data = res.get("data", {})
         task_id = task_data.get("task_id")
         print(f"SUCCESS! Task submitted successfully.")
@@ -168,7 +169,13 @@ def submit_scene(scene_id, model="kling-v1", mode="std", api_key=None, base_url=
         save_tasks(tasks)
         return task_id
     else:
-        print(f"FAILED to submit task: {res.get('message')} (code: {res.get('code')})")
+        msg = res.get("message", "Unknown error")
+        print(f"FAILED to submit task [{actual_sc_id}]: {msg} (code: {code})")
+        if code == 1102:
+            print("\n[!] Error 1102: 'Account balance not enough'")
+            print("    The Kling AI Developer / Open Platform API requires an API Resource Pack.")
+            print("    Note: Kling AI Web subscription credits (klingai.com) are separate from API platform units.")
+            print("    To resolve: Log into your Kling AI Developer Console and add an API Video Resource Pack.\n")
         return None
 
 def query_status(task_id, api_key=None, base_url=None):
@@ -234,7 +241,7 @@ def main():
     parser.add_argument("--all", action="store_true", help="Generate all 8 scenes sequentially")
     parser.add_argument("--status", type=str, help="Query task status by task_id")
     parser.add_argument("--watch", type=str, help="Watch a task_id until completion and download output")
-    parser.add_argument("--model", type=str, default="kling-v1", help="Kling model name (default: kling-v1)")
+    parser.add_argument("--model", type=str, default="kling-v2-6", choices=["kling-v2-6", "kling-v3"], help="Kling model name (default: kling-v2-6)")
     parser.add_argument("--mode", type=str, default="std", choices=["std", "pro"], help="Generation quality tier (std=720p, pro=1080p)")
     args = parser.parse_args()
     
@@ -280,8 +287,11 @@ def main():
         for s in data.get("scenes", []):
             sc_id = s["scene_id"]
             task_id = submit_scene(sc_id, model=args.model, mode=args.mode, api_key=api_key, base_url=base_url)
+            if not task_id:
+                print(f"\n[!] Batch generation halted due to submission failure on {sc_id}.")
+                return
             time.sleep(2)
-        print("\nAll scenes submitted. Run --list to review tasks status.")
+        print("\nAll scenes submitted successfully. Run with --list to review tasks status.")
         return
         
     # Default behavior if no args: list scenes
