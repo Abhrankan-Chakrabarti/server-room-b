@@ -1,6 +1,6 @@
 """
 Server Room B - Episode 1: The Packet
-Full 60-Second Vertical (9:16) Video Renderer with Synchronized Audio & VFX
+Full 60-Second Vertical (9:16) Video Renderer with Synchronized Audio, Dynamic Layout & VFX
 """
 
 import os
@@ -87,19 +87,74 @@ def build_full_audio_track(repo_dir, ffmpeg_bin, out_mixed_audio):
     cmd.extend(["-filter_complex", filter_complex, "-map", "[outa]", "-t", "60", out_mixed_audio])
     subprocess.run(cmd, check=True)
 
+def wrap_text(text, font, max_width, draw):
+    """
+    Splits text into multiple lines such that no line exceeds max_width.
+    Guarantees that characters never spill past boundaries.
+    """
+    words = text.split()
+    lines = []
+    current_line = []
+    for word in words:
+        test_line = " ".join(current_line + [word])
+        bbox = draw.textbbox((0, 0), test_line, font=font)
+        w = bbox[2] - bbox[0]
+        if w <= max_width:
+            current_line.append(word)
+        else:
+            if current_line:
+                lines.append(" ".join(current_line))
+                current_line = [word]
+            else:
+                lines.append(word)
+                current_line = []
+    if current_line:
+        lines.append(" ".join(current_line))
+    return lines
+
+def draw_centered_text(draw, text, cx, cy, font, fill):
+    """
+    Draws text horizontally centered at cx and vertically centered at cy.
+    """
+    bbox = draw.textbbox((0, 0), text, font=font)
+    tw = bbox[2] - bbox[0]
+    th = bbox[3] - bbox[1]
+    draw.text((cx - tw // 2, cy - th // 2), text, fill=fill, font=font)
+
+def draw_centered_badge(draw, text, cx, cy, font, fill_bg=(0, 0, 0, 230), outline=(234, 179, 8), fill_text=(250, 204, 21), pad_x=22, pad_y=10):
+    """
+    Draws a dynamically sized badge centered at cx, cy, matching the exact text width.
+    Never spills over screen margins.
+    """
+    bbox = draw.textbbox((0, 0), text, font=font)
+    tw = bbox[2] - bbox[0]
+    th = bbox[3] - bbox[1]
+    bx1 = cx - tw // 2 - pad_x
+    by1 = cy - th // 2 - pad_y
+    bx2 = cx + tw // 2 + pad_x
+    by2 = cy + th // 2 + pad_y
+    draw.rectangle([(bx1, by1), (bx2, by2)], fill=fill_bg, outline=outline, width=2)
+    draw.text((cx - tw // 2, cy - th // 2 - 2), text, fill=fill_text, font=font)
+
 def render_video_frames(out_raw_video, width=720, height=1280, fps=30, total_duration=60):
     total_frames = int(fps * total_duration)
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     out = cv2.VideoWriter(out_raw_video, fourcc, fps, (width, height))
     
-    # Try finding system font
+    # Try finding system fonts with safe fallbacks
     try:
-        font_large = ImageFont.truetype("arial.ttf", 36)
-        font_med = ImageFont.truetype("arial.ttf", 26)
-        font_bold = ImageFont.truetype("arialbd.ttf", 32)
-        font_title = ImageFont.truetype("arialbd.ttf", 44)
+        font_title = ImageFont.truetype("arialbd.ttf", 36)
+        font_large = ImageFont.truetype("arialbd.ttf", 30)
+        font_sub = ImageFont.truetype("arialbd.ttf", 26)
+        font_badge = ImageFont.truetype("arialbd.ttf", 22)
+        font_med = ImageFont.truetype("arial.ttf", 22)
+        font_small = ImageFont.truetype("arial.ttf", 17)
+        try:
+            font_mono = ImageFont.truetype("consola.ttf", 19)
+        except:
+            font_mono = font_med
     except:
-        font_large = font_med = font_bold = font_title = ImageFont.load_default()
+        font_title = font_large = font_sub = font_badge = font_med = font_small = font_mono = ImageFont.load_default()
 
     scenes_data = [
         {"name": "SCENE 1: SERVER ROOM B", "start": 0, "end": 6, "type": "servers", "overlay": "03:14 AM", "sub": "3:14 AM. Server Room B."},
@@ -126,6 +181,7 @@ def render_video_frames(out_raw_video, width=720, height=1280, fps=30, total_dur
                 
         rel_t = t - cur_sc["start"]
         sc_dur = cur_sc["end"] - cur_sc["start"]
+        cx = width // 2
         
         img = Image.new("RGB", (width, height), (3, 7, 18))
         draw = ImageDraw.Draw(img)
@@ -167,83 +223,87 @@ def render_video_frames(out_raw_video, width=720, height=1280, fps=30, total_dur
                 lw = int(math.sin(cy + f) * 120 + 200)
                 draw.rectangle([(int(width * 0.24), cy), (int(width * 0.24) + lw, cy + 5)], fill=(186, 230, 253))
             # Silhouette
-            cx = int(width * 0.5)
             draw.ellipse([(cx - 45, int(height * 0.52)), (cx + 45, int(height * 0.62))], fill=(2, 6, 23))
             draw.ellipse([(cx - 90, int(height * 0.62)), (cx + 90, int(height * 0.78))], fill=(2, 6, 23))
 
         elif stype == "memory":
             # SCENE 3: Memory loss telemetry
-            cx, cy = int(width * 0.5), int(height * 0.38)
+            cy_gauge = int(height * 0.38)
             rad = 140
             # Gauge circle
-            draw.ellipse([(cx - rad, cy - rad), (cx + rad, cy + rad)], outline=(30, 41, 59), width=16)
+            draw.ellipse([(cx - rad, cy_gauge - rad), (cx + rad, cy_gauge + rad)], outline=(30, 41, 59), width=16)
             drop_deg = int(360 * min(1.0, rel_t / sc_dur))
-            draw.arc([(cx - rad, cy - rad), (cx + rad, cy + rad)], start=-90, end=-90 + (360 - drop_deg), fill=(239, 68, 68), width=16)
+            draw.arc([(cx - rad, cy_gauge - rad), (cx + rad, cy_gauge + rad)], start=-90, end=-90 + (360 - drop_deg), fill=(239, 68, 68), width=16)
             
             bytes_left = max(0, 1024 - int(rel_t * 64))
-            draw.text((cx - 80, cy - 25), f"{bytes_left} MB", fill=(248, 250, 252), font=font_title)
-            draw.text((cx - 100, cy + 35), "-64 BYTES / MIN", fill=(239, 68, 68), font=font_bold)
+            draw_centered_text(draw, f"{bytes_left} MB", cx, cy_gauge - 20, font_title, (248, 250, 252))
+            draw_centered_text(draw, "-64 BYTES / MIN", cx, cy_gauge + 35, font_large, (239, 68, 68))
             
             # Memory block map
-            draw.text((60, int(height * 0.58)), "HEAP FRAGMENTATION (ADDR: 0x7FFF80)", fill=(148, 163, 184), font=font_med)
+            draw_centered_text(draw, "HEAP ALLOCATION MAP (ADDR: 0x7FFF80)", cx, int(height * 0.57), font_med, (148, 163, 184))
             cols, rows = 12, 6
-            bw, bh = 48, 30
+            bw, bh = 46, 28
+            map_start_x = cx - (cols * bw) // 2
             for r in range(rows):
                 for c in range(cols):
                     is_leak = (r * cols + c) < int((rel_t / sc_dur) * 72)
                     color = (239, 68, 68) if is_leak else (56, 189, 248)
-                    draw.rectangle([(60 + c * bw, int(height * 0.62) + r * bh), (60 + c * bw + bw - 6, int(height * 0.62) + r * bh + bh - 6)], fill=color)
+                    draw.rectangle([(map_start_x + c * bw, int(height * 0.61) + r * bh), (map_start_x + c * bw + bw - 6, int(height * 0.61) + r * bh + bh - 6)], fill=color)
 
         elif stype == "scan":
             # SCENE 4: Rapid packet scanning stream
-            draw.text((40, 160), "$ foxpipe --interface=eth0 --dump-raw --hex", fill=(56, 189, 248), font=font_bold)
-            for line_i in range(28):
-                y_pos = 230 + line_i * 28
+            draw.text((45, 160), "$ foxpipe --interface=eth0 --dump-raw --hex", fill=(56, 189, 248), font=font_sub)
+            for line_i in range(26):
+                y_pos = 220 + line_i * 26
                 seq = (f * 13 + line_i * 97) % 65535
                 hex_val = f"{seq:04X}"
                 alpha_c = (56, 189, 248) if line_i % 3 == 0 else (148, 163, 184)
-                draw.text((40, y_pos), f"[eth0] IP 10.0.4.12:8080 > 10.0.4.1:{40000+line_i} ACK 0x{hex_val}", fill=alpha_c, font=font_med)
+                # Formatted cleanly to guarantee no right margin overflow
+                stream_str = f"[eth0] 10.0.4.12 > 10.0.4.1:{4000+line_i} ACK 0x{hex_val}"
+                draw.text((45, y_pos), stream_str, fill=alpha_c, font=font_mono)
 
         elif stype == "freeze":
             # SCENE 5: Terminal freeze & blinking cursor
-            draw.text((40, 160), "$ foxpipe --interface=eth0 --dump-raw --hex", fill=(148, 163, 184), font=font_bold)
-            draw.text((40, 230), ">> STREAM BUFFER HALTED <<", fill=(234, 179, 8), font=font_title)
-            draw.text((40, 310), "Kernel socket pipeline deadlocked. 0 pkts/sec.", fill=(239, 68, 68), font=font_bold)
+            draw.text((45, 160), "$ foxpipe --interface=eth0 --dump-raw --hex", fill=(148, 163, 184), font=font_sub)
+            draw_centered_text(draw, ">> STREAM BUFFER HALTED <<", cx, 240, font_title, (234, 179, 8))
+            draw.text((45, 300), "Kernel socket pipeline deadlocked.", fill=(239, 68, 68), font=font_sub)
+            draw.text((45, 340), "Buffer drain failed: 0 pkts/sec.", fill=(239, 68, 68), font=font_sub)
             if (f // 15) % 2 == 0:
-                draw.rectangle([(40, 380), (70, 425)], fill=(56, 189, 248))
+                draw.rectangle([(45, 390), (75, 430)], fill=(56, 189, 248))
 
         elif stype == "null_packet":
             # SCENE 6: Source 0.0.0.0
-            cx, cy = int(width * 0.5), int(height * 0.38)
-            draw.text((cx - 160, cy - 80), "ANOMALOUS INBOUND PACKET", fill=(148, 163, 184), font=font_bold)
-            draw.text((cx - 130, cy - 20), "0.0.0.0", fill=(248, 250, 252), font=font_title)
-            draw.text((cx - 150, cy + 60), "SOURCE: NULL_ORIGIN", fill=(56, 189, 248), font=font_bold)
-            draw.text((cx - 170, cy + 120), "PAYLOAD REASSEMBLY IN PROGRESS...", fill=(234, 179, 8), font=font_med)
+            cy_null = int(height * 0.38)
+            draw_centered_text(draw, "ANOMALOUS INBOUND PACKET", cx, cy_null - 80, font_sub, (148, 163, 184))
+            draw_centered_text(draw, "0.0.0.0", cx, cy_null - 15, font_title, (248, 250, 252))
+            draw_centered_text(draw, "SOURCE: NULL_ORIGIN", cx, cy_null + 55, font_large, (56, 189, 248))
+            draw_centered_text(draw, "PAYLOAD REASSEMBLY IN PROGRESS...", cx, cy_null + 115, font_med, (234, 179, 8))
 
         elif stype == "recompile":
             # SCENE 7: Biological Compiler Alert
-            cx = int(width * 0.5)
             # Digital corruption lines
-            for cor_i in range(10):
-                cy_line = 240 + cor_i * 30
-                draw.text((60, cy_line), "43 52 49 54 49 43 41 4C 20 46 41 55 4C 54 21", fill=(239, 68, 68), font=font_med)
+            for cor_i in range(8):
+                cy_line = 230 + cor_i * 28
+                draw_centered_text(draw, "43 52 49 54 49 43 41 4C 20 46 41 55 4C 54", cx, cy_line, font_med, (239, 68, 68))
             
-            draw.rectangle([(40, int(height * 0.46)), (width - 40, int(height * 0.62))], fill=(69, 10, 10), outline=(239, 68, 68), width=3)
-            draw.text((cx - 210, int(height * 0.48)), "[CRITICAL SYSTEM FAULT]", fill=(254, 202, 202), font=font_bold)
-            draw.text((cx - 240, int(height * 0.53)), "[BIOLOGICAL COMPILER ACTIVE]", fill=(254, 202, 202), font=font_bold)
-            draw.text((cx - 230, int(height * 0.57)), "[TARGET: USER_ABHRANKAN]", fill=(254, 240, 138), font=font_title)
+            box_y1 = int(height * 0.45)
+            box_y2 = int(height * 0.63)
+            draw.rectangle([(40, box_y1), (width - 40, box_y2)], fill=(69, 10, 10), outline=(239, 68, 68), width=3)
+            draw_centered_text(draw, "[CRITICAL SYSTEM FAULT]", cx, box_y1 + 38, font_sub, (254, 202, 202))
+            draw_centered_text(draw, "[BIOLOGICAL COMPILER ACTIVE]", cx, box_y1 + 78, font_sub, (254, 202, 202))
+            draw_centered_text(draw, "[TARGET: USER_ABHRANKAN]", cx, box_y1 + 130, font_large, (254, 240, 138))
 
         elif stype == "eye":
             # SCENE 8: Human eye & reality glitch
-            cx, cy = int(width * 0.5), int(height * 0.42)
-            draw.ellipse([(cx - 220, cy - 110), (cx + 220, cy + 110)], outline=(100, 116, 139), width=8)
+            cy_eye = int(height * 0.42)
+            draw.ellipse([(cx - 220, cy_eye - 110), (cx + 220, cy_eye + 110)], outline=(100, 116, 139), width=8)
             # Iris
-            draw.ellipse([(cx - 95, cy - 95), (cx + 95, cy + 95)], fill=(3, 105, 161), outline=(56, 189, 248), width=4)
+            draw.ellipse([(cx - 95, cy_eye - 95), (cx + 95, cy_eye + 95)], fill=(3, 105, 161), outline=(56, 189, 248), width=4)
             # Pupil pulsing
             pupil_r = int(45 + math.sin(f * 0.4) * 12)
-            draw.ellipse([(cx - pupil_r, cy - pupil_r), (cx + pupil_r, cy + pupil_r)], fill=(0, 0, 0))
+            draw.ellipse([(cx - pupil_r, cy_eye - pupil_r), (cx + pupil_r, cy_eye + pupil_r)], fill=(0, 0, 0))
             # Screen reflection
-            draw.text((cx - 40, cy - 15), "0.0.0.0", fill=(255, 255, 255), font=font_bold)
+            draw_centered_text(draw, "0.0.0.0", cx, cy_eye - 5, font_large, (255, 255, 255))
             
             # Glitch slices
             if f % 4 < 2:
@@ -252,29 +312,36 @@ def render_video_frames(out_raw_video, width=720, height=1280, fps=30, total_dur
                     draw.rectangle([(0, gy), (width, gy + 12)], fill=(239, 68, 68))
 
         # TOP HUD
-        draw.rectangle([(40, 40), (220, 90)], fill=(0, 0, 0, 180), outline=(56, 189, 248), width=2)
+        draw.rectangle([(40, 40), (240, 90)], fill=(0, 0, 0, 180), outline=(56, 189, 248), width=2)
         mins, secs = int(t // 60), int(t % 60)
-        draw.text((55, 52), f"03:14 AM  {mins:02d}:{secs:02d}", fill=(56, 189, 248), font=font_bold)
-        draw.text((width - 180, 52), "REC ● 60s", fill=(239, 68, 68), font=font_bold)
+        draw.text((55, 52), f"03:14 AM  {mins:02d}:{secs:02d}", fill=(56, 189, 248), font=font_sub)
+        draw.text((width - 190, 52), "REC ● 60s", fill=(239, 68, 68), font=font_sub)
         
-        # ACTIVE SCENE BADGE
-        draw.text((40, 110), cur_sc["name"], fill=(148, 163, 184), font=font_med)
+        # ACTIVE SCENE BADGE (Left top)
+        draw.text((45, 108), cur_sc["name"], fill=(148, 163, 184), font=font_med)
 
-        # OVERLAY BADGE
+        # DYNAMIC CENTERED OVERLAY BADGE
         if cur_sc["overlay"]:
-            draw.rectangle([(width//2 - 240, int(height * 0.72)), (width//2 + 240, int(height * 0.78))], fill=(0, 0, 0), outline=(234, 179, 8), width=2)
-            draw.text((width//2 - 210, int(height * 0.735)), cur_sc["overlay"], fill=(250, 204, 21), font=font_bold)
+            draw_centered_badge(draw, cur_sc["overlay"], cx=cx, cy=int(height * 0.74), font=font_badge)
 
-        # SUBTITLES (BOTTOM)
-        draw.rectangle([(40, int(height * 0.82)), (width - 40, int(height * 0.94))], fill=(10, 15, 30), outline=(56, 189, 248), width=2)
-        draw.text((60, int(height * 0.835)), "NARRATION:", fill=(148, 163, 184), font=font_med)
-        draw.text((60, int(height * 0.875)), f'"{cur_sc["sub"]}"', fill=(255, 255, 255), font=font_bold)
+        # SUBTITLES (BOTTOM) WITH AUTOMATIC WORD-WRAPPING
+        sub_box_y1 = int(height * 0.81)
+        sub_box_y2 = int(height * 0.95)
+        draw.rectangle([(40, sub_box_y1), (width - 40, sub_box_y2)], fill=(10, 15, 30), outline=(56, 189, 248), width=2)
+        draw.text((60, sub_box_y1 + 14), "NARRATION:", fill=(148, 163, 184), font=font_small)
+        
+        # Max width inside box is 580px (starting at x=60, box width is 640px)
+        wrapped_subs = wrap_text(f'"{cur_sc["sub"]}"', font_sub, max_width=580, draw=draw)
+        line_y = sub_box_y1 + 46
+        for s_line in wrapped_subs:
+            draw.text((60, line_y), s_line, fill=(255, 255, 255), font=font_sub)
+            line_y += 34
 
         # ENDING BLACK SCREEN (at 58-60s)
         if t >= 58.0:
-            fade = min(1.0, (t - 58.0) / 1.0)
             draw.rectangle([(0, 0), (width, height)], fill=(0, 0, 0))
-            draw.text((int(width * 0.5) - 180, int(height * 0.48)), "TO BE CONTINUED...", fill=(248, 250, 252), font=font_title)
+            draw_centered_text(draw, "TO BE CONTINUED...", cx, int(height * 0.46), font_title, (248, 250, 252))
+            draw_centered_text(draw, "EPISODE 2 IN PRE-PRODUCTION", cx, int(height * 0.52), font_med, (56, 189, 248))
 
         # Convert PIL Image to OpenCV BGR
         frame_cv = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
