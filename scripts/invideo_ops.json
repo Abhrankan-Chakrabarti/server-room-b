@@ -1,7 +1,13 @@
 [
   {
+    "op": "delete_clip",
+    "clip": "c1",
+    "mode": "leave_gap",
+    "linked": false
+  },
+  {
     "op": "insert_media",
-    "asset": "https://invideo.io/@abhrankan/server-room-b-episode-1/notebook/seq-10.1",
+    "asset": "https://invideo.io/@abhrankan/server-room-b-episode-1/notebook/seq-12.1",
     "track": "V1",
     "at_f": 0,
     "ripple": false
