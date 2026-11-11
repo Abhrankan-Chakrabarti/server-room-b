@@ -29,7 +29,7 @@ A hard sci-fi technical thriller exploring localized spacetime hypervisor corrup
 - **[Episode 1: The Packet — Interactive Storyboard & Video Player](storyboard.html)**
   - *Format:* Vertical 9:16 (60s) • *Resolution:* 720x1280 @ 30fps • *Soundtrack:* Synchronized Narration + 58Hz Drone SFX
   - **Direct Video File:** [📥 Download episode-01-the-packet.mp4 (3.4 MB - Scene 1 Kling AI Integrated)](episodes/episode-01-the-packet.mp4) • [Scene 1 Raw Kling AI Video (5 MB)](episodes/kling_renders/scene_01.mp4)
-  - **InVideo Cloud:** [InVideo Studio Timeline (seq-1.1)](https://invideo.io/@abhrankan/server-room-b-episode-1/tree/main/seq-1.1) • [Asset seq-12.1](https://invideo.io/@abhrankan/server-room-b-episode-1/notebook/seq-12.1) • [Cloud Export (seq-13.1)](https://invideo.io/@abhrankan/server-room-b-episode-1/notebook/seq-13.1)
+  - **InVideo Cloud:** [InVideo Studio Timeline (seq-1.1)](https://invideo.io/@abhrankan/server-room-b-episode-1/tree/main/seq-1.1) • [Asset seq-14.1](https://invideo.io/@abhrankan/server-room-b-episode-1/notebook/seq-14.1) • [Cloud Export (seq-15.1)](https://invideo.io/@abhrankan/server-room-b-episode-1/notebook/seq-15.1)
   - **Production Specs:** [YAML Blueprint](episodes/episode-01-the-packet.yaml) • [Kling Prompts Guide (MD)](episodes/kling_prompts_episode_01.md) • [Subtitles (SRT)](subtitles/episode-01.srt) • [Subtitles (VTT)](subtitles/episode-01.vtt)
 
 ---
