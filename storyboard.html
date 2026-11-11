@@ -96,7 +96,11 @@
       </button>
       <button id="toggleAudioBtn" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-800 text-xs font-mono text-slate-200 transition-all shadow-sm">
         <span id="audioIcon">🔊</span>
-        <span id="audioStatusText">SFX: ON</span>
+        <span id="audioStatusText">Audio: ON</span>
+      </button>
+      <button id="toggleVoiceBtn" class="hidden flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-800 text-xs font-mono text-slate-200 transition-all shadow-sm">
+        <span id="voiceIcon">🎙️</span>
+        <span id="voiceStatusText">Voice: WAV</span>
       </button>
       <a href="https://invideo.io/@abhrankan/server-room-b-episode-1/tree/main/seq-1.1" target="_blank" class="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-purple-950/80 border border-purple-500/50 hover:bg-purple-900/60 text-xs font-mono text-purple-300 transition-all shadow-sm">
         <span>⚡</span>
@@ -124,7 +128,7 @@
         </div>
 
         <!-- Video Screen Viewport -->
-        <div id="videoViewport" class="relative w-full h-full rounded-[28px] bg-slate-950 overflow-hidden flex flex-col justify-between scanline-effect select-none">
+        <div id="videoViewport" class="relative w-full h-full rounded-[28px] bg-slate-950 overflow-hidden flex flex-col justify-between select-none">
           
           <!-- Rendered Video Player Element (Default) -->
           <video id="productionVideoPlayer" class="absolute inset-0 w-full h-full object-cover z-10" src="episodes/episode-01-the-packet.mp4" playsinline preload="auto"></video>
@@ -132,67 +136,72 @@
           <!-- Canvas Layer for Dynamic Scene VFX -->
           <canvas id="sceneCanvas" class="absolute inset-0 w-full h-full z-0 hidden"></canvas>
 
-          <!-- Top HUD: Time & Project Header -->
-          <div class="relative z-20 p-4 pt-6 flex justify-between items-start pointer-events-none">
-            <div class="bg-black/70 backdrop-blur-md px-2.5 py-1 rounded border border-white/10 font-mono text-xs text-sky-300">
-              <span id="hudTimestamp">03:14 AM</span>
-            </div>
-            <div class="bg-black/70 backdrop-blur-md px-2 py-1 rounded border border-white/10 font-mono text-xs text-slate-400">
-              REC ● 60 FPS
-            </div>
-          </div>
-
-          <!-- Center Animated Narrative Content / Visual Sim -->
-          <div id="centerContent" class="relative z-10 px-5 flex flex-col items-center justify-center text-center">
+          <!-- Interactive Simulator Overlay (Shown ONLY in Live Simulator mode) -->
+          <div id="simulatorOverlay" class="absolute inset-0 flex flex-col justify-between pointer-events-none z-20 hidden scanline-effect">
             
-            <!-- Dynamic scene title & badge -->
-            <div id="sceneBadge" class="inline-block px-3 py-1 mb-3 rounded-full bg-sky-950/90 border border-sky-500/50 text-sky-400 font-mono text-xs tracking-wider uppercase shadow-md">
-              SCENE 1: SERVER ROOM B
-            </div>
-
-            <!-- Terminal / Code Container (shown during terminal scenes) -->
-            <div id="terminalBox" class="w-full bg-slate-950/95 border border-slate-800 rounded-lg p-3 text-left font-mono text-xs shadow-2xl hidden backdrop-blur-md">
-              <div class="flex items-center gap-1.5 pb-2 border-b border-slate-800/80 text-slate-500 text-xs">
-                <span class="w-2 h-2 rounded-full bg-red-500/80"></span>
-                <span class="w-2 h-2 rounded-full bg-yellow-500/80"></span>
-                <span class="w-2 h-2 rounded-full bg-emerald-500/80"></span>
-                <span class="ml-2 text-slate-400">foxpipe v0.9b — eth0</span>
+            <!-- Top HUD: Time & Project Header -->
+            <div class="p-4 pt-6 flex justify-between items-start">
+              <div class="bg-black/70 backdrop-blur-md px-2.5 py-1 rounded border border-white/10 font-mono text-xs text-sky-300">
+                <span id="hudTimestamp">03:14 AM</span>
               </div>
-              <div id="terminalStream" class="pt-2 text-slate-300 text-xs leading-relaxed space-y-1 h-36 overflow-hidden">
-                <!-- stream injected via script -->
+              <div class="bg-black/70 backdrop-blur-md px-2 py-1 rounded border border-white/10 font-mono text-xs text-slate-400">
+                REC ● 60 FPS
               </div>
             </div>
 
-            <!-- Warning Glitch Banner -->
-            <div id="warningBanner" class="w-full mt-3 p-3 rounded-md bg-red-950/90 border border-red-600/70 text-red-300 font-mono text-xs font-bold tracking-widest hidden animate-pulse">
-              [CRITICAL SYSTEM FAULT]
-            </div>
-          </div>
+            <!-- Center Animated Narrative Content / Visual Sim -->
+            <div id="centerContent" class="px-5 flex flex-col items-center justify-center text-center">
+              
+              <!-- Dynamic scene title & badge -->
+              <div id="sceneBadge" class="inline-block px-3 py-1 mb-3 rounded-full bg-sky-950/90 border border-sky-500/50 text-sky-400 font-mono text-xs tracking-wider uppercase shadow-md">
+                SCENE 1: SERVER ROOM B
+              </div>
 
-          <!-- Bottom HUD: Subtitles / Narration & Overlay Text -->
-          <div class="relative z-20 p-4 pb-6 flex flex-col gap-2">
+              <!-- Terminal / Code Container (shown during terminal scenes) -->
+              <div id="terminalBox" class="w-full bg-slate-950/95 border border-slate-800 rounded-lg p-3 text-left font-mono text-xs shadow-2xl hidden backdrop-blur-md">
+                <div class="flex items-center gap-1.5 pb-2 border-b border-slate-800/80 text-slate-500 text-xs">
+                  <span class="w-2 h-2 rounded-full bg-red-500/80"></span>
+                  <span class="w-2 h-2 rounded-full bg-yellow-500/80"></span>
+                  <span class="w-2 h-2 rounded-full bg-emerald-500/80"></span>
+                  <span class="ml-2 text-slate-400">foxpipe v0.9b — eth0</span>
+                </div>
+                <div id="terminalStream" class="pt-2 text-slate-300 text-xs leading-relaxed space-y-1 h-36 overflow-hidden">
+                  <!-- stream injected via script -->
+                </div>
+              </div>
+
+              <!-- Warning Glitch Banner -->
+              <div id="warningBanner" class="w-full mt-3 p-3 rounded-md bg-red-950/90 border border-red-600/70 text-red-300 font-mono text-xs font-bold tracking-widest hidden animate-pulse">
+                [CRITICAL SYSTEM FAULT]
+              </div>
+            </div>
+
+            <!-- Bottom HUD: Subtitles / Narration & Overlay Text -->
+            <div class="p-4 pb-6 flex flex-col gap-2">
+              
+              <!-- Overlay Text Stamp -->
+              <div id="overlayStamp" class="self-center bg-black/85 backdrop-blur-md border border-sky-500/50 px-3 py-1.5 rounded text-sky-300 font-mono text-xs font-semibold tracking-widest uppercase shadow-lg transition-all duration-300">
+                03:14 AM
+              </div>
+
+              <!-- Narration Subtitle Box -->
+              <div class="bg-black/80 backdrop-blur-md rounded-xl p-3 border border-white/10 text-center shadow-lg">
+                <p class="text-xs uppercase tracking-wider text-slate-400 font-mono mb-0.5">Narration</p>
+                <p id="narrationText" class="text-xs sm:text-sm font-medium text-slate-100 leading-snug">
+                  "3:14 AM. Server Room B."
+                </p>
+              </div>
+            </div>
+
+            <!-- Scene Transition Flash / Glitch Overlay -->
+            <div id="glitchFlash" class="absolute inset-0 bg-white opacity-0 pointer-events-none transition-opacity duration-150 z-30"></div>
             
-            <!-- Overlay Text Stamp -->
-            <div id="overlayStamp" class="self-center bg-black/85 backdrop-blur-md border border-sky-500/50 px-3 py-1.5 rounded text-sky-300 font-mono text-xs font-semibold tracking-widest uppercase shadow-lg transition-all duration-300">
-              03:14 AM
+            <!-- Final "TO BE CONTINUED" Screen -->
+            <div id="endScreen" class="absolute inset-0 bg-black z-40 flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-700">
+              <h2 class="text-2xl font-bold tracking-widest text-slate-100 font-mono animate-pulse">TO BE CONTINUED...</h2>
+              <p class="text-xs text-sky-400 mt-2 font-mono">Server Room B • Episode 2 in Pre-Production</p>
             </div>
 
-            <!-- Narration Subtitle Box -->
-            <div class="bg-black/80 backdrop-blur-md rounded-xl p-3 border border-white/10 text-center shadow-lg">
-              <p class="text-xs uppercase tracking-wider text-slate-400 font-mono mb-0.5">Narration</p>
-              <p id="narrationText" class="text-xs sm:text-sm font-medium text-slate-100 leading-snug">
-                "3:14 AM. Server Room B."
-              </p>
-            </div>
-          </div>
-
-          <!-- Scene Transition Flash / Glitch Overlay -->
-          <div id="glitchFlash" class="absolute inset-0 bg-white opacity-0 pointer-events-none transition-opacity duration-150 z-30"></div>
-          
-          <!-- Final "TO BE CONTINUED" Screen -->
-          <div id="endScreen" class="absolute inset-0 bg-black z-40 flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-700">
-            <h2 class="text-2xl font-bold tracking-widest text-slate-100 font-mono animate-pulse">TO BE CONTINUED...</h2>
-            <p class="text-xs text-sky-400 mt-2 font-mono">Server Room B • Episode 2 in Pre-Production</p>
           </div>
 
         </div>
@@ -443,6 +452,7 @@
     const canvas = document.getElementById("sceneCanvas");
     const ctx = canvas.getContext("2d");
     const productionVideoPlayer = document.getElementById("productionVideoPlayer");
+    const simulatorOverlay = document.getElementById("simulatorOverlay");
     const togglePlayerModeBtn = document.getElementById("togglePlayerModeBtn");
     const playerModeText = document.getElementById("playerModeText");
     const scrubber = document.getElementById("timeScrubber");
@@ -968,30 +978,37 @@
         warningBanner.classList.add("hidden");
       }
 
-      if (currentTime >= 59.5) {
-        endScreen.style.opacity = "1";
-        endScreen.style.pointerEvents = "auto";
+      if (playerMode === "canvas") {
+        if (currentTime >= 59.5) {
+          endScreen.style.opacity = "1";
+          endScreen.style.pointerEvents = "auto";
+        } else {
+          endScreen.style.opacity = "0";
+          endScreen.style.pointerEvents = "none";
+        }
       } else {
         endScreen.style.opacity = "0";
         endScreen.style.pointerEvents = "none";
       }
 
       if (sceneChanged) {
-        triggerGlitchFlash();
         highlightActiveSceneCard(currentSceneIndex);
 
-        if (isPlaying) {
-          if (activeScene.sfx === "pulse") playBeep(520, 0.25, "sine", 0.2);
-          else if (activeScene.sfx === "glitch") playGlitchNoise();
-          else if (activeScene.sfx === "alarm") playBeep(880, 0.4, "sawtooth", 0.25);
-          else if (activeScene.sfx === "shriek") {
-            playGlitchNoise();
-            playBeep(1200, 0.5, "sawtooth", 0.3);
-          }
+        if (playerMode === "canvas") {
+          triggerGlitchFlash();
+          if (isPlaying) {
+            if (activeScene.sfx === "pulse") playBeep(520, 0.25, "sine", 0.2);
+            else if (activeScene.sfx === "glitch") playGlitchNoise();
+            else if (activeScene.sfx === "alarm") playBeep(880, 0.4, "sawtooth", 0.25);
+            else if (activeScene.sfx === "shriek") {
+              playGlitchNoise();
+              playBeep(1200, 0.5, "sawtooth", 0.3);
+            }
 
-          if (voiceMode !== "off" && lastSpokenScene !== currentSceneIndex) {
-            lastSpokenScene = currentSceneIndex;
-            triggerNarration(activeScene);
+            if (voiceMode !== "off" && lastSpokenScene !== currentSceneIndex) {
+              lastSpokenScene = currentSceneIndex;
+              triggerNarration(activeScene);
+            }
           }
         }
       }
@@ -1010,16 +1027,18 @@
       const delta = (timestamp - lastTimestamp) / 1000;
       lastTimestamp = timestamp;
 
-      if (isPlaying) {
-        currentTime += delta;
-        if (currentTime >= 60) {
-          currentTime = 60;
-          pause();
+      if (playerMode === "canvas") {
+        if (isPlaying) {
+          currentTime += delta;
+          if (currentTime >= 60) {
+            currentTime = 60;
+            pause();
+          }
+          updateSceneState(currentTime);
         }
-        updateSceneState(currentTime);
+        renderVisuals(currentTime);
       }
 
-      renderVisuals(currentTime);
       animationTimer = requestAnimationFrame(playbackLoop);
     }
 
@@ -1124,47 +1143,64 @@
         playerMode = "canvas";
         productionVideoPlayer.classList.add("hidden");
         canvas.classList.remove("hidden");
+        if (simulatorOverlay) simulatorOverlay.classList.remove("hidden");
         playerModeText.textContent = "Source: Live Simulator";
+        if (toggleVoiceBtn) toggleVoiceBtn.classList.remove("hidden");
+        audioStatusText.textContent = sfxEnabled ? "SFX: ON" : "SFX: MUTED";
+        audioIcon.textContent = sfxEnabled ? "🔊" : "🔇";
         showToast("Switched to Live VFX Canvas Simulator");
       } else {
         pause();
         playerMode = "mp4";
         canvas.classList.add("hidden");
+        if (simulatorOverlay) simulatorOverlay.classList.add("hidden");
         productionVideoPlayer.classList.remove("hidden");
         playerModeText.textContent = "Source: Rendered MP4";
+        if (toggleVoiceBtn) toggleVoiceBtn.classList.add("hidden");
+        audioStatusText.textContent = productionVideoPlayer.muted ? "Audio: MUTED" : "Audio: ON";
+        audioIcon.textContent = productionVideoPlayer.muted ? "🔇" : "🔊";
         showToast("Switched to Rendered MP4 Video");
       }
     });
 
     toggleAudioBtn.addEventListener("click", () => {
-      sfxEnabled = !sfxEnabled;
-      audioStatusText.textContent = sfxEnabled ? "SFX: ON" : "SFX: MUTED";
-      audioIcon.textContent = sfxEnabled ? "🔊" : "🔇";
-      if (!sfxEnabled) stopDroneHum();
-      else if (isPlaying) startDroneHum();
-      showToast(sfxEnabled ? "Sound effects enabled" : "Sound effects muted");
-    });
-
-    toggleVoiceBtn.addEventListener("click", () => {
-      if (voiceMode === "wav") {
-        voiceMode = "tts";
-        voiceStatusText.textContent = "Voice: AI TTS";
-        voiceIcon.textContent = "🗣️";
-        showToast("Switched to browser SpeechSynthesis AI voice");
-      } else if (voiceMode === "tts") {
-        voiceMode = "off";
-        voiceStatusText.textContent = "Voice: OFF";
-        voiceIcon.textContent = "🔇";
-        narrationAudioPlayer.pause();
-        if (window.speechSynthesis) window.speechSynthesis.cancel();
-        showToast("Narration voice turned off");
+      if (playerMode === "mp4") {
+        productionVideoPlayer.muted = !productionVideoPlayer.muted;
+        audioStatusText.textContent = productionVideoPlayer.muted ? "Audio: MUTED" : "Audio: ON";
+        audioIcon.textContent = productionVideoPlayer.muted ? "🔇" : "🔊";
+        showToast(productionVideoPlayer.muted ? "Video muted" : "Video unmuted");
       } else {
-        voiceMode = "wav";
-        voiceStatusText.textContent = "Voice: WAV";
-        voiceIcon.textContent = "🎙️";
-        showToast("Switched to pre-recorded WAV voice tracks");
+        sfxEnabled = !sfxEnabled;
+        audioStatusText.textContent = sfxEnabled ? "SFX: ON" : "SFX: MUTED";
+        audioIcon.textContent = sfxEnabled ? "🔊" : "🔇";
+        if (!sfxEnabled) stopDroneHum();
+        else if (isPlaying) startDroneHum();
+        showToast(sfxEnabled ? "Sound effects enabled" : "Sound effects muted");
       }
     });
+
+    if (toggleVoiceBtn) {
+      toggleVoiceBtn.addEventListener("click", () => {
+        if (voiceMode === "wav") {
+          voiceMode = "tts";
+          voiceStatusText.textContent = "Voice: AI TTS";
+          voiceIcon.textContent = "🗣️";
+          showToast("Switched to browser SpeechSynthesis AI voice");
+        } else if (voiceMode === "tts") {
+          voiceMode = "off";
+          voiceStatusText.textContent = "Voice: OFF";
+          voiceIcon.textContent = "🔇";
+          narrationAudioPlayer.pause();
+          if (window.speechSynthesis) window.speechSynthesis.cancel();
+          showToast("Narration voice turned off");
+        } else {
+          voiceMode = "wav";
+          voiceStatusText.textContent = "Voice: WAV";
+          voiceIcon.textContent = "🎙️";
+          showToast("Switched to pre-recorded WAV voice tracks");
+        }
+      });
+    }
 
     // --- Render Scene Cards in Right Panel ---
     function renderSceneCards() {
@@ -1255,6 +1291,15 @@
     // --- Initialize ---
     renderSceneCards();
     updateSceneState(0);
+    if (playerMode === "mp4") {
+      if (simulatorOverlay) simulatorOverlay.classList.add("hidden");
+      if (canvas) canvas.classList.add("hidden");
+      if (productionVideoPlayer) {
+        productionVideoPlayer.classList.remove("hidden");
+        audioStatusText.textContent = productionVideoPlayer.muted ? "Audio: MUTED" : "Audio: ON";
+        audioIcon.textContent = productionVideoPlayer.muted ? "🔇" : "🔊";
+      }
+    }
     requestAnimationFrame(playbackLoop);
 
   </script>
