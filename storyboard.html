@@ -90,17 +90,21 @@
 
     <!-- Quick Audio & Prompt Actions -->
     <div class="flex flex-wrap items-center gap-2">
+      <button id="togglePlayerModeBtn" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-emerald-950/80 border border-emerald-500/50 hover:bg-emerald-900/60 text-xs font-mono text-emerald-300 transition-all shadow-sm">
+        <span>🎬</span>
+        <span id="playerModeText">Source: Rendered MP4</span>
+      </button>
       <button id="toggleAudioBtn" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-800 text-xs font-mono text-slate-200 transition-all shadow-sm">
         <span id="audioIcon">🔊</span>
         <span id="audioStatusText">SFX: ON</span>
       </button>
-      <button id="toggleVoiceBtn" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-800 text-xs font-mono text-slate-200 transition-all shadow-sm">
-        <span id="voiceIcon">🎙️</span>
-        <span id="voiceStatusText">Voice: WAV</span>
-      </button>
+      <a href="https://invideo.io/@abhrankan/server-room-b-episode-1/tree/main/seq-1.1" target="_blank" class="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-purple-950/80 border border-purple-500/50 hover:bg-purple-900/60 text-xs font-mono text-purple-300 transition-all shadow-sm">
+        <span>⚡</span>
+        <span>InVideo Studio</span>
+      </a>
       <button id="exportAllPromptsBtn" class="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold font-mono transition-all shadow-md active:scale-95">
         <span>📋</span>
-        <span>Copy All Kling Prompts</span>
+        <span>Copy Prompts</span>
       </button>
     </div>
   </header>
@@ -122,8 +126,11 @@
         <!-- Video Screen Viewport -->
         <div id="videoViewport" class="relative w-full h-full rounded-[28px] bg-slate-950 overflow-hidden flex flex-col justify-between scanline-effect select-none">
           
+          <!-- Rendered Video Player Element (Default) -->
+          <video id="productionVideoPlayer" class="absolute inset-0 w-full h-full object-cover z-10" src="episodes/episode-01-the-packet.mp4" playsinline preload="auto"></video>
+
           <!-- Canvas Layer for Dynamic Scene VFX -->
-          <canvas id="sceneCanvas" class="absolute inset-0 w-full h-full z-0"></canvas>
+          <canvas id="sceneCanvas" class="absolute inset-0 w-full h-full z-0 hidden"></canvas>
 
           <!-- Top HUD: Time & Project Header -->
           <div class="relative z-20 p-4 pt-6 flex justify-between items-start pointer-events-none">
@@ -229,12 +236,22 @@
       </div>
 
       <!-- Asset Downloads Bar -->
-      <div class="w-full max-w-[360px] mt-3 p-3 bg-slate-900/60 border border-slate-800/80 rounded-xl text-xs font-mono flex flex-wrap justify-between items-center gap-2 text-slate-400">
-        <span class="text-slate-500">Assets:</span>
-        <a href="subtitles/episode-01.srt" download class="hover:text-sky-300 underline">.SRT</a>
-        <a href="subtitles/episode-01.vtt" download class="hover:text-sky-300 underline">.VTT</a>
-        <a href="episodes/kling_prompts_episode_01.json" download class="hover:text-sky-300 underline">.JSON</a>
-        <a href="episodes/episode-01-the-packet.yaml" download class="hover:text-sky-300 underline">.YAML</a>
+      <div class="w-full max-w-[360px] mt-3 p-3 bg-slate-900/80 border border-slate-800 rounded-xl text-xs font-mono flex flex-col gap-2 text-slate-300 shadow-md">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400 font-bold">Production Assets:</span>
+          <a href="episodes/episode-01-the-packet.mp4" download class="text-emerald-400 font-bold hover:text-emerald-300 underline flex items-center gap-1">
+            <span>📥</span>
+            <span>Download MP4 (3.2 MB)</span>
+          </a>
+        </div>
+        <div class="flex flex-wrap items-center justify-between pt-1 border-t border-slate-800 text-slate-400 text-xs">
+          <span>Specs:</span>
+          <a href="subtitles/episode-01.srt" download class="hover:text-sky-300 underline">.SRT</a>
+          <a href="subtitles/episode-01.vtt" download class="hover:text-sky-300 underline">.VTT</a>
+          <a href="episodes/kling_prompts_episode_01.json" download class="hover:text-sky-300 underline">.JSON</a>
+          <a href="episodes/episode-01-the-packet.yaml" download class="hover:text-sky-300 underline">.YAML</a>
+          <a href="https://invideo.io/@abhrankan/server-room-b-episode-1/tree/main/seq-1.1" target="_blank" class="text-purple-400 hover:text-purple-300 underline">InVideo Timeline ↗</a>
+        </div>
       </div>
 
     </div>
@@ -418,12 +435,16 @@
     let lastTimestamp = 0;
     let sfxEnabled = true;
     let voiceMode = "wav"; // "wav" | "tts" | "off"
+    let playerMode = "mp4"; // "mp4" | "canvas"
     let currentSceneIndex = 0;
     let lastSpokenScene = -1;
 
     // --- DOM Elements ---
     const canvas = document.getElementById("sceneCanvas");
     const ctx = canvas.getContext("2d");
+    const productionVideoPlayer = document.getElementById("productionVideoPlayer");
+    const togglePlayerModeBtn = document.getElementById("togglePlayerModeBtn");
+    const playerModeText = document.getElementById("playerModeText");
     const scrubber = document.getElementById("timeScrubber");
     const currentTimeDisplay = document.getElementById("currentTimeDisplay");
     const playPauseBtn = document.getElementById("playPauseBtn");
@@ -1003,8 +1024,6 @@
     }
 
     function play() {
-      initAudio();
-      startDroneHum();
       isPlaying = true;
       lastTimestamp = performance.now();
       playIcon.textContent = "⏸";
@@ -1017,21 +1036,32 @@
         lastSpokenScene = -1;
       }
 
-      if (voiceMode !== "off" && lastSpokenScene !== currentSceneIndex) {
-        lastSpokenScene = currentSceneIndex;
-        triggerNarration(scenes[currentSceneIndex]);
+      if (playerMode === "mp4") {
+        productionVideoPlayer.play().catch(e => console.warn(e));
+      } else {
+        initAudio();
+        startDroneHum();
+        if (voiceMode !== "off" && lastSpokenScene !== currentSceneIndex) {
+          lastSpokenScene = currentSceneIndex;
+          triggerNarration(scenes[currentSceneIndex]);
+        }
       }
     }
 
     function pause() {
       isPlaying = false;
-      stopDroneHum();
       playIcon.textContent = "▶";
       playText.textContent = "Play";
       playPauseBtn.classList.replace("bg-amber-600", "bg-sky-600");
       playPauseBtn.classList.replace("hover:bg-amber-500", "hover:bg-sky-500");
-      narrationAudioPlayer.pause();
-      if (window.speechSynthesis) window.speechSynthesis.cancel();
+
+      if (playerMode === "mp4") {
+        productionVideoPlayer.pause();
+      } else {
+        stopDroneHum();
+        narrationAudioPlayer.pause();
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+      }
     }
 
     // --- UI Event Listeners ---
@@ -1041,31 +1071,69 @@
     });
 
     scrubber.addEventListener("input", (e) => {
-      lastSpokenScene = -1;
-      narrationAudioPlayer.pause();
-      updateSceneState(parseFloat(e.target.value));
+      const val = parseFloat(e.target.value);
+      if (playerMode === "mp4") {
+        productionVideoPlayer.currentTime = val;
+      } else {
+        lastSpokenScene = -1;
+        narrationAudioPlayer.pause();
+      }
+      updateSceneState(val);
     });
 
     prevSceneBtn.addEventListener("click", () => {
       if (currentSceneIndex > 0) {
+        const targetT = scenes[currentSceneIndex - 1].startTime;
+        if (playerMode === "mp4") productionVideoPlayer.currentTime = targetT;
         lastSpokenScene = -1;
         narrationAudioPlayer.pause();
-        updateSceneState(scenes[currentSceneIndex - 1].startTime);
+        updateSceneState(targetT);
       }
     });
 
     nextSceneBtn.addEventListener("click", () => {
       if (currentSceneIndex < scenes.length - 1) {
+        const targetT = scenes[currentSceneIndex + 1].startTime;
+        if (playerMode === "mp4") productionVideoPlayer.currentTime = targetT;
         lastSpokenScene = -1;
         narrationAudioPlayer.pause();
-        updateSceneState(scenes[currentSceneIndex + 1].startTime);
+        updateSceneState(targetT);
       }
     });
 
     resetBtn.addEventListener("click", () => {
       pause();
+      if (playerMode === "mp4") productionVideoPlayer.currentTime = 0;
       lastSpokenScene = -1;
       updateSceneState(0);
+    });
+
+    productionVideoPlayer.addEventListener("timeupdate", () => {
+      if (playerMode === "mp4") {
+        updateSceneState(productionVideoPlayer.currentTime);
+      }
+    });
+
+    productionVideoPlayer.addEventListener("ended", () => {
+      pause();
+    });
+
+    togglePlayerModeBtn.addEventListener("click", () => {
+      if (playerMode === "mp4") {
+        pause();
+        playerMode = "canvas";
+        productionVideoPlayer.classList.add("hidden");
+        canvas.classList.remove("hidden");
+        playerModeText.textContent = "Source: Live Simulator";
+        showToast("Switched to Live VFX Canvas Simulator");
+      } else {
+        pause();
+        playerMode = "mp4";
+        canvas.classList.add("hidden");
+        productionVideoPlayer.classList.remove("hidden");
+        playerModeText.textContent = "Source: Rendered MP4";
+        showToast("Switched to Rendered MP4 Video");
+      }
     });
 
     toggleAudioBtn.addEventListener("click", () => {
@@ -1141,6 +1209,7 @@
         card.addEventListener("click", () => {
           lastSpokenScene = -1;
           narrationAudioPlayer.pause();
+          if (playerMode === "mp4") productionVideoPlayer.currentTime = s.startTime;
           updateSceneState(s.startTime);
           if (!isPlaying) play();
         });

@@ -23,10 +23,12 @@ A hard sci-fi technical thriller exploring localized spacetime hypervisor corrup
 - [Chapter 8: Post-Mortem](chapter-8.md)
 - [Epilogue: Clean Exit](epilogue.md)
 
-### 🎬 Video Adaptation & Storyboard
-- **[Episode 1: The Packet — Interactive Storyboard & Prompt Studio](storyboard.html)**
-  - *Format:* Vertical 9:16 (60s) • *Provider:* Kling AI • *Audio:* Web Audio SFX + SAPI Narration
-  - [Production Spec (YAML)](episodes/episode-01-the-packet.yaml) • [Kling Prompts Guide (MD)](episodes/kling_prompts_episode_01.md) • [Subtitles (SRT)](subtitles/episode-01.srt) • [Subtitles (VTT)](subtitles/episode-01.vtt)
+### 🎬 Video Adaptation & Production Assets
+- **[Episode 1: The Packet — Interactive Storyboard & Video Player](storyboard.html)**
+  - *Format:* Vertical 9:16 (60s) • *Resolution:* 720x1280 @ 30fps • *Soundtrack:* Synchronized Narration + 58Hz Drone SFX
+  - **Direct Video File:** [📥 Download episode-01-the-packet.mp4 (3.2 MB)](episodes/episode-01-the-packet.mp4)
+  - **InVideo Cloud Editor:** [Open Sequence on InVideo Timeline](https://invideo.io/@abhrankan/server-room-b-episode-1/tree/main/seq-1.1)
+  - **Production Specs:** [YAML Blueprint](episodes/episode-01-the-packet.yaml) • [Kling Prompts Guide (MD)](episodes/kling_prompts_episode_01.md) • [Subtitles (SRT)](subtitles/episode-01.srt) • [Subtitles (VTT)](subtitles/episode-01.vtt)
 
 ---
 
