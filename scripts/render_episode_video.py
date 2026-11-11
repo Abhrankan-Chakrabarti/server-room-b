@@ -141,6 +141,25 @@ def render_video_frames(out_raw_video, width=720, height=1280, fps=30, total_dur
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     out = cv2.VideoWriter(out_raw_video, fourcc, fps, (width, height))
     
+    repo_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    kling_dir = os.path.join(repo_dir, "episodes", "kling_renders")
+    
+    # Preload any available photorealistic Kling AI video renders
+    kling_clips = {}
+    for sc_idx in range(1, 9):
+        sc_file = os.path.join(kling_dir, f"scene_{sc_idx:02d}.mp4")
+        if os.path.exists(sc_file):
+            cap = cv2.VideoCapture(sc_file)
+            c_fps = cap.get(cv2.CAP_PROP_FPS) or 24.0
+            c_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+            kling_clips[sc_idx] = {
+                "cap": cap,
+                "fps": c_fps,
+                "frames": c_frames,
+                "path": sc_file
+            }
+            print(f"🎬 Loaded Kling AI render for Scene {sc_idx}: {c_frames} frames @ {c_fps:.1f}fps")
+    
     # Try finding system fonts with safe fallbacks
     try:
         font_title = ImageFont.truetype("arialbd.ttf", 36)
@@ -174,41 +193,59 @@ def render_video_frames(out_raw_video, width=720, height=1280, fps=30, total_dur
         
         # Find active scene
         cur_sc = scenes_data[-1]
-        for s in scenes_data:
+        sc_num = len(scenes_data)
+        for idx, s in enumerate(scenes_data):
             if s["start"] <= t < s["end"]:
                 cur_sc = s
+                sc_num = idx + 1
                 break
                 
         rel_t = t - cur_sc["start"]
         sc_dur = cur_sc["end"] - cur_sc["start"]
         cx = width // 2
         
-        img = Image.new("RGB", (width, height), (3, 7, 18))
+        # Check if photorealistic AI video exists for this scene
+        has_kling = sc_num in kling_clips and kling_clips[sc_num]["frames"] > 0
+        if has_kling:
+            k_info = kling_clips[sc_num]
+            target_f = min(int(rel_t * k_info["fps"]), k_info["frames"] - 1)
+            k_info["cap"].set(cv2.CAP_PROP_POS_FRAMES, target_f)
+            ret, k_frame = k_info["cap"].read()
+            if ret:
+                if (k_frame.shape[1], k_frame.shape[0]) != (width, height):
+                    k_frame = cv2.resize(k_frame, (width, height), interpolation=cv2.INTER_LINEAR)
+                img = Image.fromarray(cv2.cvtColor(k_frame, cv2.COLOR_BGR2RGB))
+            else:
+                img = Image.new("RGB", (width, height), (3, 7, 18))
+        else:
+            img = Image.new("RGB", (width, height), (3, 7, 18))
+            
         draw = ImageDraw.Draw(img)
         
         stype = cur_sc["type"]
         
         if stype == "servers":
-            # SCENE 1: Server corridor with dolly zoom
-            zoom = 1.0 + (rel_t / sc_dur) * 0.4
-            rack_w = int(width * 0.3 * zoom)
-            
-            # Left & Right racks
-            draw.rectangle([(0, 0), (rack_w, height)], fill=(15, 23, 42))
-            draw.rectangle([(width - rack_w, 0), (width, height)], fill=(15, 23, 42))
-            
-            # Draw server rack slots & blinking LEDs
-            for y in range(40, height, 48):
-                draw.rectangle([(8, y), (rack_w - 12, y + 36)], fill=(30, 41, 59))
-                draw.rectangle([(width - rack_w + 12, y), (width - 8, y + 36)], fill=(30, 41, 59))
-                for led in range(4):
-                    blink = math.sin(f * 0.2 + y + led) > 0.1
-                    color = (56, 189, 248) if blink else (3, 105, 161)
-                    draw.rectangle([(20 + led * 24, y + 14), (32 + led * 24, y + 24)], fill=color)
-                    draw.rectangle([(width - rack_w + 24 + led * 24, y + 14), (width - rack_w + 36 + led * 24, y + 24)], fill=color)
-            
-            # Perspective corridor glow
-            draw.polygon([(rack_w, 0), (width - rack_w, 0), (int(width * 0.65), height), (int(width * 0.35), height)], fill=(8, 47, 73))
+            if not has_kling:
+                # SCENE 1: Server corridor with dolly zoom fallback
+                zoom = 1.0 + (rel_t / sc_dur) * 0.4
+                rack_w = int(width * 0.3 * zoom)
+                
+                # Left & Right racks
+                draw.rectangle([(0, 0), (rack_w, height)], fill=(15, 23, 42))
+                draw.rectangle([(width - rack_w, 0), (width, height)], fill=(15, 23, 42))
+                
+                # Draw server rack slots & blinking LEDs
+                for y in range(40, height, 48):
+                    draw.rectangle([(8, y), (rack_w - 12, y + 36)], fill=(30, 41, 59))
+                    draw.rectangle([(width - rack_w + 12, y), (width - 8, y + 36)], fill=(30, 41, 59))
+                    for led in range(4):
+                        blink = math.sin(f * 0.2 + y + led) > 0.1
+                        color = (56, 189, 248) if blink else (3, 105, 161)
+                        draw.rectangle([(20 + led * 24, y + 14), (32 + led * 24, y + 24)], fill=color)
+                        draw.rectangle([(width - rack_w + 24 + led * 24, y + 14), (width - rack_w + 36 + led * 24, y + 24)], fill=color)
+                
+                # Perspective corridor glow
+                draw.polygon([(rack_w, 0), (width - rack_w, 0), (int(width * 0.65), height), (int(width * 0.35), height)], fill=(8, 47, 73))
 
         elif stype == "engineer":
             # SCENE 2: Abhrankan at triple monitors
@@ -351,6 +388,8 @@ def render_video_frames(out_raw_video, width=720, height=1280, fps=30, total_dur
             print(f"Progress: {f}/{total_frames} frames ({int(f/total_frames*100)}%)")
             
     out.release()
+    for k_info in kling_clips.values():
+        k_info["cap"].release()
     print("Video frame generation completed.")
 
 def main():

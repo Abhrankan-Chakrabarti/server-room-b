@@ -250,7 +250,7 @@
           <span class="text-slate-400 font-bold">Production Assets:</span>
           <a href="episodes/episode-01-the-packet.mp4" download class="text-emerald-400 font-bold hover:text-emerald-300 underline flex items-center gap-1">
             <span>📥</span>
-            <span>Download MP4 (2.7 MB)</span>
+            <span>Download Master MP4 (3.4 MB)</span>
           </a>
         </div>
         <div class="flex flex-wrap items-center justify-between pt-1 border-t border-slate-800 text-slate-400 text-xs">
@@ -259,6 +259,7 @@
           <a href="subtitles/episode-01.vtt" download class="hover:text-sky-300 underline">.VTT</a>
           <a href="episodes/kling_prompts_episode_01.json" download class="hover:text-sky-300 underline">.JSON</a>
           <a href="episodes/episode-01-the-packet.yaml" download class="hover:text-sky-300 underline">.YAML</a>
+          <a href="episodes/kling_renders/scene_01.mp4" download class="text-amber-400 hover:text-amber-300 underline">Scene 1 Kling AI (5MB) ↗</a>
           <a href="https://invideo.io/@abhrankan/server-room-b-episode-1/tree/main/seq-1.1" target="_blank" class="text-purple-400 hover:text-purple-300 underline">InVideo Timeline ↗</a>
         </div>
         <div class="flex items-center justify-between pt-1 border-t border-slate-800/80 text-slate-400 text-[11px]">
@@ -320,7 +321,8 @@
         badge: "SCENE 1: SERVER ROOM B",
         visualType: "servers",
         sfx: "hum",
-        audioSrc: "audio/narration/scene_01_narration.wav"
+        audioSrc: "audio/narration/scene_01_narration.wav",
+        aiRender: "episodes/kling_renders/scene_01.mp4"
       },
       {
         id: "scene_02",
@@ -1255,6 +1257,7 @@
               </span>
               <span class="font-bold text-xs sm:text-sm text-slate-100">${s.title}</span>
               <span class="text-xs font-mono px-2 py-0.5 rounded bg-slate-800 text-sky-300">${s.duration}s</span>
+              ${s.aiRender ? `<a href="${s.aiRender}" download onclick="event.stopPropagation()" class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 hover:bg-emerald-900/80 flex items-center gap-1 shadow-sm transition-colors" title="Download raw Kling AI render"><span>✨</span><span>Kling AI Render</span><span>📥</span></a>` : ''}
             </div>
             <button onclick="copyScenePrompt(${idx}, event)" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-sky-600 hover:text-white border border-slate-700 text-xs font-mono text-slate-300 transition-all flex items-center gap-1 shadow-sm">
               <span>📋</span>

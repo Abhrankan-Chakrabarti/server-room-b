@@ -1,0 +1,12 @@
+{
+  "scene_01": {
+    "task_id": "kling_web_5645_0",
+    "scene_id": "scene_01",
+    "duration": 6,
+    "model": "kling-web-pro",
+    "status": "succeed",
+    "video_path": "episodes/kling_renders/scene_01.mp4",
+    "credits_used": 60,
+    "source": "klingai.com web generator"
+  }
+}
