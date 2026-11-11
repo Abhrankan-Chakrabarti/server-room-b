@@ -1,0 +1,151 @@
+project:
+  title: "Server Room B"
+  episode: "Episode 1 - The Packet"
+  format: "Vertical 9:16"
+  target_duration: "60s"
+
+assets:
+
+  scene_01:
+    duration: 6s
+    type: video
+    provider: kling
+    prompt: >
+      Dark enterprise server room at night,
+      rows of black server racks with blinking blue LEDs,
+      cinematic sci-fi thriller,
+      slow camera dolly forward,
+      volumetric lighting,
+      realistic hardware,
+      suspenseful atmosphere,
+      ultra realistic.
+
+    narration: >
+      3:14 AM. Server Room B.
+
+    overlay_text:
+      - "03:14 AM"
+
+  scene_02:
+    duration: 8s
+    type: video
+    provider: kling
+    prompt: >
+      Abhrankan, late 20s software engineer,
+      sitting alone in front of multiple monitors,
+      blue monitor glow,
+      dark server room,
+      realistic cinematic science fiction.
+
+    narration: >
+      Abhrankan sits alone, tracking a mysterious memory leak.
+
+    overlay_text:
+      - "MEMORY ALLOCATION ERROR DETECTED"
+
+  scene_03:
+    duration: 6s
+    type: video
+    provider: kling
+    prompt: >
+      Computer terminal displaying memory statistics,
+      numbers decreasing,
+      technical monitoring dashboard,
+      realistic interface,
+      cinematic suspense.
+
+    narration: >
+      Every minute, the system loses exactly sixty-four bytes.
+
+    overlay_text:
+      - "-64 BYTES"
+
+  scene_04:
+    duration: 8s
+    type: video
+    provider: kling
+    prompt: >
+      Computer terminal streaming network packets,
+      encrypted telemetry,
+      rapid scrolling data,
+      realistic cyber infrastructure,
+      close-up monitor shot.
+
+    narration: >
+      He launches a network scan.
+      Everything looks normal.
+
+  scene_05:
+    duration: 8s
+    type: video
+    provider: kling
+    prompt: >
+      Terminal suddenly freezes,
+      blinking cursor,
+      dark room illuminated by monitor light,
+      slow zoom in,
+      sci-fi suspense.
+
+    narration: >
+      Then the scrolling stops.
+
+  scene_06:
+    duration: 8s
+    type: video
+    provider: kling
+    prompt: >
+      Computer monitor displaying source address 0.0.0.0,
+      subtle digital distortion,
+      cinematic cyber thriller,
+      dramatic zoom toward screen.
+
+    narration: >
+      A single packet appears.
+      Source address: zero point zero point zero point zero.
+
+    overlay_text:
+      - "SOURCE: 0.0.0.0"
+
+  scene_07:
+    duration: 10s
+    type: video
+    provider: kling
+    prompt: >
+      Hexadecimal code transforming into glowing warning text,
+      symbols rearranging themselves,
+      digital corruption,
+      cinematic science fiction horror.
+
+    narration: >
+      The packet begins rearranging itself into words.
+
+    overlay_text:
+      - "CRITICAL SYSTEM FAULT"
+      - "BIOLOGICAL COMPILER ACTIVE"
+      - "TARGET IDENTIFIED: USER_ABHRANKAN"
+
+  scene_08:
+    duration: 6s
+    type: video
+    provider: kling
+    prompt: >
+      Extreme close-up of human eye illuminated by monitor light,
+      digital glitch reflections,
+      sudden distortion,
+      realistic cinematic thriller.
+
+    narration: >
+      Ah!
+
+audio:
+  ambience:
+    - "server_hum"
+  effects:
+    - "keyboard_typing"
+    - "digital_glitches"
+    - "low_frequency_drone"
+    - "warning_pulse"
+
+ending:
+  screen: "black"
+  text: "TO BE CONTINUED..."

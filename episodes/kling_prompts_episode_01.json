@@ -1,0 +1,116 @@
+{
+  "project": "Server Room B",
+  "episode": "Episode 1 - The Packet",
+  "format": "Vertical 9:16",
+  "target_duration": "60s",
+  "scenes": [
+    {
+      "scene_id": "scene_01",
+      "target_duration_seconds": 6,
+      "kling_duration_seconds": 5,
+      "aspect_ratio": "Vertical 9:16",
+      "kling_prompt": "Dark enterprise server room at night, rows of black server racks with blinking blue LEDs, cinematic sci-fi thriller, slow camera dolly forward, volumetric lighting, realistic hardware, suspenseful atmosphere, ultra realistic., Vertical 9:16 mobile framing, Dolly in, slow smooth camera push through server corridor, cinematic anamorphic bokeh, 8k resolution, photorealistic, 35mm film grain, ARRI Alexa LF style",
+      "camera_direction": "Dolly in, slow smooth camera push through server corridor, cinematic anamorphic bokeh",
+      "negative_prompt": "daylight, cartoon, illustration, low resolution, 3d render, oversaturated, distorted face, extra fingers, deformed hands, blurry, watermark, smiling, happy, cheerful",
+      "narration": "3:14 AM. Server Room B.",
+      "overlay_text": [
+        "03:14 AM"
+      ],
+      "audio_effects": []
+    },
+    {
+      "scene_id": "scene_02",
+      "target_duration_seconds": 8,
+      "kling_duration_seconds": 10,
+      "aspect_ratio": "Vertical 9:16",
+      "kling_prompt": "Abhrankan, late 20s software engineer, sitting alone in front of multiple monitors, blue monitor glow, dark server room, realistic cinematic science fiction., Vertical 9:16 mobile framing, Slow push in on subject, low angle medium shot, dramatic screen reflection, 8k resolution, photorealistic, 35mm film grain, ARRI Alexa LF style",
+      "camera_direction": "Slow push in on subject, low angle medium shot, dramatic screen reflection",
+      "negative_prompt": "daylight, cartoon, illustration, low resolution, 3d render, oversaturated, distorted face, extra fingers, deformed hands, blurry, watermark, smiling, happy, cheerful",
+      "narration": "Abhrankan sits alone, tracking a mysterious memory leak.",
+      "overlay_text": [
+        "MEMORY ALLOCATION ERROR DETECTED"
+      ],
+      "audio_effects": []
+    },
+    {
+      "scene_id": "scene_03",
+      "target_duration_seconds": 6,
+      "kling_duration_seconds": 5,
+      "aspect_ratio": "Vertical 9:16",
+      "kling_prompt": "Computer terminal displaying memory statistics, numbers decreasing, technical monitoring dashboard, realistic interface, cinematic suspense., Vertical 9:16 mobile framing, Over-the-shoulder shot locked on glowing CRT/OLED console, subtle camera breathing, 8k resolution, photorealistic, 35mm film grain, ARRI Alexa LF style",
+      "camera_direction": "Over-the-shoulder shot locked on glowing CRT/OLED console, subtle camera breathing",
+      "negative_prompt": "daylight, cartoon, illustration, low resolution, 3d render, oversaturated, distorted face, extra fingers, deformed hands, blurry, watermark, smiling, happy, cheerful",
+      "narration": "Every minute, the system loses exactly sixty-four bytes.",
+      "overlay_text": [
+        "-64 BYTES"
+      ],
+      "audio_effects": []
+    },
+    {
+      "scene_id": "scene_04",
+      "target_duration_seconds": 8,
+      "kling_duration_seconds": 10,
+      "aspect_ratio": "Vertical 9:16",
+      "kling_prompt": "Computer terminal streaming network packets, encrypted telemetry, rapid scrolling data, realistic cyber infrastructure, close-up monitor shot., Vertical 9:16 mobile framing, Extreme close up on digital matrix terminal, subtle rack focus, 8k resolution, photorealistic, 35mm film grain, ARRI Alexa LF style",
+      "camera_direction": "Extreme close up on digital matrix terminal, subtle rack focus",
+      "negative_prompt": "daylight, cartoon, illustration, low resolution, 3d render, oversaturated, distorted face, extra fingers, deformed hands, blurry, watermark, smiling, happy, cheerful",
+      "narration": "He launches a network scan. Everything looks normal.",
+      "overlay_text": [],
+      "audio_effects": []
+    },
+    {
+      "scene_id": "scene_05",
+      "target_duration_seconds": 8,
+      "kling_duration_seconds": 10,
+      "aspect_ratio": "Vertical 9:16",
+      "kling_prompt": "Terminal suddenly freezes, blinking cursor, dark room illuminated by monitor light, slow zoom in, sci-fi suspense., Vertical 9:16 mobile framing, Static freeze frame with subtle floating dust particles, ominous stillness, 8k resolution, photorealistic, 35mm film grain, ARRI Alexa LF style",
+      "camera_direction": "Static freeze frame with subtle floating dust particles, ominous stillness",
+      "negative_prompt": "daylight, cartoon, illustration, low resolution, 3d render, oversaturated, distorted face, extra fingers, deformed hands, blurry, watermark, smiling, happy, cheerful",
+      "narration": "Then the scrolling stops.",
+      "overlay_text": [],
+      "audio_effects": []
+    },
+    {
+      "scene_id": "scene_06",
+      "target_duration_seconds": 8,
+      "kling_duration_seconds": 10,
+      "aspect_ratio": "Vertical 9:16",
+      "kling_prompt": "Computer monitor displaying source address 0.0.0.0, subtle digital distortion, cinematic cyber thriller, dramatic zoom toward screen., Vertical 9:16 mobile framing, Sudden digital camera push toward center of display, anamorphic lens flare, 8k resolution, photorealistic, 35mm film grain, ARRI Alexa LF style",
+      "camera_direction": "Sudden digital camera push toward center of display, anamorphic lens flare",
+      "negative_prompt": "daylight, cartoon, illustration, low resolution, 3d render, oversaturated, distorted face, extra fingers, deformed hands, blurry, watermark, smiling, happy, cheerful",
+      "narration": "A single packet appears. Source address: zero point zero point zero point zero.",
+      "overlay_text": [
+        "SOURCE: 0.0.0.0"
+      ],
+      "audio_effects": []
+    },
+    {
+      "scene_id": "scene_07",
+      "target_duration_seconds": 10,
+      "kling_duration_seconds": 10,
+      "aspect_ratio": "Vertical 9:16",
+      "kling_prompt": "Hexadecimal code transforming into glowing warning text, symbols rearranging themselves, digital corruption, cinematic science fiction horror., Vertical 9:16 mobile framing, Dynamic zoom with chromatic aberration and phosphor decay, reality distortion, 8k resolution, photorealistic, 35mm film grain, ARRI Alexa LF style",
+      "camera_direction": "Dynamic zoom with chromatic aberration and phosphor decay, reality distortion",
+      "negative_prompt": "daylight, cartoon, illustration, low resolution, 3d render, oversaturated, distorted face, extra fingers, deformed hands, blurry, watermark, smiling, happy, cheerful",
+      "narration": "The packet begins rearranging itself into words.",
+      "overlay_text": [
+        "CRITICAL SYSTEM FAULT",
+        "BIOLOGICAL COMPILER ACTIVE",
+        "TARGET IDENTIFIED: USER_ABHRANKAN"
+      ],
+      "audio_effects": []
+    },
+    {
+      "scene_id": "scene_08",
+      "target_duration_seconds": 6,
+      "kling_duration_seconds": 5,
+      "aspect_ratio": "Vertical 9:16",
+      "kling_prompt": "Extreme close-up of human eye illuminated by monitor light, digital glitch reflections, sudden distortion, realistic cinematic thriller., Vertical 9:16 mobile framing, Macro lens extreme close-up on pupil dialation, biometric scan reflections, 8k resolution, photorealistic, 35mm film grain, ARRI Alexa LF style",
+      "camera_direction": "Macro lens extreme close-up on pupil dialation, biometric scan reflections",
+      "negative_prompt": "daylight, cartoon, illustration, low resolution, 3d render, oversaturated, distorted face, extra fingers, deformed hands, blurry, watermark, smiling, happy, cheerful",
+      "narration": "Ah!",
+      "overlay_text": [],
+      "audio_effects": []
+    }
+  ]
+}

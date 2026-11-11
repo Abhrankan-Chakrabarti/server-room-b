@@ -5,6 +5,8 @@ title: "Chapter 1: Out of Memory"
 
 ## CHAPTER 1: Out of Memory
 
+> 🎬 **Video Adaptation:** [Launch Episode 1 Interactive Storyboard & Video Player](storyboard.html)
+
 The air conditioning in Server Room B always tasted like static and ozone. It was 03:14 AM.
 
 Abhrankan rubbed his eyes, the harsh blue glare of his dual monitors burning into his retinas. On screen, a terminal window sat idle. He had been chasing a ghost memory leak in a proprietary network pipeline for four hours. Every sixty seconds, exactly 64 bytes of unallocated RAM vanished into thin air. No process ID claimed it. The kernel just forgot it existed.

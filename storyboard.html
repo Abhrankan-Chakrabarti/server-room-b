@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Server Room B — Episode 1: The Packet | Interactive Storyboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --background: #030712;
+      --foreground: #f8fafc;
+      --card: #0b1329;
+      --border: #1e293b;
+      --muted-foreground: #94a3b8;
+      --accent: #1e293b;
+    }
+    body {
+      background-color: #030712;
+      color: #f8fafc;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    @keyframes scanline {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(1000%); }
+    }
+    .cursor-blink {
+      animation: blink 0.8s infinite;
+    }
+    .scanline-effect {
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.05), rgba(0, 255, 0, 0.02), rgba(0, 255, 0, 0.05));
+      background-size: 100% 3px, 6px 100%;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(100, 116, 139, 0.4);
+      border-radius: 3px;
+    }
+    .glow-cyan {
+      box-shadow: 0 0 25px -5px rgba(56, 189, 248, 0.35);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased min-h-screen p-4 md:p-6 custom-scroll">
+
+  <!-- Navigation / Return Link -->
+  <div class="max-w-7xl mx-auto mb-4 flex items-center justify-between text-xs font-mono text-slate-400">
+    <div class="flex items-center gap-3">
+      <a href="index.html" class="flex items-center gap-1.5 text-sky-400 hover:text-sky-300 transition-colors">
+        <span>←</span>
+        <span>Reality Patch Logs</span>
+      </a>
+      <span class="text-slate-700">|</span>
+      <a href="chapter-1.html" class="hover:text-slate-200 transition-colors">
+        Chapter 1: Out of Memory
+      </a>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span class="text-emerald-400 uppercase tracking-widest text-xs">Public Storyboard v1.0</span>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="max-w-7xl mx-auto mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+    <div>
+      <div class="flex items-center gap-2">
+        <span class="text-xs px-2.5 py-0.5 rounded bg-sky-950/80 border border-sky-500/40 text-sky-400 font-mono">
+          Vertical 9:16 • 60s Cut
+        </span>
+        <span class="text-xs px-2.5 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-400 font-mono">
+          Kling AI Video Spec
+        </span>
+      </div>
+      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight mt-1.5 text-slate-50">
+        Server Room B: <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300">Episode 1 — The Packet</span>
+      </h1>
+      <p class="text-xs md:text-sm text-slate-400 mt-1">
+        Hard Sci-Fi Adaptation by Abhrankan Chakrabarti • Real-Time Visual Simulator & AI Prompt Director
+      </p>
+    </div>
+
+    <!-- Quick Audio & Prompt Actions -->
+    <div class="flex flex-wrap items-center gap-2">
+      <button id="toggleAudioBtn" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-800 text-xs font-mono text-slate-200 transition-all shadow-sm">
+        <span id="audioIcon">🔊</span>
+        <span id="audioStatusText">SFX: ON</span>
+      </button>
+      <button id="toggleVoiceBtn" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-800 text-xs font-mono text-slate-200 transition-all shadow-sm">
+        <span id="voiceIcon">🎙️</span>
+        <span id="voiceStatusText">Voice: WAV</span>
+      </button>
+      <button id="exportAllPromptsBtn" class="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold font-mono transition-all shadow-md active:scale-95">
+        <span>📋</span>
+        <span>Copy All Kling Prompts</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Grid Layout -->
+  <main class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+    
+    <!-- LEFT: 9:16 Vertical Video Screen & Player -->
+    <div class="lg:col-span-5 flex flex-col items-center">
+      
+      <!-- Phone Mockup Container (9:16 aspect ratio: 360 x 640) -->
+      <div class="relative w-[340px] sm:w-[360px] h-[604px] sm:h-[640px] bg-black rounded-[38px] p-3 shadow-2xl border-4 border-slate-700/70 ring-1 ring-slate-800 glow-cyan flex flex-col overflow-hidden">
+        
+        <!-- Phone Camera Notch -->
+        <div class="absolute top-4 left-1/2 -translate-x-1/2 w-28 h-4 bg-slate-900 rounded-full z-40 flex items-center justify-center">
+          <div class="w-2.5 h-2.5 rounded-full bg-slate-950 border border-slate-700"></div>
+        </div>
+
+        <!-- Video Screen Viewport -->
+        <div id="videoViewport" class="relative w-full h-full rounded-[28px] bg-slate-950 overflow-hidden flex flex-col justify-between scanline-effect select-none">
+          
+          <!-- Canvas Layer for Dynamic Scene VFX -->
+          <canvas id="sceneCanvas" class="absolute inset-0 w-full h-full z-0"></canvas>
+
+          <!-- Top HUD: Time & Project Header -->
+          <div class="relative z-20 p-4 pt-6 flex justify-between items-start pointer-events-none">
+            <div class="bg-black/70 backdrop-blur-md px-2.5 py-1 rounded border border-white/10 font-mono text-xs text-sky-300">
+              <span id="hudTimestamp">03:14 AM</span>
+            </div>
+            <div class="bg-black/70 backdrop-blur-md px-2 py-1 rounded border border-white/10 font-mono text-xs text-slate-400">
+              REC ● 60 FPS
+            </div>
+          </div>
+
+          <!-- Center Animated Narrative Content / Visual Sim -->
+          <div id="centerContent" class="relative z-10 px-5 flex flex-col items-center justify-center text-center">
+            
+            <!-- Dynamic scene title & badge -->
+            <div id="sceneBadge" class="inline-block px-3 py-1 mb-3 rounded-full bg-sky-950/90 border border-sky-500/50 text-sky-400 font-mono text-xs tracking-wider uppercase shadow-md">
+              SCENE 1: SERVER ROOM B
+            </div>
+
+            <!-- Terminal / Code Container (shown during terminal scenes) -->
+            <div id="terminalBox" class="w-full bg-slate-950/95 border border-slate-800 rounded-lg p-3 text-left font-mono text-xs shadow-2xl hidden backdrop-blur-md">
+              <div class="flex items-center gap-1.5 pb-2 border-b border-slate-800/80 text-slate-500 text-xs">
+                <span class="w-2 h-2 rounded-full bg-red-500/80"></span>
+                <span class="w-2 h-2 rounded-full bg-yellow-500/80"></span>
+                <span class="w-2 h-2 rounded-full bg-emerald-500/80"></span>
+                <span class="ml-2 text-slate-400">foxpipe v0.9b — eth0</span>
+              </div>
+              <div id="terminalStream" class="pt-2 text-slate-300 text-xs leading-relaxed space-y-1 h-36 overflow-hidden">
+                <!-- stream injected via script -->
+              </div>
+            </div>
+
+            <!-- Warning Glitch Banner -->
+            <div id="warningBanner" class="w-full mt-3 p-3 rounded-md bg-red-950/90 border border-red-600/70 text-red-300 font-mono text-xs font-bold tracking-widest hidden animate-pulse">
+              [CRITICAL SYSTEM FAULT]
+            </div>
+          </div>
+
+          <!-- Bottom HUD: Subtitles / Narration & Overlay Text -->
+          <div class="relative z-20 p-4 pb-6 flex flex-col gap-2">
+            
+            <!-- Overlay Text Stamp -->
+            <div id="overlayStamp" class="self-center bg-black/85 backdrop-blur-md border border-sky-500/50 px-3 py-1.5 rounded text-sky-300 font-mono text-xs font-semibold tracking-widest uppercase shadow-lg transition-all duration-300">
+              03:14 AM
+            </div>
+
+            <!-- Narration Subtitle Box -->
+            <div class="bg-black/80 backdrop-blur-md rounded-xl p-3 border border-white/10 text-center shadow-lg">
+              <p class="text-xs uppercase tracking-wider text-slate-400 font-mono mb-0.5">Narration</p>
+              <p id="narrationText" class="text-xs sm:text-sm font-medium text-slate-100 leading-snug">
+                "3:14 AM. Server Room B."
+              </p>
+            </div>
+          </div>
+
+          <!-- Scene Transition Flash / Glitch Overlay -->
+          <div id="glitchFlash" class="absolute inset-0 bg-white opacity-0 pointer-events-none transition-opacity duration-150 z-30"></div>
+          
+          <!-- Final "TO BE CONTINUED" Screen -->
+          <div id="endScreen" class="absolute inset-0 bg-black z-40 flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-700">
+            <h2 class="text-2xl font-bold tracking-widest text-slate-100 font-mono animate-pulse">TO BE CONTINUED...</h2>
+            <p class="text-xs text-sky-400 mt-2 font-mono">Server Room B • Episode 2 in Pre-Production</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Playback Controls Bar -->
+      <div class="w-full max-w-[360px] mt-4 bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl flex flex-col gap-3">
+        
+        <!-- Scrubber -->
+        <div class="flex items-center gap-3">
+          <span id="currentTimeDisplay" class="font-mono text-xs text-slate-400 w-10">00:00</span>
+          <input id="timeScrubber" type="range" min="0" max="60" step="0.1" value="0" class="w-full h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-sky-400">
+          <span class="font-mono text-xs text-slate-400 w-10 text-right">01:00</span>
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-1.5">
+            <button id="prevSceneBtn" title="Previous Scene" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono transition-colors">
+              ⏮ Prev
+            </button>
+            <button id="playPauseBtn" class="flex items-center justify-center gap-2 px-4 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-xs shadow-md transition-all active:scale-95">
+              <span id="playIcon">▶</span>
+              <span id="playText">Play</span>
+            </button>
+            <button id="nextSceneBtn" title="Next Scene" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono transition-colors">
+              Next ⏭
+            </button>
+          </div>
+
+          <button id="resetBtn" class="px-3 py-1.5 text-xs font-mono text-slate-400 hover:text-slate-200 transition-colors">
+            ↺ Reset
+          </button>
+        </div>
+
+        <!-- Active Scene Indicator -->
+        <div class="flex items-center justify-between pt-2 border-t border-slate-800 text-xs font-mono text-slate-400">
+          <span>Active: <strong id="activeSceneLabel" class="text-sky-400 font-semibold">Scene 1</strong></span>
+          <span id="sceneTimeRange">00:00 - 00:06 (6s)</span>
+        </div>
+      </div>
+
+      <!-- Asset Downloads Bar -->
+      <div class="w-full max-w-[360px] mt-3 p-3 bg-slate-900/60 border border-slate-800/80 rounded-xl text-xs font-mono flex flex-wrap justify-between items-center gap-2 text-slate-400">
+        <span class="text-slate-500">Assets:</span>
+        <a href="subtitles/episode-01.srt" download class="hover:text-sky-300 underline">.SRT</a>
+        <a href="subtitles/episode-01.vtt" download class="hover:text-sky-300 underline">.VTT</a>
+        <a href="episodes/kling_prompts_episode_01.json" download class="hover:text-sky-300 underline">.JSON</a>
+        <a href="episodes/episode-01-the-packet.yaml" download class="hover:text-sky-300 underline">.YAML</a>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Scene Prompt Matrix & Kling AI Director Cheat Sheet -->
+    <div class="lg:col-span-7 flex flex-col gap-4">
+      
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-lg font-bold text-slate-100">Kling AI Prompt Director Matrix</h2>
+          <p class="text-xs text-slate-400">Cinematic vertical prompts, camera movement specs, and narration audio cues</p>
+        </div>
+        <div class="text-xs font-mono px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-sky-400">
+          8 Scenes • Total: 60s
+        </div>
+      </div>
+
+      <!-- Scene Cards List -->
+      <div id="scenesListContainer" class="flex flex-col gap-3 max-h-[720px] overflow-y-auto pr-1 custom-scroll">
+        <!-- Injected via JavaScript -->
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 border border-sky-500/60 text-slate-100 px-4 py-2.5 rounded-xl shadow-2xl text-xs font-mono flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300">
+    <span class="text-sky-400">✓</span>
+    <span id="toastMsg">Prompt copied to clipboard!</span>
+  </div>
+
+  <!-- Audio Element for Pre-recorded WAV Narration -->
+  <audio id="narrationAudioPlayer" preload="auto"></audio>
+
+  <script>
+    // --- Data Model for Server Room B: Episode 1 ---
+    const scenes = [
+      {
+        id: "scene_01",
+        num: 1,
+        title: "Server Room B Corridor",
+        duration: 6,
+        startTime: 0,
+        endTime: 6,
+        timecode: "00:00 - 00:06",
+        camera: "Slow camera dolly forward, volumetric blue lighting, anamorphic bokeh",
+        prompt: "Dark enterprise server room at night, rows of black server racks with blinking blue LEDs, cinematic sci-fi thriller, slow camera dolly forward, volumetric lighting, realistic hardware, suspenseful atmosphere, ultra realistic, vertical 9:16 mobile format.",
+        narration: "3:14 AM. Server Room B.",
+        overlay: ["03:14 AM"],
+        badge: "SCENE 1: SERVER ROOM B",
+        visualType: "servers",
+        sfx: "hum",
+        audioSrc: "audio/narration/scene_01_narration.wav"
+      },
+      {
+        id: "scene_02",
+        num: 2,
+        title: "Abhrankan at Consoles",
+        duration: 8,
+        startTime: 6,
+        endTime: 14,
+        timecode: "00:06 - 00:14",
+        camera: "Low-angle medium shot, screen glow reflection, slow push-in",
+        prompt: "Abhrankan, late 20s software engineer, sitting alone in front of multiple monitors, blue monitor glow, dark server room, realistic cinematic science fiction, vertical 9:16 format.",
+        narration: "Abhrankan sits alone, tracking a mysterious memory leak.",
+        overlay: ["MEMORY ALLOCATION ERROR DETECTED"],
+        badge: "SCENE 2: MEMORY LEAK INVESTIGATION",
+        visualType: "engineer",
+        sfx: "typing",
+        audioSrc: "audio/narration/scene_02_narration.wav"
+      },
+      {
+        id: "scene_03",
+        num: 3,
+        title: "Memory Statistics Dashboard",
+        duration: 6,
+        startTime: 14,
+        endTime: 20,
+        timecode: "00:14 - 00:20",
+        camera: "Close-up locked-on terminal shot, rhythmic HUD update",
+        prompt: "Computer terminal displaying memory statistics, numbers decreasing, technical monitoring dashboard, realistic interface, cinematic suspense, vertical 9:16 format.",
+        narration: "Every minute, the system loses exactly sixty-four bytes.",
+        overlay: ["-64 BYTES"],
+        badge: "SCENE 3: TELEMETRY ANOMALY",
+        visualType: "memory_dash",
+        sfx: "pulse",
+        audioSrc: "audio/narration/scene_03_narration.wav"
+      },
+      {
+        id: "scene_04",
+        num: 4,
+        title: "Packet Stream Scan",
+        duration: 8,
+        startTime: 20,
+        endTime: 28,
+        timecode: "00:20 - 00:28",
+        camera: "Close-up monitor shot, rapid scrolling text, subtle rack focus",
+        prompt: "Computer terminal streaming network packets, encrypted telemetry, rapid scrolling data, realistic cyber infrastructure, close-up monitor shot, vertical 9:16 format.",
+        narration: "He launches a network scan. Everything looks normal.",
+        overlay: [],
+        badge: "SCENE 4: NETWORK SCAN STREAM",
+        visualType: "packet_stream",
+        sfx: "typing_fast",
+        audioSrc: "audio/narration/scene_04_narration.wav"
+      },
+      {
+        id: "scene_05",
+        num: 5,
+        title: "Terminal Freeze",
+        duration: 8,
+        startTime: 28,
+        endTime: 36,
+        timecode: "00:28 - 00:36",
+        camera: "Slow suspenseful zoom in on frozen blinking cursor, ambient darkness",
+        prompt: "Terminal suddenly freezes, blinking cursor, dark room illuminated by monitor light, slow zoom in, sci-fi suspense, vertical 9:16 format.",
+        narration: "Then the scrolling stops.",
+        overlay: [],
+        badge: "SCENE 5: SYSTEM HALT",
+        visualType: "frozen_cursor",
+        sfx: "silence",
+        audioSrc: "audio/narration/scene_05_narration.wav"
+      },
+      {
+        id: "scene_06",
+        num: 6,
+        title: "The Ghost Source (0.0.0.0)",
+        duration: 8,
+        startTime: 36,
+        endTime: 44,
+        timecode: "00:36 - 00:44",
+        camera: "Dramatic digital zoom toward screen, chromatic lens distortion",
+        prompt: "Computer monitor displaying source address 0.0.0.0, subtle digital distortion, cinematic cyber thriller, dramatic zoom toward screen, vertical 9:16 format.",
+        narration: "A single packet appears. Source address: zero point zero point zero point zero.",
+        overlay: ["SOURCE: 0.0.0.0"],
+        badge: "SCENE 6: NULL PACKET",
+        visualType: "null_packet",
+        sfx: "glitch",
+        audioSrc: "audio/narration/scene_06_narration.wav"
+      },
+      {
+        id: "scene_07",
+        num: 7,
+        title: "Biological Compiler Awakening",
+        duration: 10,
+        startTime: 44,
+        endTime: 54,
+        timecode: "00:44 - 00:54",
+        camera: "Dynamic zoom, chromatic aberration, symbols reassembling",
+        prompt: "Hexadecimal code transforming into glowing warning text, symbols rearranging themselves, digital corruption, cinematic science fiction horror, vertical 9:16 format.",
+        narration: "The packet begins rearranging itself into words.",
+        overlay: ["CRITICAL SYSTEM FAULT", "BIOLOGICAL COMPILER ACTIVE", "TARGET IDENTIFIED: USER_ABHRANKAN"],
+        badge: "SCENE 7: RECOMPILATION",
+        visualType: "hex_recompile",
+        sfx: "alarm",
+        audioSrc: "audio/narration/scene_07_narration.wav"
+      },
+      {
+        id: "scene_08",
+        num: 8,
+        title: "Human Pupil Glitch Impact",
+        duration: 6,
+        startTime: 54,
+        endTime: 60,
+        timecode: "00:54 - 01:00",
+        camera: "Extreme macro close-up of human eye, monitor reflection, violent glitch",
+        prompt: "Extreme close-up of human eye illuminated by monitor light, digital glitch reflections, sudden distortion, realistic cinematic thriller, vertical 9:16 format.",
+        narration: "Ah!",
+        overlay: [],
+        badge: "SCENE 8: REALITY OVERFLOW",
+        visualType: "eye_glitch",
+        sfx: "shriek",
+        audioSrc: "audio/narration/scene_08_narration.wav"
+      }
+    ];
+
+    // --- State Variables ---
+    let currentTime = 0;
+    let isPlaying = false;
+    let animationTimer = null;
+    let lastTimestamp = 0;
+    let sfxEnabled = true;
+    let voiceMode = "wav"; // "wav" | "tts" | "off"
+    let currentSceneIndex = 0;
+    let lastSpokenScene = -1;
+
+    // --- DOM Elements ---
+    const canvas = document.getElementById("sceneCanvas");
+    const ctx = canvas.getContext("2d");
+    const scrubber = document.getElementById("timeScrubber");
+    const currentTimeDisplay = document.getElementById("currentTimeDisplay");
+    const playPauseBtn = document.getElementById("playPauseBtn");
+    const playIcon = document.getElementById("playIcon");
+    const playText = document.getElementById("playText");
+    const prevSceneBtn = document.getElementById("prevSceneBtn");
+    const nextSceneBtn = document.getElementById("nextSceneBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const toggleAudioBtn = document.getElementById("toggleAudioBtn");
+    const audioStatusText = document.getElementById("audioStatusText");
+    const audioIcon = document.getElementById("audioIcon");
+    const toggleVoiceBtn = document.getElementById("toggleVoiceBtn");
+    const voiceStatusText = document.getElementById("voiceStatusText");
+    const voiceIcon = document.getElementById("voiceIcon");
+    const exportAllPromptsBtn = document.getElementById("exportAllPromptsBtn");
+    const narrationAudioPlayer = document.getElementById("narrationAudioPlayer");
+
+    const sceneBadge = document.getElementById("sceneBadge");
+    const terminalBox = document.getElementById("terminalBox");
+    const terminalStream = document.getElementById("terminalStream");
+    const warningBanner = document.getElementById("warningBanner");
+    const overlayStamp = document.getElementById("overlayStamp");
+    const narrationText = document.getElementById("narrationText");
+    const endScreen = document.getElementById("endScreen");
+    const glitchFlash = document.getElementById("glitchFlash");
+    const activeSceneLabel = document.getElementById("activeSceneLabel");
+    const sceneTimeRange = document.getElementById("sceneTimeRange");
+    const scenesListContainer = document.getElementById("scenesListContainer");
+    const toast = document.getElementById("toast");
+    const toastMsg = document.getElementById("toastMsg");
+
+    function resizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    // --- Web Audio Synthesizer for Ambience & Cyber SFX ---
+    let audioCtx = null;
+    let humOsc = null;
+    let humGain = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContextClass();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function startDroneHum() {
+      if (!sfxEnabled || !audioCtx) return;
+      if (humOsc) return;
+      try {
+        humOsc = audioCtx.createOscillator();
+        const humFilter = audioCtx.createBiquadFilter();
+        humGain = audioCtx.createGain();
+
+        humOsc.type = "sawtooth";
+        humOsc.frequency.setValueAtTime(58, audioCtx.currentTime);
+
+        humFilter.type = "lowpass";
+        humFilter.frequency.setValueAtTime(160, audioCtx.currentTime);
+
+        humGain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+
+        humOsc.connect(humFilter);
+        humFilter.connect(humGain);
+        humGain.connect(audioCtx.destination);
+        humOsc.start();
+      } catch (e) {}
+    }
+
+    function stopDroneHum() {
+      if (humOsc) {
+        try {
+          humOsc.stop();
+          humOsc.disconnect();
+        } catch(e) {}
+        humOsc = null;
+      }
+    }
+
+    function playBeep(freq = 880, duration = 0.08, type = "sine", gainVal = 0.15) {
+      if (!sfxEnabled || !audioCtx) return;
+      try {
+        const osc = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        g.gain.setValueAtTime(gainVal, audioCtx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+        osc.connect(g);
+        g.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function playGlitchNoise() {
+      if (!sfxEnabled || !audioCtx) return;
+      try {
+        const bufferSize = audioCtx.sampleRate * 0.15;
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = Math.random() * 2 - 1;
+        }
+        const noise = audioCtx.createBufferSource();
+        noise.buffer = buffer;
+        const g = audioCtx.createGain();
+        g.gain.setValueAtTime(0.2, audioCtx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
+        noise.connect(g);
+        g.connect(audioCtx.destination);
+        noise.start();
+      } catch (e) {}
+    }
+
+    // --- Narration Audio Dispatcher ---
+    function triggerNarration(scene) {
+      if (voiceMode === "off") return;
+
+      if (voiceMode === "wav" && scene.audioSrc) {
+        narrationAudioPlayer.src = scene.audioSrc;
+        narrationAudioPlayer.play().catch(err => {
+          // Fallback to TTS if WAV file is missing or blocked
+          console.warn("WAV play failed, falling back to Web Speech TTS:", err);
+          speakTTS(scene.narration);
+        });
+      } else if (voiceMode === "tts") {
+        speakTTS(scene.narration);
+      }
+    }
+
+    function speakTTS(text) {
+      if (!window.speechSynthesis) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.98;
+      utterance.pitch = 0.92;
+      const voices = window.speechSynthesis.getVoices();
+      const enVoice = voices.find(v => v.lang.startsWith("en") && (v.name.includes("David") || v.name.includes("Natural") || v.name.includes("Google") || v.name.includes("Male")));
+      if (enVoice) utterance.voice = enVoice;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // --- Render Scene Visuals on Canvas ---
+    let frameCounter = 0;
+    function renderVisuals(time) {
+      frameCounter++;
+      const w = canvas.width;
+      const h = canvas.height;
+      if (w === 0 || h === 0) return;
+
+      const sc = scenes[currentSceneIndex];
+      const relTime = time - sc.startTime;
+
+      // Clear Canvas
+      ctx.fillStyle = "#030712";
+      ctx.fillRect(0, 0, w, h);
+
+      if (sc.visualType === "servers") {
+        // SCENE 1: Server rack corridor with camera dolly forward effect
+        const zoom = 1 + (relTime / sc.duration) * 0.35;
+        ctx.save();
+        ctx.translate(w / 2, h / 2);
+        ctx.scale(zoom, zoom);
+        ctx.translate(-w / 2, -h / 2);
+
+        // Rack columns left & right
+        const rackW = w * 0.3;
+        ctx.fillStyle = "#0f172a";
+        ctx.fillRect(0, 0, rackW, h);
+        ctx.fillRect(w - rackW, 0, rackW, h);
+
+        // Server rack units & blinking LEDs
+        ctx.fillStyle = "#1e293b";
+        for (let y = 30; y < h; y += 32) {
+          ctx.fillRect(4, y, rackW - 8, 26);
+          ctx.fillRect(w - rackW + 4, y, rackW - 8, 26);
+
+          for (let led = 0; led < 4; led++) {
+            const blink = Math.sin(frameCounter * 0.1 + y + led) > 0.1;
+            ctx.fillStyle = blink ? "#38bdf8" : "#0369a1";
+            ctx.shadowColor = "#38bdf8";
+            ctx.shadowBlur = blink ? 6 : 0;
+            ctx.fillRect(14 + led * 14, y + 10, 4, 6);
+
+            const rBlink = Math.cos(frameCounter * 0.15 + y * 2 + led) > 0.2;
+            ctx.fillStyle = rBlink ? "#38bdf8" : "#0284c7";
+            ctx.fillRect(w - rackW + 14 + led * 14, y + 10, 4, 6);
+          }
+        }
+
+        // Corridor perspective lines (volumetric lighting)
+        ctx.shadowBlur = 0;
+        const grad = ctx.createLinearGradient(w / 2, 0, w / 2, h);
+        grad.addColorStop(0, "rgba(56, 189, 248, 0.15)");
+        grad.addColorStop(1, "rgba(2, 6, 23, 0.8)");
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.moveTo(rackW, 0);
+        ctx.lineTo(w - rackW, 0);
+        ctx.lineTo(w * 0.65, h);
+        ctx.lineTo(w * 0.35, h);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.restore();
+      } 
+      else if (sc.visualType === "engineer") {
+        // SCENE 2: Abhrankan silhouette at triple monitors with cyan glow
+        ctx.fillStyle = "#020617";
+        ctx.fillRect(0, 0, w, h);
+
+        ctx.fillStyle = "#090d16";
+        ctx.fillRect(0, h * 0.65, w, h * 0.35);
+
+        const monY = h * 0.32;
+        const monH = h * 0.28;
+        ctx.fillStyle = "#0369a1";
+        ctx.shadowColor = "#38bdf8";
+        ctx.shadowBlur = 18;
+        ctx.fillRect(w * 0.25, monY, w * 0.5, monH);
+
+        ctx.fillStyle = "#075985";
+        ctx.shadowBlur = 10;
+        ctx.fillRect(w * 0.04, monY + 15, w * 0.18, monH - 20);
+        ctx.fillRect(w * 0.78, monY + 15, w * 0.18, monH - 20);
+        ctx.shadowBlur = 0;
+
+        ctx.fillStyle = "#bae6fd";
+        for (let l = monY + 12; l < monY + monH - 10; l += 8) {
+          const lw = Math.random() * (w * 0.4);
+          ctx.fillRect(w * 0.28, l, lw, 3);
+        }
+
+        ctx.fillStyle = "#020617";
+        ctx.beginPath();
+        ctx.arc(w * 0.5, h * 0.54, 28, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.ellipse(w * 0.5, h * 0.67, 56, 38, 0, 0, Math.PI);
+        ctx.fill();
+      }
+      else if (sc.visualType === "memory_dash") {
+        // SCENE 3: Technical telemetry dashboard with decreasing RAM gauge
+        ctx.fillStyle = "#020617";
+        ctx.fillRect(0, 0, w, h);
+
+        ctx.strokeStyle = "rgba(56, 189, 248, 0.1)";
+        ctx.lineWidth = 1;
+        for (let x = 0; x < w; x += 30) {
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+        }
+        for (let y = 0; y < h; y += 30) {
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+        }
+
+        const cx = w * 0.5;
+        const cy = h * 0.38;
+        const radius = 70;
+        const dropPercent = Math.min(1, (relTime / sc.duration));
+
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.strokeStyle = "#1e293b";
+        ctx.lineWidth = 12;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, -Math.PI / 2, (-Math.PI / 2) + (Math.PI * 2 * (1 - dropPercent * 0.25)));
+        ctx.strokeStyle = "#ef4444";
+        ctx.lineWidth = 12;
+        ctx.shadowColor = "#ef4444";
+        ctx.shadowBlur = 12;
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        ctx.fillStyle = "#f8fafc";
+        ctx.font = "bold 20px monospace";
+        ctx.textAlign = "center";
+        ctx.fillText(`${1024 - Math.floor(relTime * 64)} MB`, cx, cy - 2);
+        ctx.font = "12px monospace";
+        ctx.fillStyle = "#ef4444";
+        ctx.fillText("-64 BYTES / MIN", cx, cy + 22);
+
+        const blockStartY = h * 0.58;
+        ctx.textAlign = "left";
+        ctx.font = "12px monospace";
+        ctx.fillStyle = "#94a3b8";
+        ctx.fillText("PHYSICAL HEAP LEAK (ADDR: 0x7FFF80)", 24, blockStartY - 10);
+
+        const cols = 12;
+        const rows = 8;
+        const boxSize = (w - 48) / cols;
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const idx = r * cols + c;
+            const isLeaked = idx < Math.floor(dropPercent * 60);
+            ctx.fillStyle = isLeaked ? "rgba(239, 68, 68, 0.7)" : "rgba(56, 189, 248, 0.4)";
+            ctx.fillRect(24 + c * boxSize + 2, blockStartY + r * (boxSize * 0.8) + 2, boxSize - 4, (boxSize * 0.8) - 4);
+          }
+        }
+      }
+      else if (sc.visualType === "packet_stream") {
+        // SCENE 4: Matrix stream of hex packets
+        ctx.fillStyle = "#030712";
+        ctx.fillRect(0, 0, w, h);
+
+        ctx.font = "12px monospace";
+        const lines = 36;
+        for (let i = 0; i < lines; i++) {
+          const y = (i * 18 + frameCounter * 6) % (h + 30);
+          const alpha = 0.3 + (i % 5) * 0.14;
+          ctx.fillStyle = `rgba(56, 189, 248, ${alpha})`;
+          const hex1 = Math.floor(Math.random() * 0xFFFF).toString(16).padStart(4, '0');
+          const hex2 = Math.floor(Math.random() * 0xFFFF).toString(16).padStart(4, '0');
+          const ip = `192.168.1.${(i * 7 + 10) % 254}`;
+          ctx.fillText(`[eth0] IP ${ip}:443 > ACK 0x${hex1} len=1420 seq=${hex2}`, 18, y);
+        }
+      }
+      else if (sc.visualType === "frozen_cursor") {
+        // SCENE 5: Terminal freeze!
+        ctx.fillStyle = "#020617";
+        ctx.fillRect(0, 0, w, h);
+
+        ctx.font = "12px monospace";
+        ctx.fillStyle = "#94a3b8";
+        ctx.fillText("$ foxpipe --interface=eth0 --dump-raw --hex", 24, h * 0.25);
+        ctx.fillText("[STREAM BUFFER FROZEN: PACKET TIMEOUT]", 24, h * 0.28);
+        ctx.fillText("Kernel thread 0: idle. No CPU cycles claimed.", 24, h * 0.31);
+
+        const blink = Math.floor(frameCounter / 18) % 2 === 0;
+        if (blink) {
+          ctx.fillStyle = "#38bdf8";
+          ctx.shadowColor = "#38bdf8";
+          ctx.shadowBlur = 8;
+          ctx.fillRect(24, h * 0.35, 12, 18);
+          ctx.shadowBlur = 0;
+        }
+
+        for (let d = 0; d < 30; d++) {
+          ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
+          ctx.fillRect((d * 73 + frameCounter) % w, (d * 137) % h, 1.5, 1.5);
+        }
+      }
+      else if (sc.visualType === "null_packet") {
+        // SCENE 6: Source 0.0.0.0 dramatic reveal
+        ctx.fillStyle = "#020617";
+        ctx.fillRect(0, 0, w, h);
+
+        if (Math.random() > 0.8) {
+          ctx.fillStyle = "rgba(56, 189, 248, 0.2)";
+          ctx.fillRect(0, Math.random() * h, w, 4);
+        }
+
+        const cx = w * 0.5;
+        const cy = h * 0.35;
+
+        ctx.textAlign = "center";
+        ctx.font = "12px monospace";
+        ctx.fillStyle = "#94a3b8";
+        ctx.fillText("INBOUND ANOMALOUS FRAME", cx, cy - 40);
+
+        ctx.font = "bold 32px monospace";
+        ctx.fillStyle = "#f8fafc";
+        ctx.shadowColor = "#38bdf8";
+        ctx.shadowBlur = 18;
+        ctx.fillText("0.0.0.0", cx, cy);
+
+        ctx.font = "bold 14px monospace";
+        ctx.fillStyle = "#38bdf8";
+        ctx.fillText("SOURCE IP: NULL_ORIGIN", cx, cy + 32);
+        ctx.shadowBlur = 0;
+
+        ctx.font = "12px monospace";
+        ctx.fillStyle = "rgba(148, 163, 184, 0.7)";
+        ctx.fillText("00 00 00 00 00 00 00 00", cx, cy + 70);
+        ctx.fillText("00 00 00 00 00 00 00 00", cx, cy + 90);
+      }
+      else if (sc.visualType === "hex_recompile") {
+        // SCENE 7: Hex transformation matrix into warning
+        ctx.fillStyle = "#0a0002";
+        ctx.fillRect(0, 0, w, h);
+
+        const cx = w * 0.5;
+        const cy = h * 0.25;
+
+        ctx.textAlign = "center";
+        ctx.font = "12px monospace";
+        const chars = "0123456789ABCDEF!@#$%&*[]:;<>?/";
+        for (let r = 0; r < 7; r++) {
+          let line = "";
+          for (let c = 0; c < 16; c++) {
+            line += chars[Math.floor(Math.random() * chars.length)] + " ";
+          }
+          ctx.fillStyle = (r % 2 === 0) ? "rgba(239, 68, 68, 0.6)" : "rgba(244, 63, 94, 0.4)";
+          ctx.fillText(line, cx, cy + r * 16);
+        }
+
+        ctx.shadowColor = "#ef4444";
+        ctx.shadowBlur = 16;
+        ctx.font = "bold 15px monospace";
+        ctx.fillStyle = "#fecaca";
+        ctx.fillText("[CRITICAL SYSTEM FAULT]", cx, h * 0.46);
+        ctx.fillText("[BIOLOGICAL COMPILER ACTIVE]", cx, h * 0.52);
+
+        ctx.fillStyle = "#ffedd5";
+        ctx.font = "bold 16px monospace";
+        ctx.shadowColor = "#f97316";
+        ctx.shadowBlur = 20;
+        ctx.fillText("[TARGET: USER_ABHRANKAN]", cx, h * 0.60);
+        ctx.shadowBlur = 0;
+      }
+      else if (sc.visualType === "eye_glitch") {
+        // SCENE 8: Extreme close up of human eye with digital distortion
+        ctx.fillStyle = "#020617";
+        ctx.fillRect(0, 0, w, h);
+
+        const cx = w * 0.5;
+        const cy = h * 0.38;
+
+        ctx.strokeStyle = "#475569";
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, 110, 60, 0, 0, Math.PI * 2);
+        ctx.stroke();
+
+        const irisRad = 46;
+        const grad = ctx.createRadialGradient(cx, cy, 6, cx, cy, irisRad);
+        grad.addColorStop(0, "#0284c7");
+        grad.addColorStop(0.7, "#0369a1");
+        grad.addColorStop(1, "#082f49");
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, irisRad, 0, Math.PI * 2);
+        ctx.fill();
+
+        const pupilPulse = 18 + Math.sin(frameCounter * 0.2) * 5;
+        ctx.fillStyle = "#000000";
+        ctx.beginPath();
+        ctx.arc(cx, cy, pupilPulse, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+        ctx.font = "bold 12px monospace";
+        ctx.fillText("0.0.0.0", cx - 18, cy - 8);
+
+        if (frameCounter % 6 < 3) {
+          const shift = (Math.random() - 0.5) * 36;
+          ctx.fillStyle = "rgba(239, 68, 68, 0.4)";
+          ctx.fillRect(0, cy - 20, w, 40);
+          ctx.fillStyle = "rgba(56, 189, 248, 0.4)";
+          ctx.fillRect(shift, cy - 10, w, 20);
+        }
+      }
+    }
+
+    // --- Update Scene State & DOM ---
+    function updateSceneState(time) {
+      currentTime = Math.max(0, Math.min(60, time));
+      scrubber.value = currentTime;
+
+      const mins = Math.floor(currentTime / 60);
+      const secs = Math.floor(currentTime % 60);
+      currentTimeDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+      let index = scenes.findIndex(s => currentTime >= s.startTime && currentTime < s.endTime);
+      if (index === -1) {
+        if (currentTime >= 60) index = scenes.length - 1;
+        else index = 0;
+      }
+
+      const sceneChanged = index !== currentSceneIndex;
+      currentSceneIndex = index;
+      const activeScene = scenes[currentSceneIndex];
+
+      activeSceneLabel.textContent = `Scene ${activeScene.num}: ${activeScene.title}`;
+      sceneTimeRange.textContent = `${activeScene.timecode} (${activeScene.duration}s)`;
+      sceneBadge.textContent = activeScene.badge;
+      narrationText.textContent = `"${activeScene.narration}"`;
+
+      if (activeScene.overlay && activeScene.overlay.length > 0) {
+        overlayStamp.style.display = "inline-block";
+        overlayStamp.textContent = activeScene.overlay[0];
+      } else {
+        overlayStamp.style.display = "none";
+      }
+
+      if (activeScene.visualType === "packet_stream" || activeScene.visualType === "frozen_cursor") {
+        terminalBox.classList.remove("hidden");
+        if (activeScene.visualType === "packet_stream") {
+          terminalStream.innerHTML = `
+            <div class="text-sky-400">&gt; foxpipe --interface=eth0 --dump-raw --hex</div>
+            <div class="text-slate-400">Captured 148,290 packets (0 drops)</div>
+            <div class="text-emerald-400">03:14:12.809 [TCP] 10.0.4.12:8080 &gt; 10.0.4.1:51290 ACK</div>
+            <div class="text-slate-400">03:14:12.812 [UDP] 10.0.4.88:9000 &gt; 224.0.0.1 HEARTBEAT</div>
+            <div class="text-sky-300">03:14:12.815 [RAW] eth0: telemetry streaming normal...</div>
+          `;
+        } else {
+          terminalStream.innerHTML = `
+            <div class="text-sky-400">&gt; foxpipe --interface=eth0 --dump-raw --hex</div>
+            <div class="text-yellow-400 font-bold">&gt;&gt; STREAM BUFFER HALTED &lt;&lt;</div>
+            <div class="text-red-400">CRITICAL: Socket pipeline unresponsive</div>
+            <div class="text-slate-400">Cursor: <span class="cursor-blink bg-sky-400 text-black px-1">_</span></div>
+          `;
+        }
+      } else {
+        terminalBox.classList.add("hidden");
+      }
+
+      if (activeScene.visualType === "hex_recompile") {
+        warningBanner.classList.remove("hidden");
+      } else {
+        warningBanner.classList.add("hidden");
+      }
+
+      if (currentTime >= 59.5) {
+        endScreen.style.opacity = "1";
+        endScreen.style.pointerEvents = "auto";
+      } else {
+        endScreen.style.opacity = "0";
+        endScreen.style.pointerEvents = "none";
+      }
+
+      if (sceneChanged) {
+        triggerGlitchFlash();
+        highlightActiveSceneCard(currentSceneIndex);
+
+        if (isPlaying) {
+          if (activeScene.sfx === "pulse") playBeep(520, 0.25, "sine", 0.2);
+          else if (activeScene.sfx === "glitch") playGlitchNoise();
+          else if (activeScene.sfx === "alarm") playBeep(880, 0.4, "sawtooth", 0.25);
+          else if (activeScene.sfx === "shriek") {
+            playGlitchNoise();
+            playBeep(1200, 0.5, "sawtooth", 0.3);
+          }
+
+          if (voiceMode !== "off" && lastSpokenScene !== currentSceneIndex) {
+            lastSpokenScene = currentSceneIndex;
+            triggerNarration(activeScene);
+          }
+        }
+      }
+    }
+
+    function triggerGlitchFlash() {
+      glitchFlash.style.opacity = "0.7";
+      setTimeout(() => {
+        glitchFlash.style.opacity = "0";
+      }, 100);
+    }
+
+    // --- Playback Loop ---
+    function playbackLoop(timestamp) {
+      if (!lastTimestamp) lastTimestamp = timestamp;
+      const delta = (timestamp - lastTimestamp) / 1000;
+      lastTimestamp = timestamp;
+
+      if (isPlaying) {
+        currentTime += delta;
+        if (currentTime >= 60) {
+          currentTime = 60;
+          pause();
+        }
+        updateSceneState(currentTime);
+      }
+
+      renderVisuals(currentTime);
+      animationTimer = requestAnimationFrame(playbackLoop);
+    }
+
+    function play() {
+      initAudio();
+      startDroneHum();
+      isPlaying = true;
+      lastTimestamp = performance.now();
+      playIcon.textContent = "⏸";
+      playText.textContent = "Pause";
+      playPauseBtn.classList.replace("bg-sky-600", "bg-amber-600");
+      playPauseBtn.classList.replace("hover:bg-sky-500", "hover:bg-amber-500");
+
+      if (currentTime >= 60) {
+        currentTime = 0;
+        lastSpokenScene = -1;
+      }
+
+      if (voiceMode !== "off" && lastSpokenScene !== currentSceneIndex) {
+        lastSpokenScene = currentSceneIndex;
+        triggerNarration(scenes[currentSceneIndex]);
+      }
+    }
+
+    function pause() {
+      isPlaying = false;
+      stopDroneHum();
+      playIcon.textContent = "▶";
+      playText.textContent = "Play";
+      playPauseBtn.classList.replace("bg-amber-600", "bg-sky-600");
+      playPauseBtn.classList.replace("hover:bg-amber-500", "hover:bg-sky-500");
+      narrationAudioPlayer.pause();
+      if (window.speechSynthesis) window.speechSynthesis.cancel();
+    }
+
+    // --- UI Event Listeners ---
+    playPauseBtn.addEventListener("click", () => {
+      if (isPlaying) pause();
+      else play();
+    });
+
+    scrubber.addEventListener("input", (e) => {
+      lastSpokenScene = -1;
+      narrationAudioPlayer.pause();
+      updateSceneState(parseFloat(e.target.value));
+    });
+
+    prevSceneBtn.addEventListener("click", () => {
+      if (currentSceneIndex > 0) {
+        lastSpokenScene = -1;
+        narrationAudioPlayer.pause();
+        updateSceneState(scenes[currentSceneIndex - 1].startTime);
+      }
+    });
+
+    nextSceneBtn.addEventListener("click", () => {
+      if (currentSceneIndex < scenes.length - 1) {
+        lastSpokenScene = -1;
+        narrationAudioPlayer.pause();
+        updateSceneState(scenes[currentSceneIndex + 1].startTime);
+      }
+    });
+
+    resetBtn.addEventListener("click", () => {
+      pause();
+      lastSpokenScene = -1;
+      updateSceneState(0);
+    });
+
+    toggleAudioBtn.addEventListener("click", () => {
+      sfxEnabled = !sfxEnabled;
+      audioStatusText.textContent = sfxEnabled ? "SFX: ON" : "SFX: MUTED";
+      audioIcon.textContent = sfxEnabled ? "🔊" : "🔇";
+      if (!sfxEnabled) stopDroneHum();
+      else if (isPlaying) startDroneHum();
+      showToast(sfxEnabled ? "Sound effects enabled" : "Sound effects muted");
+    });
+
+    toggleVoiceBtn.addEventListener("click", () => {
+      if (voiceMode === "wav") {
+        voiceMode = "tts";
+        voiceStatusText.textContent = "Voice: AI TTS";
+        voiceIcon.textContent = "🗣️";
+        showToast("Switched to browser SpeechSynthesis AI voice");
+      } else if (voiceMode === "tts") {
+        voiceMode = "off";
+        voiceStatusText.textContent = "Voice: OFF";
+        voiceIcon.textContent = "🔇";
+        narrationAudioPlayer.pause();
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+        showToast("Narration voice turned off");
+      } else {
+        voiceMode = "wav";
+        voiceStatusText.textContent = "Voice: WAV";
+        voiceIcon.textContent = "🎙️";
+        showToast("Switched to pre-recorded WAV voice tracks");
+      }
+    });
+
+    // --- Render Scene Cards in Right Panel ---
+    function renderSceneCards() {
+      scenesListContainer.innerHTML = scenes.map((s, idx) => `
+        <div id="sceneCard_${idx}" class="scene-card group p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-sky-500/60 transition-all cursor-pointer shadow-sm">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-sky-950 border border-sky-500/50 text-sky-400 font-mono text-xs flex items-center justify-center font-bold">
+                ${s.num}
+              </span>
+              <span class="font-bold text-xs sm:text-sm text-slate-100">${s.title}</span>
+              <span class="text-xs font-mono px-2 py-0.5 rounded bg-slate-800 text-sky-300">${s.duration}s</span>
+            </div>
+            <button onclick="copyScenePrompt(${idx}, event)" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-sky-600 hover:text-white border border-slate-700 text-xs font-mono text-slate-300 transition-all flex items-center gap-1 shadow-sm">
+              <span>📋</span>
+              <span>Copy Kling Prompt</span>
+            </button>
+          </div>
+
+          <div class="bg-black/50 rounded-lg p-2.5 border border-white/5 font-mono text-xs text-slate-300 leading-relaxed mb-2">
+            <strong class="text-sky-400">Prompt:</strong> ${s.prompt}
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            <div class="text-slate-400">
+              <span class="font-semibold text-slate-300">Camera:</span> ${s.camera}
+            </div>
+            <div class="text-slate-400">
+              <span class="font-semibold text-slate-300">Narration:</span> "${s.narration}"
+            </div>
+          </div>
+          ${s.overlay && s.overlay.length > 0 ? `
+            <div class="mt-2 text-xs flex items-center gap-1 font-mono text-amber-400">
+              <span class="text-slate-500">Overlay:</span> ${s.overlay.map(t => `<span class="bg-amber-950/60 px-1.5 py-0.5 rounded border border-amber-600/40">${t}</span>`).join(" ")}
+            </div>
+          ` : ''}
+        </div>
+      `).join("");
+
+      scenes.forEach((s, idx) => {
+        const card = document.getElementById(`sceneCard_${idx}`);
+        card.addEventListener("click", () => {
+          lastSpokenScene = -1;
+          narrationAudioPlayer.pause();
+          updateSceneState(s.startTime);
+          if (!isPlaying) play();
+        });
+      });
+    }
+
+    function highlightActiveSceneCard(index) {
+      document.querySelectorAll(".scene-card").forEach((card, idx) => {
+        if (idx === index) {
+          card.classList.add("ring-2", "ring-sky-500", "bg-sky-950/40");
+        } else {
+          card.classList.remove("ring-2", "ring-sky-500", "bg-sky-950/40");
+        }
+      });
+    }
+
+    window.copyScenePrompt = function(index, e) {
+      e.stopPropagation();
+      const s = scenes[index];
+      const text = `${s.prompt} [Camera: ${s.camera}] --ar 9:16`;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(`Scene ${s.num} prompt copied!`);
+      });
+    };
+
+    exportAllPromptsBtn.addEventListener("click", () => {
+      const fullText = scenes.map(s => `=== SCENE ${s.num}: ${s.title} (${s.duration}s | ${s.timecode}) ===\nKLING PROMPT:\n${s.prompt}\nCAMERA:\n${s.camera}\nNARRATION:\n"${s.narration}"\nOVERLAY:\n${(s.overlay || []).join(", ") || "None"}\n`).join("\n----------------------------------------\n\n");
+      navigator.clipboard.writeText(fullText).then(() => {
+        showToast("All 8 Kling prompts copied to clipboard!");
+      });
+    });
+
+    function showToast(msg) {
+      toastMsg.textContent = msg;
+      toast.style.opacity = "1";
+      toast.style.transform = "translateY(0)";
+      setTimeout(() => {
+        toast.style.opacity = "0";
+        toast.style.transform = "translateY(20px)";
+      }, 3000);
+    }
+
+    // --- Initialize ---
+    renderSceneCards();
+    updateSceneState(0);
+    requestAnimationFrame(playbackLoop);
+
+  </script>
+</body>
+</html>

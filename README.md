@@ -23,6 +23,11 @@ A hard sci-fi technical thriller exploring localized spacetime hypervisor corrup
 - [Chapter 8: Post-Mortem](chapter-8.md)
 - [Epilogue: Clean Exit](epilogue.md)
 
+### 🎬 Video Adaptation & Storyboard
+- **[Episode 1: The Packet — Interactive Storyboard & Prompt Studio](storyboard.html)**
+  - *Format:* Vertical 9:16 (60s) • *Provider:* Kling AI • *Audio:* Web Audio SFX + SAPI Narration
+  - [Production Spec (YAML)](episodes/episode-01-the-packet.yaml) • [Kling Prompts Guide (MD)](episodes/kling_prompts_episode_01.md) • [Subtitles (SRT)](subtitles/episode-01.srt) • [Subtitles (VTT)](subtitles/episode-01.vtt)
+
 ---
 
 *Disclaimer: If telemetry parameters drift or localized collision vectors fail, execute a hardware interrupt immediately. No clean save is guaranteed.*
