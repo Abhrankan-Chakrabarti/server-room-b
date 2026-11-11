@@ -8,5 +8,75 @@
     "video_path": "episodes/kling_renders/scene_01.mp4",
     "credits_used": 60,
     "source": "klingai.com web generator"
+  },
+  "scene_02": {
+    "task_id": "keyframe_anim_scene_02",
+    "scene_id": "scene_02",
+    "duration": 8,
+    "model": "2.5D Cinematic Motion (FLUX keyframe)",
+    "status": "succeed",
+    "video_path": "episodes/kling_renders/scene_02.mp4",
+    "shot_type": "dramatic_push",
+    "credits_used": 0
+  },
+  "scene_03": {
+    "task_id": "keyframe_anim_scene_03",
+    "scene_id": "scene_03",
+    "duration": 6,
+    "model": "2.5D Cinematic Motion (FLUX keyframe)",
+    "status": "succeed",
+    "video_path": "episodes/kling_renders/scene_03.mp4",
+    "shot_type": "dolly_in",
+    "credits_used": 0
+  },
+  "scene_04": {
+    "task_id": "keyframe_anim_scene_04",
+    "scene_id": "scene_04",
+    "duration": 8,
+    "model": "2.5D Cinematic Motion (FLUX keyframe)",
+    "status": "succeed",
+    "video_path": "episodes/kling_renders/scene_04.mp4",
+    "shot_type": "slow_drift",
+    "credits_used": 0
+  },
+  "scene_05": {
+    "task_id": "keyframe_anim_scene_05",
+    "scene_id": "scene_05",
+    "duration": 8,
+    "model": "2.5D Cinematic Motion (FLUX keyframe)",
+    "status": "succeed",
+    "video_path": "episodes/kling_renders/scene_05.mp4",
+    "shot_type": "static_freeze",
+    "credits_used": 0
+  },
+  "scene_06": {
+    "task_id": "keyframe_anim_scene_06",
+    "scene_id": "scene_06",
+    "duration": 8,
+    "model": "2.5D Cinematic Motion (FLUX keyframe)",
+    "status": "succeed",
+    "video_path": "episodes/kling_renders/scene_06.mp4",
+    "shot_type": "dramatic_push",
+    "credits_used": 0
+  },
+  "scene_07": {
+    "task_id": "keyframe_anim_scene_07",
+    "scene_id": "scene_07",
+    "duration": 10,
+    "model": "2.5D Cinematic Motion (FLUX keyframe)",
+    "status": "succeed",
+    "video_path": "episodes/kling_renders/scene_07.mp4",
+    "shot_type": "panic_zoom",
+    "credits_used": 0
+  },
+  "scene_08": {
+    "task_id": "keyframe_anim_scene_08",
+    "scene_id": "scene_08",
+    "duration": 6,
+    "model": "2.5D Cinematic Motion (FLUX keyframe)",
+    "status": "succeed",
+    "video_path": "episodes/kling_renders/scene_08.mp4",
+    "shot_type": "macro_glitch",
+    "credits_used": 0
   }
 }
