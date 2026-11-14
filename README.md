@@ -29,6 +29,11 @@ A hard sci-fi technical thriller exploring localized spacetime hypervisor corrup
   - **Part 1 (60s):** [📥 Download episode-01-the-packet.mp4 (17.6 MB)](episodes/episode-01-the-packet.mp4) • [Scene 1 Raw Kling AI Video (5 MB)](episodes/kling_renders/scene_01.mp4)
   - **Part 2 (60s):** [📥 Download episode-01-part-02.mp4 (19.7 MB)](episodes/episode-01-part-02.mp4)
   - **Complete Director's Cut (120s):** [📥 Download chapter-01-complete-directors-cut.mp4 (37.3 MB)](episodes/chapter-01-complete-directors-cut.mp4)
+  - **Sunday Hype Teaser (15s):** [📥 Download chapter-01-teaser-15s.mp4 (5.7 MB)](episodes/chapter-01-teaser-15s.mp4)
+  - **🎨 Visual Covers & Thumbnails:**
+    - [⚡ Teaser 9:16 Vertical Thumbnail](episodes/thumbnail_teaser.jpg)
+    - [Part 1 9:16 Vertical Poster](episodes/thumbnail_part1.jpg) • [Part 2 9:16 Vertical Poster](episodes/thumbnail_part2.jpg)
+    - [YouTube 16:9 Landscape Thumbnail](episodes/thumbnail_youtube_16x9.jpg) • [YouTube Channel Banner (2560x1440)](episodes/youtube_channel_banner_2560x1440.jpg)
   - **InVideo Cloud:** [InVideo Studio Timeline (seq-1.1)](https://invideo.io/@abhrankan/server-room-b-episode-1/tree/main/seq-1.1) • [Asset seq-16.1](https://invideo.io/@abhrankan/server-room-b-episode-1/notebook/seq-16.1) • [Cloud Export (seq-17.1)](https://invideo.io/@abhrankan/server-room-b-episode-1/notebook/seq-17.1)
   - **🎵 Original Soundtracks (OST & SFX):**
     - Part 1 OST: [Download MP3 (2.3 MB)](audio/episode_01_part_01_soundtrack.mp3) • [Master WAV (5.0 MB)](audio/episode_01_full_soundtrack.wav)
