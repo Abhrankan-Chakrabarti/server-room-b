@@ -23,12 +23,14 @@ A hard sci-fi technical thriller exploring localized spacetime hypervisor corrup
 - [Chapter 8: Post-Mortem](chapter-8.md)
 - [Epilogue: Clean Exit](epilogue.md)
 
-### 🎬 Video Adaptation & Production Assets
-- **[Episode 1: The Packet — Interactive Storyboard & Video Player](storyboard.html)**
-  - *Format:* Vertical 9:16 (60s) • *Resolution:* 720x1280 @ 30fps • *Soundtrack:* Synchronized Narration + 58Hz Drone SFX
-  - **Direct Video File:** [📥 Download episode-01-the-packet.mp4 (17.6 MB - Full 8-Scene Photorealistic Film)](episodes/episode-01-the-packet.mp4) • [Scene 1 Raw Kling AI Video (5 MB)](episodes/kling_renders/scene_01.mp4)
+### 🎬 Video Adaptation & Production Assets (Story & Screenplay by Abhrankan Chakrabarti)
+- **[Chapter 1: Out of Memory — Interactive Storyboard & Video Player](storyboard.html)**
+  - *Format:* Vertical 9:16 • *Resolution:* 720x1280 @ 30fps • *Soundtrack:* Synchronized Narration + 2ms Stutter + Cyber Horror SFX
+  - **Part 1 (60s):** [📥 Download episode-01-the-packet.mp4 (17.6 MB)](episodes/episode-01-the-packet.mp4) • [Scene 1 Raw Kling AI Video (5 MB)](episodes/kling_renders/scene_01.mp4)
+  - **Part 2 (60s):** [📥 Download episode-01-part-02.mp4 (19.7 MB)](episodes/episode-01-part-02.mp4)
+  - **Complete Director's Cut (120s):** [📥 Download chapter-01-complete-directors-cut.mp4 (37.3 MB)](episodes/chapter-01-complete-directors-cut.mp4)
   - **InVideo Cloud:** [InVideo Studio Timeline (seq-1.1)](https://invideo.io/@abhrankan/server-room-b-episode-1/tree/main/seq-1.1) • [Asset seq-16.1](https://invideo.io/@abhrankan/server-room-b-episode-1/notebook/seq-16.1) • [Cloud Export (seq-17.1)](https://invideo.io/@abhrankan/server-room-b-episode-1/notebook/seq-17.1)
-  - **Production Specs:** [YAML Blueprint](episodes/episode-01-the-packet.yaml) • [Kling Prompts Guide (MD)](episodes/kling_prompts_episode_01.md) • [Subtitles (SRT)](subtitles/episode-01.srt) • [Subtitles (VTT)](subtitles/episode-01.vtt)
+  - **Production Specs:** [Part 1 YAML](episodes/episode-01-the-packet.yaml) • [Part 2 YAML](episodes/episode-01-part-02.yaml) • [Part 1 SRT](subtitles/episode-01.srt) • [Part 2 SRT](subtitles/episode-01-part-02.srt)
 
 ---
 

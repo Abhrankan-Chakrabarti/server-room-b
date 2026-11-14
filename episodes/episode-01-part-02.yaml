@@ -1,0 +1,131 @@
+project:
+  title: "Server Room B"
+  episode: "Episode 1 Part 2 - Reality Uninstall"
+  chapter: "Chapter 1: Out of Memory (Second Half)"
+  author: "Abhrankan Chakrabarti"
+  format: "Vertical 9:16"
+  target_duration: "60s"
+  credit: "Story by Abhrankan Chakrabarti"
+
+assets:
+
+  scene_09:
+    duration: 8s
+    type: video
+    title: "THE ACOUSTIC STUTTER"
+    prompt: >
+      Dark enterprise server room, rows of black server racks with cold blue and amber LEDs,
+      cinematic science fiction horror, subtle flickering sodium light, tense silence,
+      photorealistic 35mm film grain, ARRI Alexa LF style, 9:16 vertical framing.
+    narration: >
+      The server hum has changed. Instead of a smooth mechanical drone, it now stutters like a broken audio file.
+    sfx: "2ms_loop_bzzt"
+    overlay_text:
+      - "TIMESTEP: 2.00ms FIXED"
+
+  scene_10:
+    duration: 7s
+    type: video
+    title: "TACTILE DELAY"
+    prompt: >
+      Abhrankan, late 20s software engineer, standing up from workstation chair,
+      reaching hand toward smartphone on desk, frozen in disbelief, eyes wide,
+      dramatic blue monitor backlighting, photorealistic, 9:16 vertical framing.
+    narration: >
+      Abhrankan slowly rises from his chair. He reaches for his phone... and freezes.
+    overlay_text:
+      - "INPUT LATENCY: +47ms"
+
+  scene_11:
+    duration: 8s
+    type: video
+    title: "GEOMETRIC HAND CASCADE"
+    prompt: >
+      Extreme close-up of a human hand moving across a desk leaving a physical cascading trail
+      of translucent solid duplicate knuckles suspended in mid-air, like a frozen window dragging
+      across a crashed computer desktop, hyperrealistic glitch art, 9:16 vertical framing.
+    narration: >
+      Behind his hand hangs a trail. Not motion blur, but solid frozen copies lingering in the air.
+    overlay_text:
+      - "ARTIFACT ACCUMULATION"
+
+  scene_12:
+    duration: 7s
+    type: video
+    title: "KEYPAD LOG OVERFLOW"
+    prompt: >
+      Close-up of heavy steel security door digital keypad, glowing monochrome LCD cycling rapid system logs,
+      industrial high security facility, volumetric shadows, photorealistic, 9:16 vertical framing.
+    narration: >
+      The security keypad isn't asking for a passcode anymore. It races through endless system messages.
+    overlay_text:
+      - "INF [sys/opt] Re-allocating matter in Sector 4..."
+      - "INF [sys/opt] Disabling physics collision parameters."
+
+  scene_13:
+    duration: 8s
+    type: video
+    title: "THE VOID & MESH CLIPPING"
+    prompt: >
+      Concrete cinder block wall under digital keypad flickering, a rectangular section completely
+      vanishing into a flat infinite pitch black void, then snapping back misaligned and clipping
+      into the concrete floor, reality rendering error, photorealistic, 9:16 vertical framing.
+    narration: >
+      The wall flickers, vanishing into an infinite black void. The universe wasn't being haunted. It was being uninstalled.
+    overlay_text:
+      - "COLLISION MESH UNLOADED"
+
+  scene_14:
+    duration: 8s
+    type: video
+    title: "VIOLENT MONITOR STROBE"
+    prompt: >
+      Abhrankan turning in terror in server room, shielding eyes, workstation monitors violently flashing
+      blinding white and electric blue strobe patterns, room shaking, photorealistic sci-fi thriller, 9:16 vertical framing.
+    narration: >
+      A deep rumble shakes the room. His workstation monitor flashes violently, casting a blinding strobe pattern.
+    overlay_text:
+      - "SECTOR 4 DECOMPILING"
+
+  scene_15:
+    duration: 8s
+    type: video
+    title: "BIOLOGICAL HOST DETECTED"
+    prompt: >
+      Close-up of CRT OLED monitor terminal display rapidly compiling code automatically,
+      bright glowing amber text: BIOLOGICAL HOST DETECTED, COMPILATION SOURCE: USER_ABHRANKAN,
+      neural frequency spiking, photorealistic, 9:16 vertical framing.
+    narration: >
+      The terminal is compiling a new process. And the hardware it's using to build it... is Abhrankan's own brain.
+    overlay_text:
+      - "BIOLOGICAL HOST DETECTED"
+      - "COMPILATION SOURCE: ABHRANKAN"
+
+  scene_16:
+    duration: 6s
+    type: video
+    title: "CUT TO BLACK & CREDITS"
+    prompt: >
+      Blinding whiteout monitor flare engulfing the entire frame, anamorphic horizontal optical lens flare,
+      transitioning into pure void black, cinematic movie ending, 9:16 vertical framing.
+    narration: >
+      TO BE CONTINUED.
+    overlay_text:
+      - "SERVER ROOM B"
+      - "Story by Abhrankan Chakrabarti"
+
+audio:
+  ambience:
+    - "server_hum_stutter_2ms"
+    - "deep_sub_bass_rumble"
+  effects:
+    - "window_cascade_glitch"
+    - "wall_void_collapse"
+    - "strobe_arc_crackle"
+    - "neural_spike_warning"
+
+ending:
+  screen: "black"
+  title: "SERVER ROOM B"
+  credit: "Story by Abhrankan Chakrabarti"
+  text: "TO BE CONTINUED..."

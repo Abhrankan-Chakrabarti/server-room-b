@@ -5,7 +5,9 @@ title: "Chapter 1: Out of Memory"
 
 ## CHAPTER 1: Out of Memory
 
-> 🎬 **Video Adaptation:** [Launch Episode 1 Interactive Storyboard & Video Player](storyboard.html)
+> 🎬 **Video Adaptation:** [Launch Chapter 1 Interactive Storyboard & Video Player](storyboard.html)
+> - **Part 1: The Packet** (60s) • **Part 2: Reality Uninstall** (60s) • **Complete Director's Cut** (120s)
+> *Story & Screenplay by Abhrankan Chakrabarti*
 
 The air conditioning in Server Room B always tasted like static and ozone. It was 03:14 AM.
 
