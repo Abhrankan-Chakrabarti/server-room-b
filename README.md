@@ -30,6 +30,10 @@ A hard sci-fi technical thriller exploring localized spacetime hypervisor corrup
   - **Part 2 (60s):** [📥 Download episode-01-part-02.mp4 (19.7 MB)](episodes/episode-01-part-02.mp4)
   - **Complete Director's Cut (120s):** [📥 Download chapter-01-complete-directors-cut.mp4 (37.3 MB)](episodes/chapter-01-complete-directors-cut.mp4)
   - **InVideo Cloud:** [InVideo Studio Timeline (seq-1.1)](https://invideo.io/@abhrankan/server-room-b-episode-1/tree/main/seq-1.1) • [Asset seq-16.1](https://invideo.io/@abhrankan/server-room-b-episode-1/notebook/seq-16.1) • [Cloud Export (seq-17.1)](https://invideo.io/@abhrankan/server-room-b-episode-1/notebook/seq-17.1)
+  - **🎵 Original Soundtracks (OST & SFX):**
+    - Part 1 OST: [Download MP3 (2.3 MB)](audio/episode_01_part_01_soundtrack.mp3) • [Master WAV (5.0 MB)](audio/episode_01_full_soundtrack.wav)
+    - Part 2 OST: [Download MP3 (2.3 MB)](audio/episode_01_part_02_soundtrack.mp3) • [Master WAV (5.0 MB)](audio/episode_01_part_02_soundtrack.wav)
+    - Custom SFX: [2ms Acoustic Fan Stutter MP3 (2.3 MB)](audio/part2_2ms_stutter_sfx.mp3)
   - **Production Specs:** [Part 1 YAML](episodes/episode-01-the-packet.yaml) • [Part 2 YAML](episodes/episode-01-part-02.yaml) • [Part 1 SRT](subtitles/episode-01.srt) • [Part 2 SRT](subtitles/episode-01-part-02.srt)
 
 ---
