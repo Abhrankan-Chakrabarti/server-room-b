@@ -31,7 +31,8 @@ A hard sci-fi technical thriller exploring localized spacetime hypervisor corrup
   - **Complete Director's Cut (120s):** [📥 Download chapter-01-complete-directors-cut.mp4 (37.3 MB)](episodes/chapter-01-complete-directors-cut.mp4)
   - **Sunday Hype Teaser (15s):** [📥 Download chapter-01-teaser-15s.mp4 (5.7 MB)](episodes/chapter-01-teaser-15s.mp4)
   - **🎨 Visual Covers & Thumbnails:**
-    - [⚡ Teaser 9:16 Vertical Thumbnail](episodes/thumbnail_teaser.jpg)
+    - [🎬 Director's Cut 9:16 Vertical Poster](episodes/thumbnail_directors_cut.jpg) • [🎬 Director's Cut 16:9 Landscape Cover](episodes/thumbnail_directors_cut_16x9.jpg)
+    - [⚡ Sunday Teaser 9:16 Poster](episodes/thumbnail_teaser.jpg)
     - [Part 1 9:16 Vertical Poster](episodes/thumbnail_part1.jpg) • [Part 2 9:16 Vertical Poster](episodes/thumbnail_part2.jpg)
     - [YouTube 16:9 Landscape Thumbnail](episodes/thumbnail_youtube_16x9.jpg) • [YouTube Channel Banner (2560x1440)](episodes/youtube_channel_banner_2560x1440.jpg)
   - **InVideo Cloud:** [InVideo Studio Timeline (seq-1.1)](https://invideo.io/@abhrankan/server-room-b-episode-1/tree/main/seq-1.1) • [Asset seq-16.1](https://invideo.io/@abhrankan/server-room-b-episode-1/notebook/seq-16.1) • [Cloud Export (seq-17.1)](https://invideo.io/@abhrankan/server-room-b-episode-1/notebook/seq-17.1)
