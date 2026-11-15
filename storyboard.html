@@ -103,7 +103,7 @@
           </button>
           <button id="tabEp2" onclick="switchEpisode('ep2')" class="px-3 py-1 rounded-lg font-semibold transition-all text-rose-400 hover:text-rose-300 flex items-center gap-1">
             <span>⚡</span>
-            <span>Ep 2: Force Quit</span>
+            <span>Ep 2: Force Quit (67s)</span>
           </button>
         </div>
       </div>
@@ -235,7 +235,7 @@
         <div class="flex items-center gap-3">
           <span id="currentTimeDisplay" class="font-mono text-xs text-slate-400 w-10">00:00</span>
           <input id="timeScrubber" type="range" min="0" max="60" step="0.1" value="0" class="w-full h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-sky-400">
-          <span class="font-mono text-xs text-slate-400 w-10 text-right">01:00</span>
+          <span id="totalDurationDisplay" class="font-mono text-xs text-slate-400 w-10 text-right">01:00</span>
         </div>
 
         <!-- Control Buttons -->
@@ -283,9 +283,9 @@
             <span>•</span>
             <a href="episodes/episode-01-part-02.mp4" download class="hover:text-emerald-300">Part 2 (19.7 MB)</a>
             <span>•</span>
-            <a href="episodes/chapter-01-complete-directors-cut.mp4" download class="text-purple-400 hover:text-purple-300 font-bold">Director Cut (37.3 MB)</a>
+            <a href="episodes/episode-02-force-quit.mp4" download class="text-rose-400 hover:text-rose-300 font-bold">Ep 2 (19.0 MB)</a>
             <span>•</span>
-            <a href="episodes/chapter-01-teaser-15s.mp4" download class="text-amber-400 hover:text-amber-300 font-bold">15s Teaser (5.7 MB)</a>
+            <a href="episodes/chapter-01-complete-directors-cut.mp4" download class="text-purple-400 hover:text-purple-300 font-bold">Director Cut (37.3 MB)</a>
           </div>
         </div>
 
@@ -517,10 +517,10 @@
         id: "scene_09",
         num: 9,
         title: "The Acoustic Stutter (2ms Loop)",
-        duration: 7.5,
+        duration: 8.0,
         startTime: 0,
-        endTime: 7.5,
-        timecode: "00:00 - 00:07.5",
+        endTime: 8.0,
+        timecode: "00:00 - 00:08.0",
         camera: "Perspective server corridor, ominous camera float, amber sodium flicker",
         prompt: "Dark enterprise server room, rows of black server racks with cold blue and amber LEDs, cinematic science fiction horror, subtle flickering sodium light, tense silence, 9:16 vertical format.",
         narration: "The server hum has changed. Instead of a smooth mechanical drone, it now stutters like a broken audio file.",
@@ -535,10 +535,10 @@
         id: "scene_10",
         num: 10,
         title: "Tactile Input Delay",
-        duration: 7.0,
-        startTime: 7.5,
-        endTime: 14.5,
-        timecode: "00:07.5 - 00:14.5",
+        duration: 6.8,
+        startTime: 8.0,
+        endTime: 14.8,
+        timecode: "00:08.0 - 00:14.8",
         camera: "Low angle medium push, Abhrankan rising and freezing in shock",
         prompt: "Abhrankan, late 20s software engineer, standing up from workstation chair, reaching hand toward smartphone on desk, frozen in disbelief, eyes wide, 9:16 vertical format.",
         narration: "Abhrankan slowly rises from his chair. He reaches for his phone... and freezes.",
@@ -553,10 +553,10 @@
         id: "scene_11",
         num: 11,
         title: "Geometric Hand Cascade",
-        duration: 8.0,
-        startTime: 14.5,
-        endTime: 22.5,
-        timecode: "00:14.5 - 00:22.5",
+        duration: 7.5,
+        startTime: 14.8,
+        endTime: 22.3,
+        timecode: "00:14.8 - 00:22.3",
         camera: "Close-up macro lens, frozen solid duplicate knuckles in air",
         prompt: "Extreme close-up of a human hand moving across a desk leaving a physical cascading trail of translucent solid duplicate knuckles suspended in mid-air, like a frozen window dragging across a crashed desktop, 9:16 vertical format.",
         narration: "Behind his hand hangs a trail. Not motion blur, but solid frozen copies lingering in the air.",
@@ -571,10 +571,10 @@
         id: "scene_12",
         num: 12,
         title: "Keypad Log Overflow",
-        duration: 7.0,
-        startTime: 22.5,
-        endTime: 29.5,
-        timecode: "00:22.5 - 00:29.5",
+        duration: 7.4,
+        startTime: 22.3,
+        endTime: 29.7,
+        timecode: "00:22.3 - 00:29.7",
         camera: "Close-up of heavy steel security door digital keypad, streaming system logs",
         prompt: "Close-up of high-security facility door digital keypad, glowing monochrome LCD cycling rapid system logs, industrial heavy metal texture, biometric scanner, 9:16 vertical format.",
         narration: "The security keypad isn't asking for a passcode anymore. It races through endless system messages.",
@@ -589,10 +589,10 @@
         id: "scene_13",
         num: 13,
         title: "The Void & Collision Mesh Unload",
-        duration: 8.5,
-        startTime: 29.5,
-        endTime: 38.0,
-        timecode: "00:29.5 - 00:38.0",
+        duration: 9.0,
+        startTime: 29.7,
+        endTime: 38.7,
+        timecode: "00:29.7 - 00:38.7",
         camera: "Dramatic camera push on cinder block wall vanishing into infinite void",
         prompt: "Concrete cinder block wall under digital keypad flickering, a rectangular section completely vanishing into a flat infinite pitch black void, then snapping back misaligned and clipping into the floor, 9:16 vertical format.",
         narration: "The wall flickers, vanishing into an infinite black void. The universe wasn't being haunted. It was being uninstalled.",
@@ -607,10 +607,10 @@
         id: "scene_14",
         num: 14,
         title: "Violent Monitor Strobe",
-        duration: 7.5,
-        startTime: 38.0,
-        endTime: 45.5,
-        timecode: "00:38.0 - 00:45.5",
+        duration: 8.1,
+        startTime: 38.7,
+        endTime: 46.8,
+        timecode: "00:38.7 - 00:46.8",
         camera: "Violent camera shake, blinding white/blue strobe light flashing across room",
         prompt: "Abhrankan shielding his face with his forearm in terror inside the dark server room, workstation monitors violently flashing blinding white and electric blue strobe bursts, 9:16 vertical format.",
         narration: "A deep rumble shakes the room. His workstation monitor flashes violently, casting a blinding strobe pattern.",
@@ -625,10 +625,10 @@
         id: "scene_15",
         num: 15,
         title: "Biological Host Detected",
-        duration: 8.0,
-        startTime: 45.5,
-        endTime: 53.5,
-        timecode: "00:45.5 - 00:53.5",
+        duration: 7.9,
+        startTime: 46.8,
+        endTime: 54.7,
+        timecode: "00:46.8 - 00:54.7",
         camera: "Macro terminal shot, biological compilation progress and EEG spikes",
         prompt: "Extreme close-up macro view of computer monitor displaying Linux terminal, sharp glowing crimson-red text reading BIOLOGICAL HOST DETECTED, COMPILATION SOURCE: USER_ABHRANKAN, EEG brainwave telemetry spiking, 9:16 vertical format.",
         narration: "The terminal is compiling a new process. And the hardware it's using to build it... is Abhrankan's own brain.",
@@ -643,10 +643,10 @@
         id: "scene_16",
         num: 16,
         title: "Cut to Black & Credits",
-        duration: 6.5,
-        startTime: 53.5,
+        duration: 5.3,
+        startTime: 54.7,
         endTime: 60.0,
-        timecode: "00:53.5 - 01:00.0",
+        timecode: "00:54.7 - 01:00.0",
         camera: "Blinding whiteout optical flare expanding to full screen, cut to black title card",
         prompt: "Blinding whiteout lens flare erupting from central monitor inside dark server room, rays of pure white light washing out room, streaks of anamorphic blue flare, cutting to black, 9:16 vertical format.",
         narration: "TO BE CONTINUED. Story by Abhrankan Chakrabarti.",
@@ -665,10 +665,10 @@
         id: "scene_01",
         num: 1,
         title: "Process Tree Inspection",
-        duration: 7.0,
+        duration: 8.4,
         startTime: 0,
-        endTime: 7.0,
-        timecode: "00:00 - 00:07",
+        endTime: 8.4,
+        timecode: "00:00 - 00:08.4",
         camera: "Over-the-shoulder macro dolly toward mechanical keyboard, subtle 47ms input lag stutter",
         prompt: "Close up over shoulder shot of an Indian software engineer sitting in a dark server room reaching for a backlit mechanical keyboard, hands have subtle translucent ghost polygon trails, terminal screen displays green and red code process tree, cinematic cyber horror, 35mm film grain, 8k resolution",
         narration: "Abhrankan's reflex wasn't flight. It was to isolate the process, kill it, and reclaim the resources.",
@@ -683,10 +683,10 @@
         id: "scene_02",
         num: 2,
         title: "The PID 1 Shell Error",
-        duration: 7.0,
-        startTime: 7.0,
-        endTime: 14.0,
-        timecode: "00:07 - 00:14",
+        duration: 9.2,
+        startTime: 8.4,
+        endTime: 17.6,
+        timecode: "00:08.4 - 00:17.6",
         camera: "Slow push in on CRT/LCD terminal screen, phosphor glow reflecting in glasses",
         prompt: "Macro close up of dark terminal console monitor, green text flashing command sudo kill -9 then flashing bright red error message kill: (pid 1): Operation not permitted, realistic CRT scanlines, cinematic lighting, 8k",
         narration: "He types the kill command. The shell rejects it immediately: PID 1. You cannot kill the init process of reality.",
@@ -701,10 +701,10 @@
         id: "scene_03",
         num: 3,
         title: "SysRq Hardware Interrupt Ignored",
-        duration: 7.0,
-        startTime: 14.0,
-        endTime: 21.0,
-        timecode: "00:14 - 00:21",
+        duration: 8.9,
+        startTime: 17.6,
+        endTime: 26.5,
+        timecode: "00:17.6 - 00:26.5",
         camera: "Side profile shot of engineer illuminated by cyan monitor glow, tense jawline, rapid typing",
         prompt: "Cinematic side profile of young male software engineer typing frantically on keyboard in dark server room, face illuminated by cold cyan terminal light, sweat on temple, dark atmosphere, suspense thriller, photorealistic",
         narration: "He forces a raw kernel reboot. Nothing. The kernel no longer answers to hardware interrupts from this side of existence.",
@@ -719,10 +719,10 @@
         id: "scene_04",
         num: 4,
         title: "Demoted to Ring 3 & 60Hz Frame Lock",
-        duration: 7.0,
-        startTime: 21.0,
-        endTime: 28.0,
-        timecode: "00:21 - 00:28",
+        duration: 8.9,
+        startTime: 26.5,
+        endTime: 35.4,
+        timecode: "00:26.5 - 00:35.4",
         camera: "Macro tracking shot across server rack glass door reflecting red system warnings",
         prompt: "Macro shot of server rack glass door reflecting bold red warning text: PRIVILEGE LEVEL DEMOTED TO RING_3, PHYSICS TIMESTEP 16.67ms FIXED, harsh amber and crimson emergency lighting, cinematic depth of field",
         narration: "A warning floods the room. His privilege level is demoted to userland. Physics locks to a fixed sixteen-millisecond loop.",
@@ -737,10 +737,10 @@
         id: "scene_05",
         num: 5,
         title: "Quantized Motion & Collision Crash",
-        duration: 7.0,
-        startTime: 28.0,
-        endTime: 35.0,
-        timecode: "00:28 - 00:35",
+        duration: 7.2,
+        startTime: 35.4,
+        endTime: 42.6,
+        timecode: "00:35.4 - 00:42.6",
         camera: "POV juddering camera rotation, discrete frame stepping effect, chromatic aberration",
         prompt: "First person perspective of looking around server room with discrete juddering motion blur, glitched frame artifacts, server racks slightly displaced, cold volumetric fog, cinematic cyberpunk realism",
         narration: "Time becomes quantized. The universe wasn't being haunted... the runtime itself was breaking.",
@@ -755,10 +755,10 @@
         id: "scene_06",
         num: 6,
         title: "No-Clip Phase Through Steel Door",
-        duration: 8.0,
-        startTime: 35.0,
-        endTime: 43.0,
-        timecode: "00:35 - 00:43",
+        duration: 7.1,
+        startTime: 42.6,
+        endTime: 49.7,
+        timecode: "00:42.6 - 00:49.7",
         camera: "Low-angle dynamic tracking shot following sprinting engineer passing through solid steel door",
         prompt: "Dynamic side angle of male engineer running in dark corridor and phasing through a heavy industrial steel security door, wireframe glitch shimmer, no physical impact, cinematic sci-fi VFX, photorealistic, 8k",
         narration: "Collision meshes are unloaded. He sprints and phases directly through the solid steel security door.",
@@ -773,10 +773,10 @@
         id: "scene_07",
         num: 7,
         title: "Corrupted Corridor & Z-Fighting",
-        duration: 9.0,
-        startTime: 43.0,
-        endTime: 52.0,
-        timecode: "00:43 - 00:52",
+        duration: 7.6,
+        startTime: 49.7,
+        endTime: 57.3,
+        timecode: "00:49.7 - 00:57.3",
         camera: "Wide cinematic corridor one-point perspective dolly, flickering overhead sodium fixtures",
         prompt: "Wide one point perspective shot of long dark data center corridor, harsh yellow sodium emergency lights flickering at 60hz, geometric glitches where floor tiles and distant server racks interpenetrate with z-fighting artifact, cinematic, atmospheric sci-fi",
         narration: "The hallway beyond is decompiling. Sodium lights flicker at sixty hertz as server racks tear through the floor.",
@@ -791,10 +791,10 @@
         id: "scene_08",
         num: 8,
         title: "The 23% Build Progress & Defiance",
-        duration: 8.0,
-        startTime: 52.0,
-        endTime: 60.0,
-        timecode: "00:52 - 01:00",
+        duration: 9.7,
+        startTime: 57.3,
+        endTime: 67.0,
+        timecode: "00:57.3 - 01:07.0",
         camera: "Snap zoom on distant glowing workstation screen, then fast whip-pan into engineer's eyes",
         prompt: "Cinematic close-up of engineer looking over shoulder in dark glitched corridor, eyes resolute and determined, green and yellow light reflection on face, in background distant workstation monitor reads COMPILING USER_ABHRANKAN... 23%, high contrast, cinematic film still",
         narration: "The terminal prints: Compiling User Abhrankan, twenty-three percent. But until the build finishes, he still owns himself.",
@@ -844,19 +844,23 @@
         })))
       },
       ep2: {
-        title: "Episode 2 — Force Quit (Chapter 2 Blueprint & Narration)",
-        videoSrc: "audio/episode_02_soundtrack.mp3",
-        size: "Blueprint & Audio Ready",
+        title: "Episode 2 — Force Quit (Chapter 2)",
+        videoSrc: "episodes/episode-02-force-quit.mp4",
+        size: "19.0 MB",
         srt: "subtitles/episode-02-force-quit.srt",
         vtt: "subtitles/episode-02-force-quit.vtt",
         yaml: "episodes/episode-02-force-quit.yaml",
-        duration: 60,
+        duration: 67,
         scenes: scenesEpisode2
       }
     };
 
     let currentEpisodeKey = "part1";
     let scenes = episodesConfig.part1.scenes;
+
+    function getEpisodeMaxDuration() {
+      return (episodesConfig[currentEpisodeKey] && episodesConfig[currentEpisodeKey].duration) ? episodesConfig[currentEpisodeKey].duration : 60;
+    }
 
     // --- State Variables ---
     let currentTime = 0;
@@ -1347,7 +1351,8 @@
 
     // --- Update Scene State & DOM ---
     function updateSceneState(time) {
-      currentTime = Math.max(0, Math.min(60, time));
+      const maxDur = getEpisodeMaxDuration();
+      currentTime = Math.max(0, Math.min(maxDur, time));
       scrubber.value = currentTime;
 
       const mins = Math.floor(currentTime / 60);
@@ -1356,7 +1361,7 @@
 
       let index = scenes.findIndex(s => currentTime >= s.startTime && currentTime < s.endTime);
       if (index === -1) {
-        if (currentTime >= 60) index = scenes.length - 1;
+        if (currentTime >= maxDur) index = scenes.length - 1;
         else index = 0;
       }
 
@@ -1405,7 +1410,7 @@
       }
 
       if (playerMode === "canvas") {
-        if (currentTime >= 59.5) {
+        if (currentTime >= maxDur - 0.5) {
           endScreen.style.opacity = "1";
           endScreen.style.pointerEvents = "auto";
         } else {
@@ -1456,8 +1461,9 @@
       if (playerMode === "canvas") {
         if (isPlaying) {
           currentTime += delta;
-          if (currentTime >= 60) {
-            currentTime = 60;
+          const maxDur = getEpisodeMaxDuration();
+          if (currentTime >= maxDur) {
+            currentTime = maxDur;
             pause();
           }
           updateSceneState(currentTime);
@@ -1476,7 +1482,8 @@
       playPauseBtn.classList.replace("bg-sky-600", "bg-amber-600");
       playPauseBtn.classList.replace("hover:bg-sky-500", "hover:bg-amber-500");
 
-      if (currentTime >= 60) {
+      const maxDur = getEpisodeMaxDuration();
+      if (currentTime >= maxDur) {
         currentTime = 0;
         lastSpokenScene = -1;
       }
@@ -1608,6 +1615,10 @@
         canvas.style.display = "none";
         if (simulatorOverlay) simulatorOverlay.style.display = "none";
         productionVideoPlayer.style.display = "block";
+        const currentEp = episodesConfig[currentEpisodeKey];
+        if (currentEp && (!productionVideoPlayer.src || !productionVideoPlayer.src.endsWith(currentEp.videoSrc))) {
+          productionVideoPlayer.src = currentEp.videoSrc;
+        }
         productionVideoPlayer.currentTime = currentTime;
         
         playerModeText.textContent = "Source: Rendered MP4";
@@ -1697,29 +1708,24 @@
 
       // Update Scrubber Max
       scrubber.max = ep.duration;
-      const maxTimeSpan = scrubber.nextElementSibling;
-      if (maxTimeSpan) maxTimeSpan.textContent = ep.duration >= 120 ? "02:00" : "01:00";
+      const maxTimeSpan = document.getElementById("totalDurationDisplay") || scrubber.nextElementSibling;
+      const maxM = Math.floor(ep.duration / 60);
+      const maxS = Math.floor(ep.duration % 60);
+      if (maxTimeSpan) maxTimeSpan.textContent = `${String(maxM).padStart(2, '0')}:${String(maxS).padStart(2, '0')}`;
 
-      // Re-source Video Player / Simulator
+      // Re-source Video Player & Reset to MP4 Rendered Mode
       productionVideoPlayer.pause();
-      if (epKey === 'ep2') {
-        playerMode = "canvas";
-        productionVideoPlayer.style.display = "none";
-        canvas.style.display = "block";
-        if (simulatorOverlay) simulatorOverlay.style.display = "flex";
-        playerModeText.textContent = "Source: Live Simulator";
-        if (toggleVoiceBtn) toggleVoiceBtn.style.display = "inline-flex";
-        resizeCanvas();
-      } else {
-        playerMode = "mp4";
-        canvas.style.display = "none";
-        if (simulatorOverlay) simulatorOverlay.style.display = "none";
-        productionVideoPlayer.style.display = "block";
-        productionVideoPlayer.src = ep.videoSrc;
-        productionVideoPlayer.currentTime = 0;
-        playerModeText.textContent = "Source: Rendered MP4";
-        if (toggleVoiceBtn) toggleVoiceBtn.style.display = "none";
-      }
+      productionVideoPlayer.src = ep.videoSrc;
+      productionVideoPlayer.currentTime = 0;
+
+      playerMode = "mp4";
+      canvas.style.display = "none";
+      if (simulatorOverlay) simulatorOverlay.style.display = "none";
+      productionVideoPlayer.style.display = "block";
+      playerModeText.textContent = "Source: Rendered MP4";
+      if (toggleVoiceBtn) toggleVoiceBtn.style.display = "none";
+      audioStatusText.textContent = productionVideoPlayer.muted ? "Audio: MUTED" : "Audio: ON";
+      audioIcon.textContent = productionVideoPlayer.muted ? "🔇" : "🔊";
 
       currentTime = 0;
       currentSceneIndex = 0;

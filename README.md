@@ -45,10 +45,11 @@ A hard sci-fi technical thriller exploring localized spacetime hypervisor corrup
     - Part 1 (60s): [YAML](episodes/episode-01-the-packet.yaml) • [SRT](subtitles/episode-01.srt) • [VTT](subtitles/episode-01.vtt)
     - Part 2 (60s): [YAML](episodes/episode-01-part-02.yaml) • [SRT](subtitles/episode-01-part-02.srt) • [VTT](subtitles/episode-01-part-02.vtt)
 
-- **[Chapter 2: Force Quit — Production Assets (In Progress)](chapter-2.md)**
-  - *Format:* Vertical 9:16 (60s) • *Soundtrack:* 60Hz Frame-Lock Drone + PID 1 Denial SFX + Steel Door Phase
+- **[Chapter 2: Force Quit — Production Assets & Master Video](chapter-2.md)**
+  - *Format:* Vertical 9:16 (67s, 720x1280 @ 30fps) • *Soundtrack:* 60Hz Frame-Lock Drone + PID 1 Denial SFX + Steel Door Phase
+  - **Master Video:** [🎬 Download Episode 2 Master Video MP4 (19.0 MB)](episodes/episode-02-force-quit.mp4)
   - **Blueprint & Prompts:** [Episode 2 YAML Blueprint](episodes/episode-02-force-quit.yaml) • [Kling AI Prompts Guide](episodes/kling_prompts_episode_02.md) • [Kling Prompts JSON](episodes/kling_prompts_episode_02.json)
-  - **Audio & Subtitles:** [Episode 2 Master OST MP3 (2.4 MB)](audio/episode_02_soundtrack.mp3) • [Master WAV (5.3 MB)](audio/episode_02_soundtrack.wav) • [SRT](subtitles/episode-02-force-quit.srt) • [VTT](subtitles/episode-02-force-quit.vtt)
+  - **Audio & Subtitles:** [Episode 2 Master OST MP3 (2.7 MB)](audio/episode_02_soundtrack.mp3) • [Master WAV (5.9 MB)](audio/episode_02_soundtrack.wav) • [SRT](subtitles/episode-02-force-quit.srt) • [VTT](subtitles/episode-02-force-quit.vtt)
   - **Covers:** [Episode 2 9:16 Vertical Poster](episodes/thumbnail_episode_02.jpg) • [Episode 2 16:9 Landscape Cover](episodes/thumbnail_episode_02_16x9.jpg)
 
 ---
