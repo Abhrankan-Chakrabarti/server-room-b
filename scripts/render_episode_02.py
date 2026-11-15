@@ -81,11 +81,12 @@ def render_episode_02_video(out_raw_video, width=720, height=1280, fps=30, total
 
     try:
         font_hud = ImageFont.truetype("consola.ttf", 22)
+        font_credit = ImageFont.truetype("consola.ttf", 17)
         font_narr = ImageFont.truetype("arialbd.ttf", 28)
         font_badge = ImageFont.truetype("arialbd.ttf", 24)
         font_big = ImageFont.truetype("arialbd.ttf", 44)
     except:
-        font_hud = font_narr = font_badge = font_big = ImageFont.load_default()
+        font_hud = font_credit = font_narr = font_badge = font_big = ImageFont.load_default()
 
     # Timeline segments:
     # Scene 1: 0.0s - 8.4s
@@ -177,26 +178,33 @@ def render_episode_02_video(out_raw_video, width=720, height=1280, fps=30, total
             draw.text((70, 505), "COMPILING USER_ABHRANKAN...", fill=(255, 255, 255), font=font_hud)
             draw.text((70, 550), f"BUILD PROGRESS: {pct}% [ALLOCATING BRAIN HARDWARE]", fill=(239, 68, 68), font=font_hud)
 
-        # Bottom Subtitle & Narration Block
-        if t < 64.5:
+        # Subtitle & Credits Section
+        if t < 65.8:
+            # Bottom Subtitle & Narration Block
             lines = wrap_text(narr_text, font_narr, 620, draw)
             start_y = 1010
             for i, line in enumerate(lines):
                 # Text drop shadow
                 draw_centered_text(draw, line, width // 2 + 2, start_y + i * 36 + 2, font_narr, (0, 0, 0))
                 draw_centered_text(draw, line, width // 2, start_y + i * 36, font_narr, (255, 255, 255))
-        else:
-            # End Title Card
-            draw_centered_text(draw, "SERVER ROOM B", width // 2, 1020, font_big, (255, 255, 255))
-            draw_centered_text(draw, "Chapter 2 • Force Quit", width // 2, 1080, font_narr, (234, 179, 8))
-            draw_centered_text(draw, "TO BE CONTINUED IN CHAPTER 3", width // 2, 1140, font_hud, (148, 163, 184))
 
-        # Bottom Credits
-        draw.text((28, height - 42), "Story & Direction by Abhrankan Chakrabarti", fill=(100, 116, 139), font=font_hud)
-        draw.text((width - 230, height - 42), "Abhrankan Creates", fill=(192, 132, 252), font=font_hud)
+            # Non-Overlapping Bottom Credits HUD (251px clean safety gap)
+            draw.text((32, height - 44), "Story: Abhrankan Chakrabarti", fill=(148, 163, 184), font=font_credit)
+            chan_bbox = draw.textbbox((0, 0), "Abhrankan Creates", font=font_credit)
+            chan_w = chan_bbox[2] - chan_bbox[0]
+            draw.text((width - 32 - chan_w, height - 44), "Abhrankan Creates", fill=(192, 132, 252), font=font_credit)
+        else:
+            # Climax Blackout & Centered Credits Card (65.8s - 67.0s)
+            draw.rectangle([(0, 0), (width, height)], fill=(0, 0, 0))
+            draw_centered_text(draw, "SERVER ROOM B", width // 2, 480, font_big, (255, 255, 255))
+            draw_centered_text(draw, "Chapter 2 • Force Quit", width // 2, 540, font_narr, (234, 179, 8))
+            draw_centered_badge(draw, "Story by Abhrankan Chakrabarti", width // 2, 630, font_badge, outline=(56, 189, 248), fill_text=(255, 255, 255))
+            draw_centered_text(draw, "TO BE CONTINUED IN CHAPTER 3", width // 2, 720, font_badge, (234, 179, 8))
+            draw_centered_text(draw, "Abhrankan Creates", width // 2, 780, font_hud, (192, 132, 252))
 
         # Border
-        draw.rectangle([(10, 10), (width - 10, height - 10)], outline=(*accent_color, 120), width=2)
+        if t < 65.8:
+            draw.rectangle([(10, 10), (width - 10, height - 10)], outline=(*accent_color, 120), width=2)
 
         # Write frame to video
         frame_cv = cv2.cvtColor(np.array(frame_im), cv2.COLOR_RGB2BGR)
