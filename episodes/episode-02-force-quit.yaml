@@ -1,0 +1,133 @@
+project: Server Room B
+episode:
+  number: 2
+  title: "Force Quit"
+  chapter: 2
+  format: "Vertical 9:16 (720x1280)"
+  framerate: 30
+  target_duration_seconds: 60
+  creator: "Abhrankan Chakrabarti"
+  channel: "Abhrankan Creates"
+
+scenes:
+  - scene_id: scene_01
+    scene_number: 1
+    title: "Process Tree Inspection"
+    start_time: "00:00"
+    end_time: "00:07"
+    duration_seconds: 7
+    visual_description: "Abhrankan's hand with translucent knuckle trails reaches back to the glowing mechanical keyboard. Terminal strobes showing process tree: BIOLOGICAL_COMPILER_v0x7F branching child threads into sensory cortex."
+    camera_direction: "Over-the-shoulder macro dolly toward mechanical keyboard, subtle 47ms input lag stutter on fingers"
+    narration: "Abhrankan's reflex wasn't flight. It was to isolate the process, kill it, and reclaim the resources."
+    overlay_text:
+      - "PROCESS: BIOLOGICAL_COMPILER_v0x7F"
+      - "LATENCY: +47ms"
+    kling_prompt: "Close up over shoulder shot of an Indian software engineer sitting in a dark server room reaching for a backlit mechanical keyboard, hands have subtle translucent ghost polygon trails, terminal screen displays green and red code process tree, cinematic cyber horror, 35mm film grain, 8k resolution"
+
+  - scene_id: scene_02
+    scene_number: 2
+    title: "The PID 1 Shell Error"
+    start_time: "00:07"
+    end_time: "00:14"
+    duration_seconds: 7
+    visual_description: "Extreme close up of bash terminal. Fast typed command: sudo kill -9 $(pgrep -f BIOLOGICAL_COMPILER). Instant harsh red error output: kill: (pid 1): Operation not permitted."
+    camera_direction: "Slow push in on CRT/LCD terminal screen, phosphor glow reflecting in engineer's glasses"
+    narration: "He types the kill command. The shell rejects it immediately: PID 1. You cannot kill the init process of reality."
+    overlay_text:
+      - "$ sudo kill -9 $(pgrep -f BIOLOGICAL_COMPILER)"
+      - "kill: (pid 1): Operation not permitted"
+    kling_prompt: "Macro close up of dark terminal console monitor, green text flashing command sudo kill -9 then flashing bright red error message kill: (pid 1): Operation not permitted, realistic CRT scanlines, cinematic lighting, 8k"
+
+  - scene_id: scene_03
+    scene_number: 3
+    title: "SysRq Hardware Interrupt Ignored"
+    start_time: "00:14"
+    end_time: "00:21"
+    duration_seconds: 7
+    visual_description: "Rapidly typing low-level kernel triggers: echo 1 > /proc/sys/kernel/sysrq, echo b > /proc/sysrq-trigger. The prompt hangs silently. Hardware interrupts are completely dead."
+    camera_direction: "Side profile shot of engineer illuminated by cyan monitor glow, tense jawline, frantic rapid typing"
+    narration: "He forces a raw kernel reboot. Nothing. The kernel no longer answers to hardware interrupts from this side of existence."
+    overlay_text:
+      - "$ echo b > /proc/sysrq-trigger"
+      - "[SYSRQ INTERFACE REMAPPED]"
+    kling_prompt: "Cinematic side profile of young male software engineer typing frantically on keyboard in dark server room, face illuminated by cold cyan terminal light, sweat on temple, dark atmosphere, suspense thriller, photorealistic"
+
+  - scene_id: scene_04
+    scene_number: 4
+    title: "Demoted to Ring 3 & 60Hz Frame Lock"
+    start_time: "00:21"
+    end_time: "00:28"
+    duration_seconds: 7
+    visual_description: "Alarm red logs scroll across wall keypad and mirror on reflective glass surfaces and his pupils. Fans shift from smooth drone to a harsh 60Hz electrical buzz."
+    camera_direction: "Macro tracking shot across server rack glass door reflecting red system warnings: RING_3 DEMOTED"
+    narration: "A warning floods the room. His privilege level is demoted to userland. Physics locks to a fixed sixteen-millisecond loop."
+    overlay_text:
+      - "WARN: PRIVILEGE DEMOTED TO RING_3"
+      - "INF: PHYSICS TIMESTEP 16.67ms FIXED"
+    kling_prompt: "Macro shot of server rack glass door reflecting bold red warning text: PRIVILEGE LEVEL DEMOTED TO RING_3, PHYSICS TIMESTEP 16.67ms FIXED, harsh amber and crimson emergency lighting, cinematic depth of field"
+
+  - scene_id: scene_05
+    scene_number: 5
+    title: "Quantized Motion & Collision Crash"
+    start_time: "00:28"
+    end_time: "00:35"
+    duration_seconds: 7
+    visual_description: "Abhrankan turns his head; vision updates in choppy, discrete 16.67ms increments like a game running with vsync stutter. He realizes physical collision parameters are uninitializing."
+    camera_direction: "POV juddering camera rotation, discrete frame stepping effect, chromatic aberration at frame edges"
+    narration: "Time becomes quantized. The universe wasn't being haunted... the runtime itself was breaking."
+    overlay_text:
+      - "TIMESTEP: 16.67ms (60 FPS)"
+      - "COLLISION: isTrigger = true"
+    kling_prompt: "First person perspective of looking around server room with discrete juddering motion blur, glitched frame artifacts, server racks slightly displaced, cold volumetric fog, cinematic cyberpunk realism"
+
+  - scene_id: scene_06
+    scene_number: 6
+    title: "No-Clip Phase Through Steel Door"
+    start_time: "00:35"
+    end_time: "00:43"
+    duration_seconds: 8
+    visual_description: "Abhrankan sprints at maximum speed toward the heavy reinforced steel security door. He impacts it—and glides right through the metal plane without resistance as vertices decompile."
+    camera_direction: "Low-angle dynamic tracking shot following sprinting engineer passing through solid steel door plane with digital wireframe shimmer"
+    narration: "Collision meshes are unloaded. He sprints and phases directly through the solid steel security door."
+    overlay_text:
+      - "MESH COLLISION: NULL"
+      - "PHASING SECTOR 4 PERIMETER"
+    kling_prompt: "Dynamic side angle of male engineer running in dark corridor and phasing through a heavy industrial steel security door, wireframe glitch shimmer, no physical impact, cinematic sci-fi VFX, photorealistic, 8k"
+
+  - scene_id: scene_07
+    scene_number: 7
+    title: "Corrupted Corridor & Z-Fighting"
+    start_time: "00:43"
+    end_time: "00:52"
+    duration_seconds: 9
+    visual_description: "Emerging into the long data-center corridor under flickering sodium yellow emergency lamps. Ceiling tiles hang at impossible depths; distant server racks flicker and z-fight with concrete floor."
+    camera_direction: "Wide cinematic corridor one-point perspective dolly, flickering overhead sodium fixtures, geometry tearing"
+    narration: "The hallway beyond is decompiling. Sodium lights flicker at sixty hertz as server racks tear through the floor."
+    overlay_text:
+      - "CORRIDOR SECTOR B-NORTH"
+      - "Z-BUFFER COLLAPSE DETECTED"
+    kling_prompt: "Wide one point perspective shot of long dark data center corridor, harsh yellow sodium emergency lights flickering at 60hz, geometric glitches where floor tiles and distant server racks interpenetrate with z-fighting artifact, cinematic, atmospheric sci-fi"
+
+  - scene_id: scene_08
+    scene_number: 8
+    title: "The 23% Build Progress & Defiance"
+    start_time: "00:52"
+    end_time: "01:00"
+    duration_seconds: 8
+    visual_description: "Looking back into Server Room B doorway: distant workstation monitor pulses brightly, displaying: COMPILING USER_ABHRANKAN... 23%. Abhrankan turns and sprints deeper into the dark facility."
+    camera_direction: "Snap zoom on distant glowing workstation screen, then fast whip-pan into engineer's determined eyes as he sprints away"
+    narration: "The terminal prints: Compiling User Abhrankan, twenty-three percent. But until the build finishes, he still owns himself."
+    overlay_text:
+      - "COMPILING USER_ABHRANKAN... 23%"
+      - "TO BE CONTINUED IN CHAPTER 3"
+    kling_prompt: "Cinematic close-up of engineer looking over shoulder in dark glitched corridor, eyes resolute and determined, green and yellow light reflection on face, in background distant workstation monitor reads COMPILING USER_ABHRANKAN... 23%, high contrast, cinematic film still"
+
+audio:
+  ambient_hum: "60Hz electrical drone + temporal frame-lock tick"
+  sfx:
+    - "00:02 - 47ms input latency click"
+    - "00:09 - Harsh error buzz on PID 1 kill denial"
+    - "00:23 - 60Hz electrical buzz drop"
+    - "00:37 - Deep sub-bass reality phasing hum (no-clip)"
+    - "00:48 - Z-fighting digital polygon buzz"
+    - "00:57 - Heartbeat monitor rising tension"
