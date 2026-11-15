@@ -674,7 +674,7 @@
         narration: "Abhrankan's reflex wasn't flight. It was to isolate the process, kill it, and reclaim the resources.",
         overlay: ["PROCESS: BIOLOGICAL_COMPILER_v0x7F", "LATENCY: +47ms"],
         badge: "EP2 SCENE 01: PROCESS TREE",
-        visualType: "terminal",
+        visualType: "engineer",
         sfx: "keystroke",
         audioSrc: "audio/narration_ep2/scene_01_narration.wav",
         aiRender: ""
@@ -692,7 +692,7 @@
         narration: "He types the kill command. The shell rejects it immediately: PID 1. You cannot kill the init process of reality.",
         overlay: ["$ sudo kill -9 $(pgrep -f BIOLOGICAL_COMPILER)", "kill: (pid 1): Operation not permitted"],
         badge: "EP2 SCENE 02: PID 1 DENIAL",
-        visualType: "terminal",
+        visualType: "frozen_cursor",
         sfx: "alarm",
         audioSrc: "audio/narration_ep2/scene_02_narration.wav",
         aiRender: ""
@@ -710,7 +710,7 @@
         narration: "He forces a raw kernel reboot. Nothing. The kernel no longer answers to hardware interrupts from this side of existence.",
         overlay: ["$ echo b > /proc/sysrq-trigger", "[SYSRQ INTERFACE REMAPPED]"],
         badge: "EP2 SCENE 03: SYSRQ REMAPPED",
-        visualType: "terminal",
+        visualType: "packet_stream",
         sfx: "keystroke",
         audioSrc: "audio/narration_ep2/scene_03_narration.wav",
         aiRender: ""
@@ -728,7 +728,7 @@
         narration: "A warning floods the room. His privilege level is demoted to userland. Physics locks to a fixed sixteen-millisecond loop.",
         overlay: ["WARN: PRIVILEGE DEMOTED TO RING_3", "INF: PHYSICS TIMESTEP 16.67ms FIXED"],
         badge: "EP2 SCENE 04: RING_3 DEMOTION",
-        visualType: "terminal",
+        visualType: "hex_recompile",
         sfx: "hum",
         audioSrc: "audio/narration_ep2/scene_04_narration.wav",
         aiRender: ""
@@ -746,7 +746,7 @@
         narration: "Time becomes quantized. The universe wasn't being haunted... the runtime itself was breaking.",
         overlay: ["TIMESTEP: 16.67ms (60 FPS)", "COLLISION: isTrigger = true"],
         badge: "EP2 SCENE 05: QUANTIZED MOTION",
-        visualType: "mesh_wireframe",
+        visualType: "servers",
         sfx: "hum",
         audioSrc: "audio/narration_ep2/scene_05_narration.wav",
         aiRender: ""
@@ -764,7 +764,7 @@
         narration: "Collision meshes are unloaded. He sprints and phases directly through the solid steel security door.",
         overlay: ["MESH COLLISION: NULL", "PHASING SECTOR 4 PERIMETER"],
         badge: "EP2 SCENE 06: STEEL NO-CLIP",
-        visualType: "mesh_wireframe",
+        visualType: "void_mesh",
         sfx: "void_drop",
         audioSrc: "audio/narration_ep2/scene_06_narration.wav",
         aiRender: ""
@@ -782,7 +782,7 @@
         narration: "The hallway beyond is decompiling. Sodium lights flicker at sixty hertz as server racks tear through the floor.",
         overlay: ["CORRIDOR SECTOR B-NORTH", "Z-BUFFER COLLAPSE DETECTED"],
         badge: "EP2 SCENE 07: Z-BUFFER COLLAPSE",
-        visualType: "void_glitch",
+        visualType: "servers",
         sfx: "hum",
         audioSrc: "audio/narration_ep2/scene_07_narration.wav",
         aiRender: ""
@@ -842,6 +842,16 @@
           endTime: s.endTime + 60,
           timecode: `${Math.floor((s.startTime+60)/60).toString().padStart(2,'0')}:${Math.floor((s.startTime+60)%60).toString().padStart(2,'0')} - ${Math.floor((s.endTime+60)/60).toString().padStart(2,'0')}:${Math.floor((s.endTime+60)%60).toString().padStart(2,'0')}`
         })))
+      },
+      ep2: {
+        title: "Episode 2 — Force Quit (Chapter 2 Blueprint & Narration)",
+        videoSrc: "audio/episode_02_soundtrack.mp3",
+        size: "Blueprint & Audio Ready",
+        srt: "subtitles/episode-02-force-quit.srt",
+        vtt: "subtitles/episode-02-force-quit.vtt",
+        yaml: "episodes/episode-02-force-quit.yaml",
+        duration: 60,
+        scenes: scenesEpisode2
       }
     };
 
@@ -1690,14 +1700,32 @@
       const maxTimeSpan = scrubber.nextElementSibling;
       if (maxTimeSpan) maxTimeSpan.textContent = ep.duration >= 120 ? "02:00" : "01:00";
 
-      // Re-source Video Player
+      // Re-source Video Player / Simulator
       productionVideoPlayer.pause();
-      productionVideoPlayer.src = ep.videoSrc;
-      productionVideoPlayer.currentTime = 0;
+      if (epKey === 'ep2') {
+        playerMode = "canvas";
+        productionVideoPlayer.style.display = "none";
+        canvas.style.display = "block";
+        if (simulatorOverlay) simulatorOverlay.style.display = "flex";
+        playerModeText.textContent = "Source: Live Simulator";
+        if (toggleVoiceBtn) toggleVoiceBtn.style.display = "inline-flex";
+        resizeCanvas();
+      } else {
+        playerMode = "mp4";
+        canvas.style.display = "none";
+        if (simulatorOverlay) simulatorOverlay.style.display = "none";
+        productionVideoPlayer.style.display = "block";
+        productionVideoPlayer.src = ep.videoSrc;
+        productionVideoPlayer.currentTime = 0;
+        playerModeText.textContent = "Source: Rendered MP4";
+        if (toggleVoiceBtn) toggleVoiceBtn.style.display = "none";
+      }
+
       currentTime = 0;
       currentSceneIndex = 0;
       lastSpokenScene = -1;
       updateSceneState(0);
+      renderVisuals(0);
       renderSceneCards();
       pause();
       showToast(`Switched to: ${ep.title}`);
