@@ -40,7 +40,10 @@ A hard sci-fi technical thriller exploring localized spacetime hypervisor corrup
     - Part 1 OST: [Download MP3 (2.3 MB)](audio/episode_01_part_01_soundtrack.mp3) • [Master WAV (5.0 MB)](audio/episode_01_full_soundtrack.wav)
     - Part 2 OST: [Download MP3 (2.3 MB)](audio/episode_01_part_02_soundtrack.mp3) • [Master WAV (5.0 MB)](audio/episode_01_part_02_soundtrack.wav)
     - Custom SFX: [2ms Acoustic Fan Stutter MP3 (2.3 MB)](audio/part2_2ms_stutter_sfx.mp3)
-  - **Production Specs:** [Part 1 YAML](episodes/episode-01-the-packet.yaml) • [Part 2 YAML](episodes/episode-01-part-02.yaml) • [Part 1 SRT](subtitles/episode-01.srt) • [Part 2 SRT](subtitles/episode-01-part-02.srt)
+  - **Production Specs & Subtitles:**
+    - Director's Cut (120s): [📥 SRT Subtitles](subtitles/chapter-01-complete-directors-cut.srt) • [📥 VTT Subtitles](subtitles/chapter-01-complete-directors-cut.vtt)
+    - Part 1 (60s): [YAML](episodes/episode-01-the-packet.yaml) • [SRT](subtitles/episode-01.srt) • [VTT](subtitles/episode-01.vtt)
+    - Part 2 (60s): [YAML](episodes/episode-01-part-02.yaml) • [SRT](subtitles/episode-01-part-02.srt) • [VTT](subtitles/episode-01-part-02.vtt)
 
 ---
 
