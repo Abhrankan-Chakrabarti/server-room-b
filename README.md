@@ -52,6 +52,13 @@ A hard sci-fi technical thriller exploring localized spacetime hypervisor corrup
   - **Audio & Subtitles:** [Episode 2 Master OST MP3 (2.7 MB)](audio/episode_02_soundtrack.mp3) • [Master WAV (5.9 MB)](audio/episode_02_soundtrack.wav) • [SRT](subtitles/episode-02-force-quit.srt) • [VTT](subtitles/episode-02-force-quit.vtt)
   - **Covers:** [Episode 2 9:16 Vertical Poster](episodes/thumbnail_episode_02.jpg) • [Episode 2 16:9 Landscape Cover](episodes/thumbnail_episode_02_16x9.jpg)
 
+- **[Chapter 3: Link Stage — Production Assets & Master Video](chapter-3.md)**
+  - *Format:* Vertical 9:16 (78s, 720x1280 @ 30fps) • *Soundtrack:* 60Hz Drone + Cisco Bare-Metal Fan Roar + 8-bit VGA Bitcrush + 0ms Freeze
+  - **Master Video:** [🎬 Download Episode 3 Master Video MP4 (6.9 MB)](episodes/episode-03-link-stage.mp4)
+  - **Blueprint & Prompts:** [Episode 3 YAML Blueprint](episodes/episode-03-link-stage.yaml) • [Kling AI Prompts Guide](episodes/kling_prompts_episode_03.md) • [Kling Prompts JSON](episodes/kling_prompts_episode_03.json)
+  - **Audio & Subtitles:** [Episode 3 Master OST MP3 (3.1 MB)](audio/episode_03_soundtrack.mp3) • [Master WAV (6.9 MB)](audio/episode_03_soundtrack.wav) • [SRT](subtitles/episode-03-link-stage.srt) • [VTT](subtitles/episode-03-link-stage.vtt)
+  - **Covers:** [Episode 3 9:16 Vertical Poster](episodes/thumbnail_episode_03.jpg) • [Episode 3 16:9 Landscape Cover](episodes/thumbnail_episode_03_16x9.jpg)
+
 ---
 
 *Disclaimer: If telemetry parameters drift or localized collision vectors fail, execute a hardware interrupt immediately. No clean save is guaranteed.*

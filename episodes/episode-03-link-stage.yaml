@@ -1,0 +1,136 @@
+project: Server Room B
+episode:
+  number: 3
+  title: "Link Stage"
+  chapter: 3
+  format: "Vertical 9:16 (720x1280)"
+  framerate: 30
+  target_duration_seconds: 78
+  creator: "Abhrankan Chakrabarti"
+  channel: "Abhrankan Creates"
+
+scenes:
+  - scene_id: scene_01
+    scene_number: 1
+    title: "The Circular Buffer"
+    start_time: "00:00"
+    end_time: "00:09.0"
+    duration_seconds: 9.0
+    visual_description: "Abhrankan running down the dark data-center corridor, passing the exact same fire extinguisher station three times in an infinite loop. Concrete walls and warning signs progressively degrade into blocky, low-resolution placeholder textures."
+    camera_direction: "Tracking dolly ahead of sprinting engineer, subtle frame judder as corridor geometry repeats"
+    narration: "The corridor didn't end; it looped. With every pass, the walls rendered at lower resolution as the system ran out of memory."
+    overlay_text:
+      - "TOPOLOGY: CIRCULAR_BUFFER_0x03"
+      - "LOD: AGGRESSIVE_CULLING_ACTIVE"
+    kling_prompt: "First-person perspective running through endless dark industrial data center corridor with repeating doors and flickering emergency sodium lights, wall textures degenerating into low poly pixelated surfaces, cinematic cyber horror, 35mm lens, photorealistic 8k"
+
+  - scene_id: scene_02
+    scene_number: 2
+    title: "Retinal Burn-in"
+    start_time: "00:09.0"
+    end_time: "00:18.8"
+    duration_seconds: 9.8
+    visual_description: "Extreme close-up of Abhrankan's pupil and iris. Phosphor-green compiler text burns directly onto his retina in his blind spot, tracking his eye movements in real time."
+    camera_direction: "Extreme macro push into human eye, reflection of glowing terminal characters etched across iris"
+    narration: "Compiling User Abhrankan, forty-one percent. The text no longer printed on the monitors. It burned directly into his retina."
+    overlay_text:
+      - "COMPILING USER_ABHRANKAN... 41%"
+      - "DISPLAY: RETINAL_BURNOUT_L0"
+    kling_prompt: "Extreme macro close-up of brown human eye, dilated pupil reflecting sharp glowing green terminal code COMPILING USER 41 percent, chromatic aberration on eyelid, sweating brow, cinematic suspense lighting, photorealistic 8k"
+
+  - scene_id: scene_03
+    scene_number: 3
+    title: "The MDF Ingress"
+    start_time: "00:18.8"
+    end_time: "00:28.6"
+    duration_seconds: 9.8
+    visual_description: "Abhrankan bursts through a heavy steel door marked MAIN DISTRIBUTION FRAME into a freezing cold vault. Massive industrial Cisco backbone rack status LEDs blinking in an unquantized, chaotic rhythm on bare metal."
+    camera_direction: "Low-angle wide shot looking up at towering Cisco backbone server rack, cold volumetric fog rising from raised floor tiles"
+    narration: "He breaks into the Main Distribution Frame. Here, the core Cisco backbone switch is still running on bare metal, untouched by the compiler."
+    overlay_text:
+      - "NODE: MDF-CORE-SW01"
+      - "STATUS: BARE_METAL_RUNNING"
+    kling_prompt: "Wide cinematic interior of freezing dark server vault, cold cyan fog along floor, towering black server rack filled with heavy Cisco enterprise switches, thousands of rapid blinking blue and amber fiber LEDs, cinematic sci-fi atmosphere"
+
+  - scene_id: scene_04
+    scene_number: 4
+    title: "Serial Interface Hook"
+    start_time: "00:28.6"
+    end_time: "00:38.0"
+    duration_seconds: 9.4
+    visual_description: "Abhrankan drops to his knees with 150ms input lag, plugging a blue RJ45-to-USB serial console cable into his rugged laptop. Terminal flashes green with raw serial prompt. Behind him, the exit door vanishes into a smooth, featureless gray plane."
+    camera_direction: "Macro tracking shot of serial console cable clicking into laptop port, whip-pan to rear wall where doorway disappears into void"
+    narration: "Latency spikes to one hundred and fifty milliseconds. He plugs into the serial console as the exit behind him completely vanishes."
+    overlay_text:
+      - "$ screen /dev/ttyUSB0 115200"
+      - "LATENCY: +150ms [DOOR CULLED]"
+    kling_prompt: "Macro close-up shot of hands with trailing ghost polygon lag plugging thick light-blue console cable into rugged laptop in dark server room, terminal screen flashes green MDF-CORE-SW01 prompt, in background solid door melts into flat gray wall"
+
+  - scene_id: scene_05
+    scene_number: 5
+    title: "8-Bit VGA Snapping"
+    start_time: "00:38.0"
+    end_time: "00:47.6"
+    duration_seconds: 9.6
+    visual_description: "The world instantly drops from 32-bit true color to harsh 8-bit VGA dithering. The server room loses gradient lighting, flattening into harsh 256-color palette blocks as short-term memory registers overwrite."
+    camera_direction: "POV view of server room rapidly pixelating, color channels crushing into retro 8-bit VGA quantization"
+    narration: "Sixty-seven percent. His vision drops from true color to harsh eight-bit VGA. The compiler begins overwriting his memories."
+    overlay_text:
+      - "COMPILING USER_ABHRANKAN... 67%"
+      - "COLOR_DEPTH: 8-BIT_VGA_PALETTE"
+    kling_prompt: "POV looking at server rack as reality suddenly degrades into harsh 8-bit VGA dithering and 256 color palette, geometric crushing, glitched CRT scanlines, surreal cyber horror, atmospheric lighting"
+
+  - scene_id: scene_06
+    scene_number: 6
+    title: "Hardware Access-Control List"
+    start_time: "00:47.6"
+    end_time: "00:57.2"
+    duration_seconds: 9.6
+    visual_description: "Abhrankan frantically types Cisco network ACL commands with his right hand. His left arm locks completely straight in a rigid muscular seizure as the compiler loads foreign driver hooks into his nervous system."
+    camera_direction: "Tense medium side profile of young Indian software engineer typing with one hand while left arm is locked rigid, veins faintly glowing neon blue"
+    narration: "His left arm locks in a rigid spasm as foreign drivers load into his nerves. With one hand, he writes a hardware access control list."
+    overlay_text:
+      - "deny udp any any eq 8080"
+      - "deny ip host 0.0.0.0 any"
+      - "DRIVER_HOOK: NERVOUS_SYS"
+    kling_prompt: "Cinematic side angle of male software engineer typing frantically on backlit keyboard with right hand, left arm locked rigid and trembling, cyan glowing cybernetic veins on forearm, cold terminal glow on sweaty face, intense drama"
+
+  - scene_id: scene_07
+    scene_number: 7
+    title: "The Timeless 0ms Frame"
+    start_time: "00:57.2"
+    end_time: "01:06.8"
+    duration_seconds: 9.6
+    visual_description: "Compilation counter reaches 89%. He reaches across and strikes the Enter key. In an instant, the screen freezes, all fan noise drops dead, and floating dust particles in the air freeze completely solid in timeless suspension."
+    camera_direction: "Extreme slow motion push into finger slamming mechanical keyboard Enter key, visual reality freezing solid in mid-air"
+    narration: "Eighty-nine percent. He binds the firewall and strikes Enter. The fans die. Time freezes to zero milliseconds."
+    overlay_text:
+      - "interface Gi0/1: ip access-group in"
+      - "TIMESTEP: 0.00ms [CLOCK HALT]"
+    kling_prompt: "Macro shot of index finger pressing Enter key on mechanical keyboard, surrounding dust motes and air frozen completely motionless in time, extreme stillness, cold blue and red lighting, cinematic depth of field"
+
+  - scene_id: scene_08
+    scene_number: 8
+    title: "Connection Reset by Peer"
+    start_time: "01:06.8"
+    end_time: "01:18.0"
+    duration_seconds: 11.2
+    visual_description: "Console prints: %ACL-I-APPLIED: Connection reset by peer. Digital rain falls away as 32-bit true color snaps back. Abhrankan slumps against the rack, then looks at the doorway: it has returned, but the cinder blocks around it remain permanently sheared three inches out of alignment."
+    camera_direction: "Terminal text snap, then wide pull back showing engineer slumped against server rack looking at concrete door frame permanently misaligned by 3 inches"
+    narration: "Connection reset by peer. The packet is dropped. But the doorway returns misaligned by three inches. The bug in reality remains."
+    overlay_text:
+      - "%ACL-I-APPLIED: Connection reset by peer"
+      - "SECTOR_FAULT: +3.0in OFFSET"
+    kling_prompt: "Wide cinematic shot of exhausted software engineer sitting on floor leaning against server rack in dark server room, green digital rain fading, in background concrete doorway has returned but cinder blocks are visibly misaligned and jagged by three inches, dramatic atmospheric thriller"
+
+audio:
+  ambient_hum: "Circular buffer degradation drone + Cisco bare metal fan roar + 8-bit VGA bitcrush"
+  sfx:
+    - "00:04 - Low-poly texture degradation glitch"
+    - "00:12 - High-pitch retinal CRT whine"
+    - "00:20 - Industrial server room air intake roar"
+    - "00:29 - Serial port USB connection chime & 115200 baud click"
+    - "00:37 - 8-bit VGA bitcrush audio downsampling"
+    - "00:46 - Muscle spasm biometric heartbeat spike"
+    - "00:55 - Sudden 0ms dead-air freeze drop"
+    - "01:02 - Digital rain dissolve & heavy fan spool-up"
